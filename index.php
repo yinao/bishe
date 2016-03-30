@@ -1,7 +1,7 @@
 <?php
 define('DIR',__DIR__);
 
-$act = $_GET['a'];
+$act = isset($_GET["a"])?$_GET['a']:NULL;
 $act = empty($act)?'index':$act;
 $act = ucfirst($act).'Action';
 $file = DIR.'/Web/Action/'.$act.'.class.php';
