@@ -10,6 +10,7 @@ class BaseAction{
 			$this->obj=new Smarty();
 			$this->obj->template_dir=array(DIR.'/Web/templates');
 			$this->obj->compile_dir=DIR.'/Web/templates_c';
+			$this->obj->cache_dir=DIR.'/Web/cache';
 		}
 	}
 }
