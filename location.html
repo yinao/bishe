@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>js获取地理位置测试</title>
+	<meta name="" content="">
+	<meta charset="utf-8">
+	<meta name="location" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">   
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">   
+	<meta name="apple-mobile-web-app-capable" content="yes">   
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">   
+	<meta name="format-detection" content="telephone=no">
+</head>
+<body onload="loadLocation();">
+<button onclick="loadLocation();">获取地理位置</button>
+<div id="status">
+	
+</div>
+<script>
+	function loadLocation(){
+		if(window.navigator.geolocation){
+			//document.getElementById('status').innerHTML="supported<br/>";
+			window.navigator.geolocation.getCurrentPosition(getLocation,handleLocationError);
+		}else{
+			document.getElementById('status').innerHTML="not supported<br/>";
+		}
+	}
+	function getLocation(position){
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
+		var accuracy = position.coords.accuracy;
+
+		document.getElementById('status').innerHTML+="纬度为："+latitude;
+		document.getElementById('status').innerHTML+="精度为："+longitude;
+		document.getElementById('status').innerHTML+="准确度为："+accuracy;
+	}
+	function handleLocationError(error){
+		switch (error.code) { 
+		    case 0: 
+		        alert("尝试获取您的位置信息时发生错误：" + error.message); 
+		        break; 
+		    case 1: 
+		        alert("用户拒绝了获取位置信息请求."); 
+		        break; 
+		    case 2: 
+		        alert("浏览器无法获取您的位置信息。"); 
+		        break; 
+		    case 3: 
+		        alert("获取您位置信息超时。"); 
+		        break; 
+	    } 
+	}
+</script>
+</body>
+</html>
