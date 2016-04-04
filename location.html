@@ -1,55 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>js获取地理位置测试</title>
-	<meta name="" content="">
-	<meta charset="utf-8">
-	<meta name="location" content="">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">   
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">   
-	<meta name="apple-mobile-web-app-capable" content="yes">   
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">   
-	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script src="http://api.map.baidu.com/getscript?v=2.0&ak=V8rtOq9UipfDRulprcyUNj2gsNX0b6O8"></script>
+	<title>浏览器定位</title>
 </head>
-<body onload="loadLocation();">
-<button onclick="loadLocation();">获取地理位置</button>
-<div id="status">
-	
-</div>
-<script>
-	function loadLocation(){
-		if(window.navigator.geolocation){
-			//document.getElementById('status').innerHTML="supported<br/>";
-			window.navigator.geolocation.getCurrentPosition(getLocation,handleLocationError);
-		}else{
-			document.getElementById('status').innerHTML="not supported<br/>";
-		}
-	}
-	function getLocation(position){
-		var latitude = position.coords.latitude;
-		var longitude = position.coords.longitude;
-		var accuracy = position.coords.accuracy;
-
-		document.getElementById('status').innerHTML+="纬度为："+latitude;
-		document.getElementById('status').innerHTML+="精度为："+longitude;
-		document.getElementById('status').innerHTML+="准确度为："+accuracy;
-	}
-	function handleLocationError(error){
-		switch (error.code) { 
-		    case 0: 
-		        alert("尝试获取您的位置信息时发生错误：" + error.message); 
-		        break; 
-		    case 1: 
-		        alert("用户拒绝了获取位置信息请求."); 
-		        break; 
-		    case 2: 
-		        alert("浏览器无法获取您的位置信息。"); 
-		        break; 
-		    case 3: 
-		        alert("获取您位置信息超时。"); 
-		        break; 
-	    } 
-	}
-</script>
+<body>
+	<div id="location">位置：<span id="status">定位中。。。</span></div>
 </body>
 </html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			var geoc = new BMap.Geocoder();
+			geoc.getLocation(r.point, function(rs){
+                var addComp = rs.addressComponents;
+                document.getElementById('status').innerHTML=addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+            });
+		}
+		else {
+			alert('failed'+this.getStatus());
+		}        
+	});
+	//关于状态码
+	//BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
+	//BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
+	//BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
+	//BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
+	//BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
+	//BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
+	//BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
+	//BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
+	//BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
+</script>
