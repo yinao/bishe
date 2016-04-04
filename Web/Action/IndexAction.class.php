@@ -11,6 +11,7 @@ class IndexAction extends BaseAction{
 		$this->obj->assign('keyword','关键字');
 		$this->obj->assign('description','网站页面内容描述');
 		$this->obj->assign('content','这是首页显示');
+		$this->obj->assign('rootUrl',$this->rootUrl);
 		$this->obj->display('index.html');
 	}
 }
