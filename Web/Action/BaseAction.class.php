@@ -31,4 +31,7 @@ class BaseAction{
 			$this->parameters['unsafe'][$key]=$value;
 		}
 	}
+	protected function errorPage($error,$errorInfo){
+		
+	}
 }

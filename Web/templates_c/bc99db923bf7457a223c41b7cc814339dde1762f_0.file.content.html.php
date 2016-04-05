@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-03 18:36:07
+/* Smarty version 3.1.29, created on 2016-04-04 17:49:03
   from "/var/www/bishe/Web/templates/content.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5700f21763cb39_82848077',
+  'unifunc' => 'content_5702388f0458a9_83637134',
   'file_dependency' => 
   array (
     'bc99db923bf7457a223c41b7cc814339dde1762f' => 
     array (
       0 => '/var/www/bishe/Web/templates/content.html',
-      1 => 1459679707,
+      1 => 1459763154,
       2 => 'file',
     ),
   ),
@@ -20,68 +20,10 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5700f21763cb39_82848077 ($_smarty_tpl) {
+function content_5702388f0458a9_83637134 ($_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
-		<div class="lefter">
-			<div class="logo">
-				<a href="http://www.pintuer.com" target="_blank"><img src="Public	/logo.png" alt="后台管理系统" /></a>
-			</div>
-		</div>
-		<div class="righter nav-navicon" id="admin-nav">
-			<div class="mainer">
-				<div class="admin-navbar">
-					<span class="float-right">
-                    <a class="button button-little bg-main" href="#">前台首页</a>
-                    <a class="button button-little bg-yellow" href="login.html">注销登录</a>
-                </span>
-					<ul class="nav nav-inline admin-nav">
-						<li>
-							<a href="index.html" class="icon-home"> 开始</a>
-							<ul>
-								<li><a href="system.html">系统设置</a></li>
-								<li><a href="content.html">内容管理</a></li>
-								<li><a href="#">订单管理</a></li>
-								<li class="active"><a href="#">会员管理</a></li>
-								<li><a href="#">文件管理</a></li>
-								<li><a href="#">栏目管理</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="system.html" class="icon-cog"> 系统</a>
-							<ul>
-								<li><a href="#">全局设置</a></li>
-								<li class="active"><a href="#">系统设置</a></li>
-								<li><a href="#">会员设置</a></li>
-								<li><a href="#">积分设置</a></li>
-							</ul>
-						</li>
-						<li class="active">
-							<a href="content.html" class="icon-file-text"> 内容</a>
-							<ul>
-								<li><a href="#">添加内容</a></li>
-								<li class="active"><a href="#">内容管理</a></li>
-								<li><a href="#">分类设置</a></li>
-								<li><a href="#">链接管理</a></li>
-							</ul>
-						</li>
-						<li><a href="#" class="icon-shopping-cart"> 订单</a></li>
-						<li><a href="#" class="icon-user"> 会员</a></li>
-						<li><a href="#" class="icon-file"> 文件</a></li>
-						<li><a href="#" class="icon-th-list"> 栏目</a></li>
-					</ul>
-				</div>
-				<div class="admin-bread">
-					<span>您好，admin，欢迎您的光临。</span>
-					<ul class="bread">
-						<li><a href="index.html" class="icon-home"> 开始</a></li>
-						<li><a href="content.html">内容</a></li>
-						<li>内容管理</li>
-					</ul>
-				</div>
-			</div>
-		</div>
 
 		<div class="admin">
 			<form method="post">
@@ -102,14 +44,15 @@ $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:head.html", 
 							<th width="100">操作</th>
 						</tr>
 						<tr>
-							<td><input type="checkbox"></td>
+							<td><input type="checkbox" name="id" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+"></td>
 							<td>起步</td>
 							<td>下载拼图框架</td>
 							<td>2014-10-1</td>
 							<td>
 								<a class="button border-blue button-little" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 &e=e">编辑</a>
-								<a class="button border-yellow button-little" href="">删除</a>
+								<a class="button border-yellow button-little" onclick="isDelete();" href="">删除</a>
 							</td>
 						</tr>
 						
@@ -134,7 +77,17 @@ $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:head.html", 
 			<br />
 			<p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="http://www.pintuer.com">拼图前端框架</a>构建</p>
 		</div>
-
+<?php echo '<script'; ?>
+>
+	function isDelete(){
+		if(confirm('是否删除?')){
+			return true;
+		}else{
+			return false;
+		}
+	}
+<?php echo '</script'; ?>
+>
 		
 	</body>
 

@@ -27,6 +27,8 @@ class ContentAction extends BaseAction{
 		$this->obj->assign('content','这是首页显示');
 		$this->obj->assign('url',$this->url);
 		$this->obj->assign('rootUrl',$this->rootUrl);
+		$this->obj->assign('conActive',' class="active"');
+		$this->obj->assign('mActive',' class="active"');
 		$this->obj->display('content.html');
 	}
 
@@ -38,10 +40,16 @@ class ContentAction extends BaseAction{
 		$this->obj->assign('content','这是首页显示');
 		$this->obj->assign('rootUrl',$this->rootUrl);
 		$this->obj->assign('url',$this->getUrl);
+		$this->obj->assign('conActive',' class="active"');
+		$this->obj->assign('mActive',' class="active"');
 		$this->obj->display('content_edit.html');
 	}
 
 	private function add(){
-		echo 'this is add contetn';
+		$this->obj->assign('conActive',' class="active"');
+		$this->obj->assign('addActive',' class="active"');
+		$this->obj->assign('rootUrl',$this->rootUrl);
+		$this->obj->assign('url',$this->getUrl);
+		$this->obj->display('content_edit.html');
 	}
 }

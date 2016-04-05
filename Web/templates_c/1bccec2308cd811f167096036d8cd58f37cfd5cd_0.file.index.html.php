@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-03 18:06:56
+/* Smarty version 3.1.29, created on 2016-04-04 17:48:19
   from "/var/www/bishe/Web/templates/index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5700eb4034e227_80298608',
+  'unifunc' => 'content_57023863d005f7_47272683',
   'file_dependency' => 
   array (
     '1bccec2308cd811f167096036d8cd58f37cfd5cd' => 
     array (
       0 => '/var/www/bishe/Web/templates/index.html',
-      1 => 1459677962,
+      1 => 1459763123,
       2 => 'file',
     ),
   ),
@@ -20,68 +20,10 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5700eb4034e227_80298608 ($_smarty_tpl) {
+function content_57023863d005f7_47272683 ($_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
-		<div class="lefter">
-			<div class="logo">
-				<a href="http://www.pintuer.com" target="_blank"><img src="Public/logo.png" alt="后台管理系统" /></a>
-			</div>
-		</div>
-		<div class="righter nav-navicon" id="admin-nav">
-			<div class="mainer">
-				<div class="admin-navbar">
-					<span class="float-right">
-                    <a class="button button-little bg-main" href="http://www.pintuer.com" target="_blank">前台首页</a>
-                    <a class="button button-little bg-yellow" href="login.html">注销登录</a>
-                </span>
-					<ul class="nav nav-inline admin-nav">
-						<li class="active">
-							<a href="index.html" class="icon-home"> 开始</a>
-							<ul>
-								<li><a href="system.html">系统设置</a></li>
-								<li><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=c">内容管理</a></li>
-								<li><a href="#">订单管理</a></li>
-								<li class="active"><a href="#">会员管理</a></li>
-								<li><a href="#">文件管理</a></li>
-								<li><a href="#">栏目管理</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="system.html" class="icon-cog"> 系统</a>
-							<ul>
-								<li><a href="#">全局设置</a></li>
-								<li class="active"><a href="#">系统设置</a></li>
-								<li><a href="#">会员设置</a></li>
-								<li><a href="#">积分设置</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="content.html" class="icon-file-text"> 内容</a>
-							<ul>
-								<li><a href="#">添加内容</a></li>
-								<li class="active"><a href="#">内容管理</a></li>
-								<li><a href="#">分类设置</a></li>
-								<li><a href="#">链接管理</a></li>
-							</ul>
-						</li>
-						<li><a href="#" class="icon-shopping-cart"> 订单</a></li>
-						<li><a href="#" class="icon-user"> 会员</a></li>
-						<li><a href="#" class="icon-file"> 文件</a></li>
-						<li><a href="#" class="icon-th-list"> 栏目</a></li>
-					</ul>
-				</div>
-				<div class="admin-bread">
-					<span>您好，admin，欢迎您的光临。</span>
-					<ul class="bread">
-						<li><a href="index.html" class="icon-home"> 开始</a></li>
-						<li>后台首页</li>
-					</ul>
-				</div>
-			</div>
-		</div>
 
 		<div class="admin">
 			<div class="line-big">

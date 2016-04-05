@@ -2,5 +2,6 @@
 $url = array
 		(
 		'i'=>'IndexAction',
-		'c'=>'ContentAction'
+		'c'=>'ContentAction',
+		'u'=>'UserAction',
 		);
