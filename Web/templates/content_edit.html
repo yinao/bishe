@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<title>{$title}</title>
+		<link rel="stylesheet" href="{$rootUrl}/Public/pintuer.css">
+		<link rel="stylesheet" href="{$rootUrl}/Public/admin.css">
+		<script src="{$rootUrl}/Public/jquery.js"></script>
+		<script src="{$rootUrl}/Public/pintuer.js"></script>
+		<!--<script src="{$rootUrl}/Public/respond.js"></script>-->
+		<script src="{$rootUrl}/Public/admin.js"></script>
+	</head>
+
+	<body>
 {include file="head.html"}
 
 		<div class="admin">
@@ -9,6 +27,15 @@
 					<div class="label">
 						<label for="username">
 							文章标题：</label>
+					</div>
+					<div class="field">
+						<input type="text" class="input input-auto" id="username" name="username" size="30" placeholder="请输入文章的标题" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label for="username">
+							文章类别：</label>
 					</div>
 					<div class="field">
 						<input type="text" class="input input-auto" id="username" name="username" size="30" placeholder="请输入文章的标题" />
