@@ -22,6 +22,7 @@ class BaseModel{
 		}
 	}
 	protected static function fetchAll($sql,$parameters){
+		self::getPdo();
 		$r=self::$pdo->prepare($sql);
 		$r->execute(self::filter($parameters));
 		$res=$r->fetchAll();
@@ -29,22 +30,25 @@ class BaseModel{
 	}
 
 	protected static function fetchAllIn($sql,$column,$parameters){
+		self::getPdo();
 		$place_holders=implode(',',array_fill(0,count($parameters),'?'));
-		$sql+=" where {$column} in {$place_holders}";
-		self::$pdo->prepare($sql);
-		self::$execute(self::$filter($parameters));
+		$sql+=" where {$column} in ({$place_holders})";
+		$r=self::$pdo->prepare($sql);
+		$r->execute(self::filter($parameters));
 		$res=self::$fetchAll();
 		return $res;
 	}
 
 	protected static function fetchOne($sql,$parameters){
+		self::getPdo();
 		$r=self::$pdo->prepare($sql);
-		$r->execute(self::$filter($parameters));
+		$r->execute(self::filter($parameters));
 		$res=$r->fetch();
 		return $res;
 	}
 
 	protected static function queryAll($sql){
+		self::getPdo();
 		$res=array();
 		foreach(self::$pdo->query($sql) as $row){
 			$res[]=$row;
@@ -52,21 +56,51 @@ class BaseModel{
 		return $res;
 	}
 
+	protected static function execute($sql,$parameters){
+		self::getPdo();
+		try{
+			$r=self::$pdo->prepare($sql);
+			$row=$r->execute(self::filter($parameters));
+			return $row;
+		}catch(PDOException $e){
+			return $e->getMessage();
+		}
+	}
+
 	protected static function exec($sql){
-		self::$pdo->exec($sql);
+		self::getPdo();
+		$rows=self::$pdo->exec($sql);
+		return $rows;
+	}
+
+	protected static function execIn($sql,$column,$parameters){
+		self::getPdo();
+		try{
+			$place_holders=implode(',',array_fill(0,count($parameters),'?'));
+			$sql.=" where {$column} in ({$place_holders})";
+			$r=self::$pdo->prepare($sql);
+			$r->execute(self::filter($parameters));
+		}catch(PDOException $e){
+			echo $e->getMessage();exit();
+		}
 	}
 
 	protected static function rowCount($sql,$parameters){
+		self::getPdo();
 		$r=self::$pdo->prepare($sql);
-		$r->execute(self::$filter($parameters));
+		$r->execute(self::filter($parameters));
 		$rowsCount=$r->rowCount;
 		return $rowsCount;
 	}
 
+	protected static function delAll(){
+		self::getPdo();
+	}
+
 	protected static function filter($parameters){
-		foreach ($parameters as $key => $value) {
+		//foreach ($parameters as $key => $value) {
 			
-		}
+		//}
 		return $parameters;
 	}
 

@@ -14,8 +14,14 @@ class ContentAction extends BaseAction{
 			case 'a':
 				$this->add();
 				break;
+			case 'ca':
+				$this->conAct();
+				break;
 			case 's':
 				$this->sort();
+				break;
+			case 'sc':
+				$this->sortAct();
 				break;
 			default:
 				$this->index();
@@ -60,7 +66,12 @@ class ContentAction extends BaseAction{
 		$this->obj->display('content_edit.html');
 	}
 
+	private function conAct(){
+
+	}
+
 	private function sort(){
+
 		$this->obj->assign('bread',$this->bread(2,'内容','c','分类设置'));
 		$this->obj->assign('conActive',' class="active"');
 		$this->obj->assign('sortActive',' class="active"');
@@ -72,4 +83,15 @@ class ContentAction extends BaseAction{
 		$this->obj->display('content_sort.html');
 	}
 
+	private function sortAct(){
+		$res=array();
+		$res['status']=0;
+		if($this->isAjax()){
+			if(isset($_POST)&&!empty($_POST['i'])&&!empty($_POST['a'])){
+				$res['res']=ContentModel::sortAction($_POST);
+				$res['status']=1;
+			}
+		}
+		echo json_encode($res);
+	}
 }

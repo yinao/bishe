@@ -26,7 +26,7 @@
 						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
 						<input type="button" class="button button-small border-green dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
 						<input type="button" class="button button-small border-yellow delAll" value="批量删除" />
-						<input type="button" class="button button-small border-blue" value="回收站" />
+						<!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
 					</div>
 					<table class="table table-hover">
 						<tr>
@@ -39,15 +39,15 @@
 						<tr>
 							<td><input type="checkbox" name="id" value="{$list[0]}"></td>
 							<td>{$list[1]}</td>
-							<td>{$list[2]}</td>
+							<td>{$list[2]|date_format:'%Y-%m-%d'}</td>
 							<td>
-								<a class="button sortEdit border-blue button-little" href="javascript:void(0);">编辑</a>
+								<a class="button sortEdit border-blue button-little dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" href="javascript:void(0);">编辑</a>
 								<a class="button border-yellow button-little sortDel" href="javascript:void(0);">删除</a>
 							</td>
 						</tr>
 						{/foreach}
 					</table>
-					<div class="panel-foot text-center">
+					<!-- <div class="panel-foot text-center">
 						<ul class="pagination">
 							<li><a href="#">上一页</a></li>
 						</ul>
@@ -61,14 +61,14 @@
 						<ul class="pagination">
 							<li><a href="#">下一页</a></li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 			</form>
 		</div>
 		<div id="sortAdd">
 			<div class="dialog">
 				<div class="dialog-head">
-					<span class="close rotate-hover"></span><strong>添加文章类别</strong>
+					<span class="close rotate-hover"></span><strong>添加内容类别</strong>
 				</div>
 				<div class="dialog-body">
 					<label for="sortName">类别名称：</label>
@@ -77,7 +77,7 @@
 				<div class="dialog-foot">
 					<button class="button dialog-close">
 						取消</button>
-					<button class="button bg-green sortSub" data-toggle="add">
+					<button class="button bg-green sortSub" data-base="" data-toggle="a">
 						确认</button>
 				</div>
 			</div>
@@ -89,28 +89,49 @@
 					var c=r.find('input[type="checkbox"]');
 					var n=r.children().eq(1);
 					$('input[name="sortName"]').val(n.html());
+					$('.dialog .dialog-head').find('strong').html('编辑文章类别');
+					$('.dialog .dialog-foot').find('.sortSub').attr('data-toggle','u');
+					$('.dialog .dialog-foot').find('.sortSub').attr('data-based',c.val());
 				});
 
 				$('.sortDel').click(function(){
-					alert('这是删除功能');
+					if(!confirm('是否删除？')) return false;
+					jf.load('正在删除.....','{$rootUrl}');
+					var r=$(this).closest('tr');
+					var c=r.find('input[type="checkbox"]');
+					var res=JSON.parse(jf.ajaxMethod('{$rootUrl}/index.php?a=c&e=sc','a=d&i='+c.val(),'POST'));
+					if(res.status==1){
+
+					}else{
+						alert('删除失败');
+					}
+					jf.hide();
 				});
 
 				$('.delAll').click(function(){
 					if(!confirm('是否删除？')) return false;
 					jf.load('正在删除.....','{$rootUrl}');
 					var b=$(this).closest('form').find("input[type='checkbox']");
+					var arrId=new Array();
 					$(b).each(function(index,element){
 						if(element.checked==true){
-							//alert(element.value);
-						}else{
-							alert('这个不删除');
+							arrId.push(element.value);
 						}
 					});
+					var res=JSON.parse(jf.ajaxMethod('{$rootUrl}/index.php?a=c&e=sc','a=d&i='+arrId.join(),'POST'));
+					if(res.status==1){
+
+					}else{
+						alert('删除失败');
+					}
 					jf.hide();
 				});
 
 				$('body').on('click','.dialog-win .sortSub',function(){
 					var i=$('.dialog-win input[name="sortName"]');
+					if(i.val().trim()!=""){
+						var res=JSON.parse(jf.ajaxMethod('{$rootUrl}/index.php?a=c&e=sc','a='+$(this).attr('data-toggle')+'&i='+$(this).attr('data-based')+'&n='+i.val().trim(),'POST'));
+					}
 				});
 			});
 		</script>

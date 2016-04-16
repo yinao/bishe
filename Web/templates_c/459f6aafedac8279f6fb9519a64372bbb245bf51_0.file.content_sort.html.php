@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-16 09:40:25
+/* Smarty version 3.1.29, created on 2016-04-16 15:16:35
   from "/var/www/bishe/Web/templates/content_sort.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57119809ae2cd4_74770204',
+  'unifunc' => 'content_5711e6d3ce7845_36654852',
   'file_dependency' => 
   array (
     '459f6aafedac8279f6fb9519a64372bbb245bf51' => 
     array (
       0 => '/var/www/bishe/Web/templates/content_sort.html',
-      1 => 1460770642,
+      1 => 1460790956,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57119809ae2cd4_74770204 ($_smarty_tpl) {
+function content_5711e6d3ce7845_36654852 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/bishe/Web/libs/plugins/modifier.date_format.php';
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -67,7 +68,7 @@ function content_57119809ae2cd4_74770204 ($_smarty_tpl) {
 						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
 						<input type="button" class="button button-small border-green dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
 						<input type="button" class="button button-small border-yellow delAll" value="批量删除" />
-						<input type="button" class="button button-small border-blue" value="回收站" />
+						<!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
 					</div>
 					<table class="table table-hover">
 						<tr>
@@ -93,10 +94,10 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 "></td>
 							<td><?php echo $_smarty_tpl->tpl_vars['list']->value[1];?>
 </td>
-							<td><?php echo $_smarty_tpl->tpl_vars['list']->value[2];?>
+							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['list']->value[2],'%Y-%m-%d');?>
 </td>
 							<td>
-								<a class="button sortEdit border-blue button-little" href="javascript:void(0);">编辑</a>
+								<a class="button sortEdit border-blue button-little dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" href="javascript:void(0);">编辑</a>
 								<a class="button border-yellow button-little sortDel" href="javascript:void(0);">删除</a>
 							</td>
 						</tr>
@@ -108,7 +109,7 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 }
 ?>
 					</table>
-					<div class="panel-foot text-center">
+					<!-- <div class="panel-foot text-center">
 						<ul class="pagination">
 							<li><a href="#">上一页</a></li>
 						</ul>
@@ -122,14 +123,14 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 						<ul class="pagination">
 							<li><a href="#">下一页</a></li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 			</form>
 		</div>
 		<div id="sortAdd">
 			<div class="dialog">
 				<div class="dialog-head">
-					<span class="close rotate-hover"></span><strong>添加文章类别</strong>
+					<span class="close rotate-hover"></span><strong>添加内容类别</strong>
 				</div>
 				<div class="dialog-body">
 					<label for="sortName">类别名称：</label>
@@ -138,7 +139,7 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 				<div class="dialog-foot">
 					<button class="button dialog-close">
 						取消</button>
-					<button class="button bg-green sortSub" data-toggle="add">
+					<button class="button bg-green sortSub" data-base="" data-toggle="a">
 						确认</button>
 				</div>
 			</div>
@@ -151,10 +152,25 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 					var c=r.find('input[type="checkbox"]');
 					var n=r.children().eq(1);
 					$('input[name="sortName"]').val(n.html());
+					$('.dialog .dialog-head').find('strong').html('编辑文章类别');
+					$('.dialog .dialog-foot').find('.sortSub').attr('data-toggle','u');
+					$('.dialog .dialog-foot').find('.sortSub').attr('data-based',c.val());
 				});
 
 				$('.sortDel').click(function(){
-					alert('这是删除功能');
+					if(!confirm('是否删除？')) return false;
+					jf.load('正在删除.....','<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+');
+					var r=$(this).closest('tr');
+					var c=r.find('input[type="checkbox"]');
+					var res=JSON.parse(jf.ajaxMethod('<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=c&e=sc','a=d&i='+c.val(),'POST'));
+					if(res.status==1){
+
+					}else{
+						alert('删除失败');
+					}
+					jf.hide();
 				});
 
 				$('.delAll').click(function(){
@@ -162,18 +178,28 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 					jf.load('正在删除.....','<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 ');
 					var b=$(this).closest('form').find("input[type='checkbox']");
+					var arrId=new Array();
 					$(b).each(function(index,element){
 						if(element.checked==true){
-							//alert(element.value);
-						}else{
-							alert('这个不删除');
+							arrId.push(element.value);
 						}
 					});
+					var res=JSON.parse(jf.ajaxMethod('<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=c&e=sc','a=d&i='+arrId.join(),'POST'));
+					if(res.status==1){
+
+					}else{
+						alert('删除失败');
+					}
 					jf.hide();
 				});
 
 				$('body').on('click','.dialog-win .sortSub',function(){
 					var i=$('.dialog-win input[name="sortName"]');
+					if(i.val().trim()!=""){
+						var res=JSON.parse(jf.ajaxMethod('<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=c&e=sc','a='+$(this).attr('data-toggle')+'&i='+$(this).attr('data-based')+'&n='+i.val().trim(),'POST'));
+					}
 				});
 			});
 		<?php echo '</script'; ?>

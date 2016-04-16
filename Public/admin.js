@@ -2,10 +2,11 @@
 var myFrame={
 	options:[],
 	ajaxMethod:function(url,data,type) {
-		var result;
+		var result=null;
 		$.ajax({
 			type:type,
 			url:url,
+			async:false,
 			data:data,
 			error:function(msg){result=msg;},
 			success:function(msg){result=msg;}
