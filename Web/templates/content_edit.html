@@ -29,20 +29,20 @@
 			<form method="post" class="form-x">
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="title">
 							文章标题：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="username" name="username" size="30" data-validate="required:请填写文章标题" placeholder="请输入文章的标题" />
+						<input type="text" class="input input-auto" id="title" name="title" size="30" data-validate="required:请填写文章标题" placeholder="请输入文章的标题" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="sort">
 							文章类别：</label>
 					</div>
 					<div class="field">
-						<select class="input input-auto" name="pintuer" id="pintuer" data-validate="required:请选择文章类别">
+						<select class="input input-auto" name="sort" id="sort" data-validate="required:请选择文章类别">
 							<option value="">请选择</option>
 							{foreach from=$sortList item=list}
 							<option value="{$list[0]}">{$list[1]}</option>
@@ -52,7 +52,7 @@
 				</div>
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="content">
 							文章内容：</label>
 					</div>
 					<div class="field">
@@ -61,33 +61,30 @@
 				</div>
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="keyword">
 							文章关键字：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="username" name="username" size="30" data-validate="required:请输入文章关键字" placeholder="请输入关键字" />
+						<input type="text" class="input input-auto" id="keyword" name="keyword" size="30" data-validate="required:请输入文章关键字" placeholder="请输入关键字" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="description">
 							文章说明：</label>
 					</div>
 					<div class="field">
-						<textarea class="input" rows="5" cols="50" placeholder="请填写文章说明" data-validate="required:请填写文章说明"></textarea>
+						<textarea class="input" name="description" rows="5" cols="50" placeholder="请填写文章说明" data-validate="required:请填写文章说明"></textarea>
 					</div>
 				</div>
 				<div class="form-button">
-					<button class="button bg-main" type="submit">提交</button>
+					<button class="button bg-main newsSub" type="submit">提交</button>
 				</div>
 			</form>
 		</div>
 
 	    <script>
 	    	var um = UM.getEditor('editor');
-	    	$('button[type="submit"]').click(function(){
-	    		
-	    	});
 	    </script>
 	</body>
 </html>

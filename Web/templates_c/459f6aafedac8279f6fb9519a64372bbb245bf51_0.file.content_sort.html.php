@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-16 19:10:48
+/* Smarty version 3.1.29, created on 2016-04-16 20:52:15
   from "/var/www/bishe/Web/templates/content_sort.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57121db804fd27_17194764',
+  'unifunc' => 'content_5712357fec4ac1_11136914',
   'file_dependency' => 
   array (
     '459f6aafedac8279f6fb9519a64372bbb245bf51' => 
     array (
       0 => '/var/www/bishe/Web/templates/content_sort.html',
-      1 => 1460805042,
+      1 => 1460811120,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57121db804fd27_17194764 ($_smarty_tpl) {
+function content_5712357fec4ac1_11136914 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/bishe/Web/libs/plugins/modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -67,7 +67,7 @@ if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/bishe/We
 					<div class="padding border-bottom">
 						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
 						<input type="button" class="button button-small border-green dialogs" name="addS" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
-						<input type="button" class="button button-small border-yellow delAll" value="批量删除" />
+						<input type="button" class="button button-small border-yellow sortAll" value="批量删除" />
 						<!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
 					</div>
 					<table class="table table-hover">
@@ -132,68 +132,7 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 		<?php echo '<script'; ?>
 >
 			$(function(){
-				$('input[name="addS"]').click(function(){
-					$('.dialog .dialog-head').find('strong').html('添加文章类别');
-					$('.dialog .dialog-foot').find('.sortSub').attr('data-toggle','a');
-					$('.dialog .dialog-foot').find('.sortSub').attr('data-based',"");
-				});
-				$('.sortEdit').click(function(){
-					var r=$(this).closest('tr');
-					var c=r.find('input[type="checkbox"]');
-					var n=r.children().eq(1);
-					$('input[name="sortName"]').val(n.html());
-					$('.dialog .dialog-head').find('strong').html('编辑文章类别');
-					$('.dialog .dialog-foot').find('.sortSub').attr('data-toggle','u');
-					$('.dialog .dialog-foot').find('.sortSub').attr('data-based',c.val());
-				});
-
-				$('.sortDel').click(function(){
-					if(!confirm('是否删除？')) return false;
-					jf.load('正在删除.....','<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-');
-					var r=$(this).closest('tr');
-					var c=r.find('input[type="checkbox"]');
-					var res=JSON.parse(jf.ajaxMethod('<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=c&e=sc','a=d&i='+c.val(),'POST'));
-					if(res.status==1){
-
-					}else{
-						alert('删除失败');
-					}
-					jf.hide();
-					window.location.reload();
-				});
-
-				$('.delAll').click(function(){
-					if(!confirm('是否删除？')) return false;
-					jf.load('正在删除.....','<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-');
-					var b=$(this).closest('form').find("input[type='checkbox']");
-					var arrId=new Array();
-					$(b).each(function(index,element){
-						if(element.checked==true){
-							arrId.push(element.value);
-						}
-					});
-					var res=JSON.parse(jf.ajaxMethod('<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=c&e=sc','a=d&i='+arrId.join(),'POST'));
-					if(res.status==1){
-
-					}else{
-						alert('删除失败');
-					}
-					jf.hide();
-					window.location.reload();
-				});
-
-				$('body').on('click','.dialog-win .sortSub',function(){
-					var i=$('.dialog-win input[name="sortName"]');
-					if(i.val().trim()!=""){
-						var res=JSON.parse(jf.ajaxMethod('<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=c&e=sc','a='+$(this).attr('data-toggle')+'&n='+$(this).attr('data-based')+'&i='+i.val().trim(),'POST'));
-					}
-					window.location.reload();
-				});
+				
 			});
 		<?php echo '</script'; ?>
 >

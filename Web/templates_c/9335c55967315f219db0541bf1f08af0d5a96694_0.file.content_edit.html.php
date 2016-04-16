@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-16 20:15:31
+/* Smarty version 3.1.29, created on 2016-04-16 20:58:29
   from "/var/www/bishe/Web/templates/content_edit.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57122ce33dbef5_99123889',
+  'unifunc' => 'content_571236f5e9bda0_12613821',
   'file_dependency' => 
   array (
     '9335c55967315f219db0541bf1f08af0d5a96694' => 
     array (
       0 => '/var/www/bishe/Web/templates/content_edit.html',
-      1 => 1460808923,
+      1 => 1460811372,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57122ce33dbef5_99123889 ($_smarty_tpl) {
+function content_571236f5e9bda0_12613821 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -81,20 +81,20 @@ function content_57122ce33dbef5_99123889 ($_smarty_tpl) {
 			<form method="post" class="form-x">
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="title">
 							文章标题：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="username" name="username" size="30" data-validate="required:请填写文章标题" placeholder="请输入文章的标题" />
+						<input type="text" class="input input-auto" id="title" name="title" size="30" data-validate="required:请填写文章标题" placeholder="请输入文章的标题" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="sort">
 							文章类别：</label>
 					</div>
 					<div class="field">
-						<select class="input input-auto" name="pintuer" id="pintuer" data-validate="required:请选择文章类别">
+						<select class="input input-auto" name="sort" id="sort" data-validate="required:请选择文章类别">
 							<option value="">请选择</option>
 							<?php
 $_from = $_smarty_tpl->tpl_vars['sortList']->value;
@@ -123,7 +123,7 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 				</div>
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="content">
 							文章内容：</label>
 					</div>
 					<div class="field">
@@ -134,24 +134,24 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 				</div>
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="keyword">
 							文章关键字：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="username" name="username" size="30" data-validate="required:请输入文章关键字" placeholder="请输入关键字" />
+						<input type="text" class="input input-auto" id="keyword" name="keyword" size="30" data-validate="required:请输入文章关键字" placeholder="请输入关键字" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="label">
-						<label for="username">
+						<label for="description">
 							文章说明：</label>
 					</div>
 					<div class="field">
-						<textarea class="input" rows="5" cols="50" placeholder="请填写文章说明" data-validate="required:请填写文章说明"></textarea>
+						<textarea class="input" name="description" rows="5" cols="50" placeholder="请填写文章说明" data-validate="required:请填写文章说明"></textarea>
 					</div>
 				</div>
 				<div class="form-button">
-					<button class="button bg-main" type="submit">提交</button>
+					<button class="button bg-main newsSub" type="submit">提交</button>
 				</div>
 			</form>
 		</div>
@@ -159,9 +159,6 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 	    <?php echo '<script'; ?>
 >
 	    	var um = UM.getEditor('editor');
-	    	$('button[type="submit"]').click(function(){
-	    		
-	    	});
 	    <?php echo '</script'; ?>
 >
 	</body>
