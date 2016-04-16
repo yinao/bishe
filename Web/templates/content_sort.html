@@ -24,7 +24,7 @@
 					<div class="panel-head"><strong>内容分类列表</strong></div>
 					<div class="padding border-bottom">
 						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-						<input type="button" class="button button-small border-green dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
+						<input type="button" class="button button-small border-green dialogs" name="addS" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
 						<input type="button" class="button button-small border-yellow delAll" value="批量删除" />
 						<!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
 					</div>
@@ -47,21 +47,6 @@
 						</tr>
 						{/foreach}
 					</table>
-					<!-- <div class="panel-foot text-center">
-						<ul class="pagination">
-							<li><a href="#">上一页</a></li>
-						</ul>
-						<ul class="pagination pagination-group">
-							<li><a href="#">1</a></li>
-							<li class="active"><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-						</ul>
-						<ul class="pagination">
-							<li><a href="#">下一页</a></li>
-						</ul>
-					</div> -->
 				</div>
 			</form>
 		</div>
@@ -77,13 +62,18 @@
 				<div class="dialog-foot">
 					<button class="button dialog-close">
 						取消</button>
-					<button class="button bg-green sortSub" data-base="" data-toggle="a">
+					<button class="button bg-green sortSub" data-toggle="a">
 						确认</button>
 				</div>
 			</div>
 		</div>
 		<script>
 			$(function(){
+				$('input[name="addS"]').click(function(){
+					$('.dialog .dialog-head').find('strong').html('添加文章类别');
+					$('.dialog .dialog-foot').find('.sortSub').attr('data-toggle','a');
+					$('.dialog .dialog-foot').find('.sortSub').attr('data-based',"");
+				});
 				$('.sortEdit').click(function(){
 					var r=$(this).closest('tr');
 					var c=r.find('input[type="checkbox"]');
@@ -96,7 +86,7 @@
 
 				$('.sortDel').click(function(){
 					if(!confirm('是否删除？')) return false;
-					jf.load('正在删除.....','{$rootUrl}');
+					jf.load('{$rootUrl}','正在删除.....',);
 					var r=$(this).closest('tr');
 					var c=r.find('input[type="checkbox"]');
 					var res=JSON.parse(jf.ajaxMethod('{$rootUrl}/index.php?a=c&e=sc','a=d&i='+c.val(),'POST'));
@@ -106,11 +96,12 @@
 						alert('删除失败');
 					}
 					jf.hide();
+					window.location.reload();
 				});
 
 				$('.delAll').click(function(){
 					if(!confirm('是否删除？')) return false;
-					jf.load('正在删除.....','{$rootUrl}');
+					jf.load('{$rootUrl}','正在删除.....',);
 					var b=$(this).closest('form').find("input[type='checkbox']");
 					var arrId=new Array();
 					$(b).each(function(index,element){
@@ -125,13 +116,15 @@
 						alert('删除失败');
 					}
 					jf.hide();
+					window.location.reload();
 				});
 
 				$('body').on('click','.dialog-win .sortSub',function(){
 					var i=$('.dialog-win input[name="sortName"]');
 					if(i.val().trim()!=""){
-						var res=JSON.parse(jf.ajaxMethod('{$rootUrl}/index.php?a=c&e=sc','a='+$(this).attr('data-toggle')+'&i='+$(this).attr('data-based')+'&n='+i.val().trim(),'POST'));
+						var res=JSON.parse(jf.ajaxMethod('{$rootUrl}/index.php?a=c&e=sc','a='+$(this).attr('data-toggle')+'&n='+$(this).attr('data-based')+'&i='+i.val().trim(),'POST'));
 					}
+					window.location.reload();
 				});
 			});
 		</script>

@@ -23,7 +23,7 @@
 {include file="head.html"}
 
 		<div class="admin">
-			<h2 style="">内容编辑</h2>
+			<h2 style="">{$mTitle}</h2>
 			<hr>
 			<hr class="space">
 			<form method="post" class="form-x">
@@ -44,7 +44,9 @@
 					<div class="field">
 						<select class="input input-auto" name="pintuer" id="pintuer" data-validate="required:请选择文章类别">
 							<option value="">请选择</option>
-							<option value="1">阿斯顿</option>
+							{foreach from=$sortList item=list}
+							<option value="{$list[0]}">{$list[1]}</option>
+							{/foreach}
 						</select>
 					</div>
 				</div>
@@ -83,6 +85,9 @@
 
 	    <script>
 	    	var um = UM.getEditor('editor');
+	    	$('button[type="submit"]').click(function(){
+	    		
+	    	});
 	    </script>
 	</body>
 </html>

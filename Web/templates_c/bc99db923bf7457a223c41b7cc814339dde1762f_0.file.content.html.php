@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-13 23:17:28
+/* Smarty version 3.1.29, created on 2016-04-16 20:08:13
   from "/var/www/bishe/Web/templates/content.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_570e6308adc585_02754239',
+  'unifunc' => 'content_57122b2d962507_68753913',
   'file_dependency' => 
   array (
     'bc99db923bf7457a223c41b7cc814339dde1762f' => 
     array (
       0 => '/var/www/bishe/Web/templates/content.html',
-      1 => 1460560631,
+      1 => 1460808491,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_570e6308adc585_02754239 ($_smarty_tpl) {
+function content_57122b2d962507_68753913 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/bishe/Web/libs/plugins/modifier.date_format.php';
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -65,7 +66,6 @@ function content_570e6308adc585_02754239 ($_smarty_tpl) {
 					<div class="panel-head"><strong>内容列表</strong></div>
 					<div class="padding border-bottom">
 						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-						<input type="button" class="button button-small border-green" value="添加文章" />
 						<input type="button" class="button button-small border-yellow" value="批量删除" />
 						<input type="button" class="button button-small border-blue" value="回收站" />
 					</div>
@@ -77,6 +77,40 @@ function content_570e6308adc585_02754239 ($_smarty_tpl) {
 							<th width="100">时间</th>
 							<th width="100">操作</th>
 						</tr>
+						<?php
+$_from = $_smarty_tpl->tpl_vars['articleList']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_list_0_saved_item = isset($_smarty_tpl->tpl_vars['list']) ? $_smarty_tpl->tpl_vars['list'] : false;
+$_smarty_tpl->tpl_vars['list'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['list']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['list']->value) {
+$_smarty_tpl->tpl_vars['list']->_loop = true;
+$__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
+?>
+						<tr>
+							<td><input type="checkbox" name="id" value="<?php echo $_smarty_tpl->tpl_vars['list']->value[0];?>
+"></td>
+							<td><?php echo $_smarty_tpl->tpl_vars['list']->value[1];?>
+</td>
+							<td><?php echo $_smarty_tpl->tpl_vars['list']->value[2];?>
+</td>
+							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['list']->value[3],'%Y-%m-%d');?>
+</td>
+							<td>
+								<a class="button border-blue button-little" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+&e=e">编辑</a>
+								<a class="button border-yellow button-little" href="javascript:void(0);">删除</a>
+							</td>
+						</tr>
+						<?php
+$_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_local_item;
+}
+if ($__foreach_list_0_saved_item) {
+$_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
+}
+?>
 						<tr>
 							<td><input type="checkbox" name="id" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 "></td>

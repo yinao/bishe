@@ -40,6 +40,9 @@ class ContentAction extends BaseAction{
 		$this->obj->assign('rootUrl',$this->rootUrl);
 		$this->obj->assign('conActive',' class="active"');
 		$this->obj->assign('mActive',' class="active"');
+
+		$this->obj->assign('articleList',ContentModel::fetchArticle());
+
 		$this->obj->display('content.html');
 	}
 
@@ -54,6 +57,10 @@ class ContentAction extends BaseAction{
 		$this->obj->assign('url',$this->getUrl);
 		$this->obj->assign('conActive',' class="active"');
 		$this->obj->assign('mActive',' class="active"');
+		$this->obj->assign('mTitle','内容编辑');
+
+		$this->obj->assign('sortList',ContentModel::fetchSort());
+
 		$this->obj->display('content_edit.html');
 	}
 
@@ -63,6 +70,10 @@ class ContentAction extends BaseAction{
 		$this->obj->assign('addActive',' class="active"');
 		$this->obj->assign('rootUrl',$this->rootUrl);
 		$this->obj->assign('url',$this->getUrl);
+		$this->obj->assign('mTitle','内容添加');
+
+		$this->obj->assign('sortList',ContentModel::fetchSort());
+
 		$this->obj->display('content_edit.html');
 	}
 

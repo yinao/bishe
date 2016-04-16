@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-16 15:16:35
+/* Smarty version 3.1.29, created on 2016-04-16 19:10:48
   from "/var/www/bishe/Web/templates/content_sort.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5711e6d3ce7845_36654852',
+  'unifunc' => 'content_57121db804fd27_17194764',
   'file_dependency' => 
   array (
     '459f6aafedac8279f6fb9519a64372bbb245bf51' => 
     array (
       0 => '/var/www/bishe/Web/templates/content_sort.html',
-      1 => 1460790956,
+      1 => 1460805042,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5711e6d3ce7845_36654852 ($_smarty_tpl) {
+function content_57121db804fd27_17194764 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/bishe/Web/libs/plugins/modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -66,7 +66,7 @@ if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/bishe/We
 					<div class="panel-head"><strong>内容分类列表</strong></div>
 					<div class="padding border-bottom">
 						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-						<input type="button" class="button button-small border-green dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
+						<input type="button" class="button button-small border-green dialogs" name="addS" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
 						<input type="button" class="button button-small border-yellow delAll" value="批量删除" />
 						<!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
 					</div>
@@ -109,21 +109,6 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 }
 ?>
 					</table>
-					<!-- <div class="panel-foot text-center">
-						<ul class="pagination">
-							<li><a href="#">上一页</a></li>
-						</ul>
-						<ul class="pagination pagination-group">
-							<li><a href="#">1</a></li>
-							<li class="active"><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-						</ul>
-						<ul class="pagination">
-							<li><a href="#">下一页</a></li>
-						</ul>
-					</div> -->
 				</div>
 			</form>
 		</div>
@@ -139,7 +124,7 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 				<div class="dialog-foot">
 					<button class="button dialog-close">
 						取消</button>
-					<button class="button bg-green sortSub" data-base="" data-toggle="a">
+					<button class="button bg-green sortSub" data-toggle="a">
 						确认</button>
 				</div>
 			</div>
@@ -147,6 +132,11 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 		<?php echo '<script'; ?>
 >
 			$(function(){
+				$('input[name="addS"]').click(function(){
+					$('.dialog .dialog-head').find('strong').html('添加文章类别');
+					$('.dialog .dialog-foot').find('.sortSub').attr('data-toggle','a');
+					$('.dialog .dialog-foot').find('.sortSub').attr('data-based',"");
+				});
 				$('.sortEdit').click(function(){
 					var r=$(this).closest('tr');
 					var c=r.find('input[type="checkbox"]');
@@ -171,6 +161,7 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 						alert('删除失败');
 					}
 					jf.hide();
+					window.location.reload();
 				});
 
 				$('.delAll').click(function(){
@@ -192,14 +183,16 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 						alert('删除失败');
 					}
 					jf.hide();
+					window.location.reload();
 				});
 
 				$('body').on('click','.dialog-win .sortSub',function(){
 					var i=$('.dialog-win input[name="sortName"]');
 					if(i.val().trim()!=""){
 						var res=JSON.parse(jf.ajaxMethod('<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=c&e=sc','a='+$(this).attr('data-toggle')+'&i='+$(this).attr('data-based')+'&n='+i.val().trim(),'POST'));
+/index.php?a=c&e=sc','a='+$(this).attr('data-toggle')+'&n='+$(this).attr('data-based')+'&i='+i.val().trim(),'POST'));
 					}
+					window.location.reload();
 				});
 			});
 		<?php echo '</script'; ?>

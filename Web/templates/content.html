@@ -24,7 +24,6 @@
 					<div class="panel-head"><strong>内容列表</strong></div>
 					<div class="padding border-bottom">
 						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-						<input type="button" class="button button-small border-green" value="添加文章" />
 						<input type="button" class="button button-small border-yellow" value="批量删除" />
 						<input type="button" class="button button-small border-blue" value="回收站" />
 					</div>
@@ -36,6 +35,18 @@
 							<th width="100">时间</th>
 							<th width="100">操作</th>
 						</tr>
+						{foreach from=$articleList item=list}
+						<tr>
+							<td><input type="checkbox" name="id" value="{$list[0]}"></td>
+							<td>{$list[1]}</td>
+							<td>{$list[2]}</td>
+							<td>{$list[3]|date_format:'%Y-%m-%d'}</td>
+							<td>
+								<a class="button border-blue button-little" href="{$url}&e=e">编辑</a>
+								<a class="button border-yellow button-little" href="javascript:void(0);">删除</a>
+							</td>
+						</tr>
+						{/foreach}
 						<tr>
 							<td><input type="checkbox" name="id" value="{$id}"></td>
 							<td>起步</td>

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-14 22:42:26
+/* Smarty version 3.1.29, created on 2016-04-16 20:15:31
   from "/var/www/bishe/Web/templates/content_edit.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_570fac52285632_67134364',
+  'unifunc' => 'content_57122ce33dbef5_99123889',
   'file_dependency' => 
   array (
     '9335c55967315f219db0541bf1f08af0d5a96694' => 
     array (
       0 => '/var/www/bishe/Web/templates/content_edit.html',
-      1 => 1460644945,
+      1 => 1460808923,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_570fac52285632_67134364 ($_smarty_tpl) {
+function content_57122ce33dbef5_99123889 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -74,7 +74,8 @@ function content_570fac52285632_67134364 ($_smarty_tpl) {
 
 
 		<div class="admin">
-			<h2 style="">内容编辑</h2>
+			<h2 style=""><?php echo $_smarty_tpl->tpl_vars['mTitle']->value;?>
+</h2>
 			<hr>
 			<hr class="space">
 			<form method="post" class="form-x">
@@ -95,7 +96,28 @@ function content_570fac52285632_67134364 ($_smarty_tpl) {
 					<div class="field">
 						<select class="input input-auto" name="pintuer" id="pintuer" data-validate="required:请选择文章类别">
 							<option value="">请选择</option>
-							<option value="1">阿斯顿</option>
+							<?php
+$_from = $_smarty_tpl->tpl_vars['sortList']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_list_0_saved_item = isset($_smarty_tpl->tpl_vars['list']) ? $_smarty_tpl->tpl_vars['list'] : false;
+$_smarty_tpl->tpl_vars['list'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['list']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['list']->value) {
+$_smarty_tpl->tpl_vars['list']->_loop = true;
+$__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
+?>
+							<option value="<?php echo $_smarty_tpl->tpl_vars['list']->value[0];?>
+"><?php echo $_smarty_tpl->tpl_vars['list']->value[1];?>
+</option>
+							<?php
+$_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_local_item;
+}
+if ($__foreach_list_0_saved_item) {
+$_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
+}
+?>
 						</select>
 					</div>
 				</div>
@@ -137,6 +159,9 @@ function content_570fac52285632_67134364 ($_smarty_tpl) {
 	    <?php echo '<script'; ?>
 >
 	    	var um = UM.getEditor('editor');
+	    	$('button[type="submit"]').click(function(){
+	    		
+	    	});
 	    <?php echo '</script'; ?>
 >
 	</body>
