@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-13 23:17:28
+/* Smarty version 3.1.29, created on 2016-04-15 20:19:07
   from "/var/www/bishe/Web/templates/head.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_570e6308b32de3_95561171',
+  'unifunc' => 'content_5710dc3b5091d3_46724484',
   'file_dependency' => 
   array (
     '8583750c19ed3bd2a596e364149676ef7f60b8b6' => 
     array (
       0 => '/var/www/bishe/Web/templates/head.html',
-      1 => 1460560600,
+      1 => 1460722684,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_570e6308b32de3_95561171 ($_smarty_tpl) {
+function content_5710dc3b5091d3_46724484 ($_smarty_tpl) {
 ?>
 
 		<div class="lefter">
@@ -42,7 +42,8 @@ function content_570e6308b32de3_95561171 ($_smarty_tpl) {
 							<a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 " class="icon-home"> 开始</a>
 							<ul>
-								<li><a href="#">系统设置</a></li>
+								<li><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+index.php?a=s">系统设置</a></li>
 								<li><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 index.php?a=c">内容管理</a></li>
 								<li><a href="#">订单管理</a></li>
@@ -52,8 +53,10 @@ index.php?a=u">会员管理</a></li>
 								<li><a href="#">栏目管理</a></li>
 							</ul>
 						</li>
-						<li>
-							<a href="#" class="icon-cog"> 系统</a>
+						<li<?php echo $_smarty_tpl->tpl_vars['sysActive']->value;?>
+>
+							<a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=s" class="icon-cog"> 系统</a>
 							<ul>
 								<li><a href="#">全局设置</a></li>
 								<li class="active"><a href="#">系统设置</a></li>
@@ -72,7 +75,9 @@ index.php?a=u">会员管理</a></li>
 								<li<?php echo $_smarty_tpl->tpl_vars['mActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 /index.php?a=c">内容管理</a></li>
-								<li><a href="#">分类设置</a></li>
+								<li<?php echo $_smarty_tpl->tpl_vars['sortActive']->value;?>
+><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=c&e=s">分类设置</a></li>
 								<li><a href="#">链接管理</a></li>
 							</ul>
 						</li>
@@ -87,9 +92,10 @@ index.php?a=u">会员管理</a></li>
 				<div class="admin-bread">
 					<span>您好，admin，欢迎您的光临。</span>
 					<ul class="bread">
-						<li><a href="index.html" class="icon-home"> 开始</a></li>
-						<li><a href="content.html">内容</a></li>
-						<li>内容编辑</li>
+						<li><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+" class="icon-home"> 开始</a></li>
+						<?php echo $_smarty_tpl->tpl_vars['bread']->value;?>
+
 					</ul>
 				</div>
 			</div>

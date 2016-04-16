@@ -385,7 +385,7 @@ $(function() {
 			});
 		}
 	});
-	//这里目前还存在问题
+	
 	$showdialogs = function(e) {
 		var trigger = e.attr("data-toggle");
 		var getid = e.attr("data-target");
@@ -458,7 +458,7 @@ $(function() {
 			});
 		}
 	});
-	//2015-11-04 修复tips title 重叠
+	
 	$showtips = function(e, title) {
 		var trigger = e.attr("data-toggle");
 		var place = e.attr("data-place");

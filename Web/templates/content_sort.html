@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<title>{$title}</title>
+		<link rel="stylesheet" href="{$rootUrl}/Public/pintuer.css">
+		<link rel="stylesheet" href="{$rootUrl}/Public/admin.css">
+		<script src="{$rootUrl}/Public/jquery.js"></script>
+		<script src="{$rootUrl}/Public/pintuer.js"></script>
+		<!--<script src="{$rootUrl}/Public/respond.js"></script>-->
+		<script src="{$rootUrl}/Public/admin.js"></script>
+	</head>
+
+	<body>
+{include file="head.html"}
+
+		<div class="admin">
+			<form method="post">
+				<div class="panel admin-panel">
+					<div class="panel-head"><strong>内容分类列表</strong></div>
+					<div class="padding border-bottom">
+						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
+						<input type="button" class="button button-small border-green dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
+						<input type="button" class="button button-small border-yellow delAll" value="批量删除" />
+						<input type="button" class="button button-small border-blue" value="回收站" />
+					</div>
+					<table class="table table-hover">
+						<tr>
+							<th width="45">选择</th>
+							<th width="*">类别名称</th>
+							<th width="220">时间</th>
+							<th width="200">操作</th>
+						</tr>
+						{foreach from=$sortList item=list}
+						<tr>
+							<td><input type="checkbox" name="id" value="{$list[0]}"></td>
+							<td>{$list[1]}</td>
+							<td>{$list[2]}</td>
+							<td>
+								<a class="button sortEdit border-blue button-little" href="javascript:void(0);">编辑</a>
+								<a class="button border-yellow button-little sortDel" href="javascript:void(0);">删除</a>
+							</td>
+						</tr>
+						{/foreach}
+					</table>
+					<div class="panel-foot text-center">
+						<ul class="pagination">
+							<li><a href="#">上一页</a></li>
+						</ul>
+						<ul class="pagination pagination-group">
+							<li><a href="#">1</a></li>
+							<li class="active"><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+						</ul>
+						<ul class="pagination">
+							<li><a href="#">下一页</a></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="sortAdd">
+			<div class="dialog">
+				<div class="dialog-head">
+					<span class="close rotate-hover"></span><strong>添加文章类别</strong>
+				</div>
+				<div class="dialog-body">
+					<label for="sortName">类别名称：</label>
+					<input class="input input-auto sortName" name="sortName" value="" />
+				</div>
+				<div class="dialog-foot">
+					<button class="button dialog-close">
+						取消</button>
+					<button class="button bg-green sortSub" data-toggle="add">
+						确认</button>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(function(){
+				$('.sortEdit').click(function(){
+					var r=$(this).closest('tr');
+					var c=r.find('input[type="checkbox"]');
+					var n=r.children().eq(1);
+					$('input[name="sortName"]').val(n.html());
+				});
+
+				$('.sortDel').click(function(){
+					alert('这是删除功能');
+				});
+
+				$('.delAll').click(function(){
+					if(!confirm('是否删除？')) return false;
+					jf.load('正在删除.....','{$rootUrl}');
+					var b=$(this).closest('form').find("input[type='checkbox']");
+					$(b).each(function(index,element){
+						if(element.checked==true){
+							//alert(element.value);
+						}else{
+							alert('这个不删除');
+						}
+					});
+					jf.hide();
+				});
+
+				$('body').on('click','.dialog-win .sortSub',function(){
+					var i=$('.dialog-win input[name="sortName"]');
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -15,7 +15,7 @@
 						<li{$indexActive}>
 							<a href="{$rootUrl}" class="icon-home"> 开始</a>
 							<ul>
-								<li><a href="#">系统设置</a></li>
+								<li><a href="{$url}index.php?a=s">系统设置</a></li>
 								<li><a href="{$url}index.php?a=c">内容管理</a></li>
 								<li><a href="#">订单管理</a></li>
 								<li><a href="{$url}index.php?a=u">会员管理</a></li>
@@ -23,8 +23,8 @@
 								<li><a href="#">栏目管理</a></li>
 							</ul>
 						</li>
-						<li>
-							<a href="#" class="icon-cog"> 系统</a>
+						<li{$sysActive}>
+							<a href="{$rootUrl}/index.php?a=s" class="icon-cog"> 系统</a>
 							<ul>
 								<li><a href="#">全局设置</a></li>
 								<li class="active"><a href="#">系统设置</a></li>
@@ -37,7 +37,7 @@
 							<ul>
 								<li{$addActive}><a href="{$rootUrl}/index.php?a=c&e=a">添加内容</a></li>
 								<li{$mActive}><a href="{$rootUrl}/index.php?a=c">内容管理</a></li>
-								<li><a href="#">分类设置</a></li>
+								<li{$sortActive}><a href="{$rootUrl}/index.php?a=c&e=s">分类设置</a></li>
 								<li><a href="#">链接管理</a></li>
 							</ul>
 						</li>
@@ -50,9 +50,8 @@
 				<div class="admin-bread">
 					<span>您好，admin，欢迎您的光临。</span>
 					<ul class="bread">
-						<li><a href="index.html" class="icon-home"> 开始</a></li>
-						<li><a href="content.html">内容</a></li>
-						<li>内容编辑</li>
+						<li><a href="{$rootUrl}" class="icon-home"> 开始</a></li>
+						{$bread}
 					</ul>
 				</div>
 			</div>

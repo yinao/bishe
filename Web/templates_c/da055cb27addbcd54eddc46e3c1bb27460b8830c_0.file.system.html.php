@@ -1,25 +1,26 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-03 18:04:46
+/* Smarty version 3.1.29, created on 2016-04-15 19:05:38
   from "/var/www/bishe/Web/templates/system.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5700eabecfa676_96610953',
+  'unifunc' => 'content_5710cb02d0cdc9_81112282',
   'file_dependency' => 
   array (
     'da055cb27addbcd54eddc46e3c1bb27460b8830c' => 
     array (
       0 => '/var/www/bishe/Web/templates/system.html',
-      1 => 1449555668,
+      1 => 1460560671,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:head.html' => 1,
   ),
 ),false)) {
-function content_5700eabecfa676_96610953 ($_smarty_tpl) {
+function content_5710cb02d0cdc9_81112282 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -29,89 +30,34 @@ function content_5700eabecfa676_96610953 ($_smarty_tpl) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="renderer" content="webkit">
-		<title>拼图后台管理-后台管理</title>
-		<!--
-        	作者：大火兔 1979788761@qq.com
-        	时间：2015-11-17
-        	描述：使用官网CSS/JS同步最新版
-        -->
-		<link rel="stylesheet" href="http://www.pintuer.com/css/pintuer.css">
-		<link rel="stylesheet" href="css/admin.css">
+		<title><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
+</title>
+		<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/Public/pintuer.css">
+		<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/Public/admin.css">
 		<?php echo '<script'; ?>
- src="http://www.pintuer.com/js/jquery.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/Public/jquery.js"><?php echo '</script'; ?>
 >
 		<?php echo '<script'; ?>
- src="http://www.pintuer.com/js/pintuer.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/Public/pintuer.js"><?php echo '</script'; ?>
 >
+		<!--<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/Public/respond.js"><?php echo '</script'; ?>
+>-->
 		<?php echo '<script'; ?>
- src="http://www.pintuer.com/js/respond.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/Public/admin.js"><?php echo '</script'; ?>
 >
-		<?php echo '<script'; ?>
- src="js/admin.js"><?php echo '</script'; ?>
->
-		<link type="image/x-icon" href="http://www.pintuer.com/favicon.ico" rel="shortcut icon" />
-		<link href="http://www.pintuer.com/favicon.ico" rel="bookmark icon" />
 	</head>
 
 	<body>
-		<div class="lefter">
-			<div class="logo">
-				<a href="http://www.pintuer.com" target="_blank"><img src="images/logo.png" alt="后台管理系统" /></a>
-			</div>
-		</div>
-		<div class="righter nav-navicon" id="admin-nav">
-			<div class="mainer">
-				<div class="admin-navbar">
-					<span class="float-right">
-                    <a class="button button-little bg-main" href="#">前台首页</a>
-                    <a class="button button-little bg-yellow" href="login.html">注销登录</a>
-                </span>
-					<ul class="nav nav-inline admin-nav">
-						<li>
-							<a href="index.html" class="icon-home"> 开始</a>
-							<ul>
-								<li><a href="system.html">系统设置</a></li>
-								<li><a href="content.html">内容管理</a></li>
-								<li><a href="#">订单管理</a></li>
-								<li class="active"><a href="#">会员管理</a></li>
-								<li><a href="#">文件管理</a></li>
-								<li><a href="#">栏目管理</a></li>
-							</ul>
-						</li>
-						<li class="active">
-							<a href="system.html" class="icon-cog"> 系统</a>
-							<ul>
-								<li><a href="#">全局设置</a></li>
-								<li class="active"><a href="#">系统设置</a></li>
-								<li><a href="#">会员设置</a></li>
-								<li><a href="#">积分设置</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="content.html" class="icon-file-text"> 内容</a>
-							<ul>
-								<li><a href="#">添加内容</a></li>
-								<li class="active"><a href="#">内容管理</a></li>
-								<li><a href="#">分类设置</a></li>
-								<li><a href="#">链接管理</a></li>
-							</ul>
-						</li>
-						<li><a href="#" class="icon-shopping-cart"> 订单</a></li>
-						<li><a href="#" class="icon-user"> 会员</a></li>
-						<li><a href="#" class="icon-file"> 文件</a></li>
-						<li><a href="#" class="icon-th-list"> 栏目</a></li>
-					</ul>
-				</div>
-				<div class="admin-bread">
-					<span>您好，admin，欢迎您的光临。</span>
-					<ul class="bread">
-						<li><a href="index.html" class="icon-home"> 开始</a></li>
-						<li><a href="system.html">设置</a></li>
-						<li>系统设置</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
 
 		<div class="admin">
 

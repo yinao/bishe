@@ -117,6 +117,40 @@ form .form-group:last-child {
 .admin-panel .pagination .active {
 	background: #fff;
 }
+.loading{
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	display: block;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.loading .loading-info{
+	width: 200px;
+	height: 90px;
+	position: fixed;
+	top: 25%;
+	left: 40%;
+}
+.loading .loading-info .loading-img{
+	display: block;
+	text-align: center;
+	width: 200px;
+	height: 65px;
+}
+.loading-img img{
+	height: 60px;
+	width: 60px;
+}
+.loading .loading-info .loading-i{
+	display: block;
+	width: 200px;
+	text-align: center;
+	font-size: 16px;
+}
 /*--------自定义链接颜色(可选)--------*/
 
 a {

@@ -34,4 +34,14 @@ class BaseAction{
 	protected function errorPage($error,$errorInfo){
 		
 	}
+	//页面的当前位置的提示函数
+	protected function bread($level,$tips1,$link=NULL,$tips2=NULL){
+		$bread=NULL;
+		if($level==1){
+			$bread="<li>{$tips1}</li>";
+		}else if($level==2){
+			$bread="<li><a href=\"{$this->rootUrl}/index.php?a={$link}\">{$tips1}</a></li><li>{$tips2}</li>";
+		}
+		return $bread;
+	}
 }

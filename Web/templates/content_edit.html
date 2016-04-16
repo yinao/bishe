@@ -13,6 +13,10 @@
 		<script src="{$rootUrl}/Public/pintuer.js"></script>
 		<!--<script src="{$rootUrl}/Public/respond.js"></script>-->
 		<script src="{$rootUrl}/Public/admin.js"></script>
+		<link href="{$rootUrl}/Public/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+	    <script type="text/javascript" charset="utf-8" src="{$rootUrl}/Public/umeditor/umeditor.config.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="{$rootUrl}/Public/umeditor/umeditor.min.js"></script>
+	    <script type="text/javascript" src="{$rootUrl}/Public/umeditor/lang/zh-cn/zh-cn.js"></script>
 	</head>
 
 	<body>
@@ -29,7 +33,7 @@
 							文章标题：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="username" name="username" size="30" placeholder="请输入文章的标题" />
+						<input type="text" class="input input-auto" id="username" name="username" size="30" data-validate="required:请填写文章标题" placeholder="请输入文章的标题" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -38,7 +42,19 @@
 							文章类别：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="username" name="username" size="30" placeholder="请输入文章的标题" />
+						<select class="input input-auto" name="pintuer" id="pintuer" data-validate="required:请选择文章类别">
+							<option value="">请选择</option>
+							<option value="1">阿斯顿</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<label for="username">
+							文章内容：</label>
+					</div>
+					<div class="field">
+						<script type="text/plain" id="editor" style="width: 700px;height: 360px;"></script>
 					</div>
 				</div>
 				<div class="form-group">
@@ -47,7 +63,7 @@
 							文章关键字：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="username" name="username" size="30" placeholder="请输入关键字" />
+						<input type="text" class="input input-auto" id="username" name="username" size="30" data-validate="required:请输入文章关键字" placeholder="请输入关键字" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -64,5 +80,9 @@
 				</div>
 			</form>
 		</div>
+
+	    <script>
+	    	var um = UM.getEditor('editor');
+	    </script>
 	</body>
 </html>
