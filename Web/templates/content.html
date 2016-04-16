@@ -43,20 +43,10 @@
 							<td>{$list[3]|date_format:'%Y-%m-%d'}</td>
 							<td>
 								<a class="button border-blue button-little" href="{$url}&e=e">编辑</a>
-								<a class="button border-yellow button-little" href="javascript:void(0);">删除</a>
+								<a class="button border-yellow button-little newsDel" data-target="{$list[0]}" href="javascript:void(0);">删除</a>
 							</td>
 						</tr>
 						{/foreach}
-						<tr>
-							<td><input type="checkbox" name="id" value="{$id}"></td>
-							<td>起步</td>
-							<td>下载拼图框架</td>
-							<td>2014-10-1</td>
-							<td>
-								<a class="button border-blue button-little" href="{$url}&e=e">编辑</a>
-								<a class="button border-yellow button-little" onclick="isDelete();" href="">删除</a>
-							</td>
-						</tr>
 						
 					</table>
 					<div class="panel-foot text-center">
@@ -76,18 +66,8 @@
 					</div>
 				</div>
 			</form>
-			<br />
-			<p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="http://www.pintuer.com">拼图前端框架</a>构建</p>
+			<hr class="space">
 		</div>
-<script>
-	function isDelete(){
-		if(confirm('是否删除?')){
-			return true;
-		}else{
-			return false;
-		}
-	}
-</script>
 		
 	</body>
 

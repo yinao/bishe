@@ -58,8 +58,9 @@ class ContentAction extends BaseAction{
 		$this->obj->assign('conActive',' class="active"');
 		$this->obj->assign('mActive',' class="active"');
 		$this->obj->assign('mTitle','内容编辑');
+		$this->obj->assign('toggle','u');
 
-		$this->obj->assign('sortList',ContentModel::fetchSort());
+		//$this->obj->assign('sortList',ContentModel::fetchSort());
 
 		$this->obj->display('content_edit.html');
 	}
@@ -71,6 +72,7 @@ class ContentAction extends BaseAction{
 		$this->obj->assign('rootUrl',$this->rootUrl);
 		$this->obj->assign('url',$this->getUrl);
 		$this->obj->assign('mTitle','内容添加');
+		$this->obj->assign('toggle','a');
 
 		$this->obj->assign('sortList',ContentModel::fetchSort());
 
@@ -78,7 +80,16 @@ class ContentAction extends BaseAction{
 	}
 
 	private function conAct(){
-
+		$res=array();
+		$res['status']=0;
+		$res['res']=0;
+		if($this->isAjax()){
+			if(isset($_POST)&&!empty($_POST['tog'])){
+				$res['res']=ContentModel::articleAction($_POST);
+				$res['status']=1;
+			}
+		}
+		echo json_encode($res);
 	}
 
 	private function sort(){

@@ -2,7 +2,26 @@
 $(function(){
 	jf.hide();
 	$('.newsSub').click(function(){
-		
+		$(this).closest('form').find('input[data-validate],textarea[data-validate],select[data-validate]').trigger("blur");
+	 	var numError = $(this).closest('form').find('.check-error').length;
+	 	if (numError) {
+	 		$(this).closest('form').find('.check-error').first().find('input[data-validate],textarea[data-validate],select[data-validate]').first().focus().select();
+	 		return;
+	 	}
+		var data='sort='+$('select[name="sort"]').val()+'&title='+$('input[name="title"]').val()+'&content='+um.getContent()+'&keyword='+$('input[name="keyword"]').val()+'&des='+$('textarea[name="description"]').val()+"&tog="+$(this).attr('data-toggle');
+		var r=JSON.parse(jf.ajaxMethod(jf.getRealUrl()+'/index.php?a=c&e=ca',data,'POST'));
+		if(r.status==0||r.res==0){
+			alert('操作发生错误');return;
+		}
+		window.location.href=jf.getRealUrl()+"/index.php?a=c";
+	});
+	$('.newsDel').click(function(){
+		var data='i='+$(this).attr('data-target')+'&tog=d';
+		var r=JSON.parse(jf.ajaxMethod(jf.getRealUrl()+'/index.php?a=c&e=ca',data,'POST'));
+		if(r.status==0||r.res==0){
+			alert('操作发生错误');return;
+		}
+		window.location.reload();
 	});
 	$('input[name="addS"]').click(function(){
 		$('.dialog .dialog-head').find('strong').html('添加文章类别');
@@ -88,6 +107,9 @@ var myFrame={
 		if(b.length&&b.length>0){
 			b.remove();
 		}
+	},
+	alert:function(){
+		var detail="";
 	},
 	getRealUrl:function(){
 		var curWwwPath=window.document.location.href;

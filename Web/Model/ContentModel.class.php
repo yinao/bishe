@@ -3,8 +3,36 @@ require_once('BaseModel.class.php');
 class ContentModel extends BaseModel{
 	public static function fetchArticle(){
 		$sql="select news_id,news_sortId,news_title,news_createTime from ";
-		$sql.=parent::$prefix."news limit 0,10";
+		$sql.=parent::$prefix."news where news_isDeleted=0 limit 0,10";
 		return parent::queryAll($sql);
+	}
+	public static function fetchArticleOne($id){
+		$sql="select * from ".parent::$prefix." where sort_id=?";
+		return parent::fetchOne($sql,array($id));
+	}
+	public static function articleAction($paras){
+		switch ($paras['tog']) {
+			case 'a':
+				$sql="insert into bishe_news (news_sortId,news_title,news_content,news_keyword,news_description,news_createTime) values (?,?,?,?,?,?)";
+				$paras['tog']=time();
+				$para=array();
+				foreach ($paras as $key => $value) {
+					$para[]=$value;
+				}
+				$rows=parent::execute($sql,$para);
+				return $rows;
+				break;
+			case 'u':
+				break;
+			case 'd':
+				$sql="update bishe_news set news_isDeleted=1 where news_id=?";
+				$row=parent::execute($sql,array($paras['i']));
+				return $row;
+				break;
+			default:
+				return 0;
+				break;
+		}
 	}
 	public static function fetchSort(){
 		$sql="select sort_id,sort_name,sort_createTime from ".parent::$prefix."sort";

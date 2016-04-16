@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-16 20:58:29
-  from "/var/www/bishe/Web/templates/content_edit.html" */
+/* Smarty version 3.1.29, created on 2016-04-16 15:28:16
+  from "G:\wamp\www\bishe\Web\templates\content_edit.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_571236f5e9bda0_12613821',
+  'unifunc' => 'content_57125a10bc1b34_19716729',
   'file_dependency' => 
   array (
-    '9335c55967315f219db0541bf1f08af0d5a96694' => 
+    '5c46381e42eec0705f2ca77d1f056f2f0b6c2b18' => 
     array (
-      0 => '/var/www/bishe/Web/templates/content_edit.html',
-      1 => 1460811372,
+      0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\content_edit.html',
+      1 => 1460819342,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_571236f5e9bda0_12613821 ($_smarty_tpl) {
+function content_57125a10bc1b34_19716729 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -78,14 +78,14 @@ function content_571236f5e9bda0_12613821 ($_smarty_tpl) {
 </h2>
 			<hr>
 			<hr class="space">
-			<form method="post" class="form-x">
+			<form class="form-x" onsubmit="return false">
 				<div class="form-group">
 					<div class="label">
 						<label for="title">
 							文章标题：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="title" name="title" size="30" data-validate="required:请填写文章标题" placeholder="请输入文章的标题" />
+						<input type="text" class="input input-auto" id="title" name="title" size="30" data-validate="required:请选择文章类别" placeholder="请输入文章的标题" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -151,9 +151,11 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 					</div>
 				</div>
 				<div class="form-button">
-					<button class="button bg-main newsSub" type="submit">提交</button>
+					<button class="button bg-main newsSub" data-toggle="<?php echo $_smarty_tpl->tpl_vars['toggle']->value;?>
+">提交</button>
 				</div>
 			</form>
+			<hr class="space">
 		</div>
 
 	    <?php echo '<script'; ?>

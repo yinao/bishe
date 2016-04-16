@@ -100,7 +100,7 @@ form .form-group:last-child {
 	position: fixed;
 	border-left: solid 1px #b5cfd9;
 	right: 0;
-	bottom: 0;
+	bottom: 5px;
 	top: 87px;
 	left: 180px;
 	overflow: auto;

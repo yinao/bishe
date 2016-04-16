@@ -316,17 +316,17 @@ $(function() {
 				}
 		}
 	};
-	$('form').submit(function() {
-		$(this).find('input[data-validate],textarea[data-validate],select[data-validate]').trigger("blur");
-		$(this).find('input[placeholder],textarea[placeholder]').each(function() {
-			$hideplaceholder($(this));
-		});
-		var numError = $(this).find('.check-error').length;
-		if (numError) {
-			$(this).find('.check-error').first().find('input[data-validate],textarea[data-validate],select[data-validate]').first().focus().select();
-			return false;
-		}
-	});
+	// $('form').submit(function() {
+	// 	$(this).find('input[data-validate],textarea[data-validate],select[data-validate]').trigger("blur");
+	// 	$(this).find('input[placeholder],textarea[placeholder]').each(function() {
+	// 		$hideplaceholder($(this));
+	// 	});
+	// 	var numError = $(this).find('.check-error').length;
+	// 	if (numError) {
+	// 		$(this).find('.check-error').first().find('input[data-validate],textarea[data-validate],select[data-validate]').first().focus().select();
+	// 		return false;
+	// 	}
+	// });
 	$('.form-reset').click(function() {
 		$(this).closest('form').find(".input-help").remove();
 		$(this).closest('form').find('.form-submit').removeAttr('disabled');

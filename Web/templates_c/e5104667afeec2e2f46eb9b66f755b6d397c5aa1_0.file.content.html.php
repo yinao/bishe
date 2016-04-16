@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-16 20:08:13
-  from "/var/www/bishe/Web/templates/content.html" */
+/* Smarty version 3.1.29, created on 2016-04-16 15:58:41
+  from "G:\wamp\www\bishe\Web\templates\content.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57122b2d962507_68753913',
+  'unifunc' => 'content_57126131e7de33_75443966',
   'file_dependency' => 
   array (
-    'bc99db923bf7457a223c41b7cc814339dde1762f' => 
+    'e5104667afeec2e2f46eb9b66f755b6d397c5aa1' => 
     array (
-      0 => '/var/www/bishe/Web/templates/content.html',
-      1 => 1460808491,
+      0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\content.html',
+      1 => 1460822261,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57122b2d962507_68753913 ($_smarty_tpl) {
-if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/bishe/Web/libs/plugins/modifier.date_format.php';
+function content_57126131e7de33_75443966 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -101,7 +101,8 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 							<td>
 								<a class="button border-blue button-little" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 &e=e">编辑</a>
-								<a class="button border-yellow button-little" href="javascript:void(0);">删除</a>
+								<a class="button border-yellow button-little newsDel" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value[0];?>
+" href="javascript:void(0);">删除</a>
 							</td>
 						</tr>
 						<?php
@@ -111,18 +112,6 @@ if ($__foreach_list_0_saved_item) {
 $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 }
 ?>
-						<tr>
-							<td><input type="checkbox" name="id" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
-"></td>
-							<td>起步</td>
-							<td>下载拼图框架</td>
-							<td>2014-10-1</td>
-							<td>
-								<a class="button border-blue button-little" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-&e=e">编辑</a>
-								<a class="button border-yellow button-little" onclick="isDelete();" href="">删除</a>
-							</td>
-						</tr>
 						
 					</table>
 					<div class="panel-foot text-center">
@@ -142,20 +131,8 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 					</div>
 				</div>
 			</form>
-			<br />
-			<p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="http://www.pintuer.com">拼图前端框架</a>构建</p>
+			<hr class="space">
 		</div>
-<?php echo '<script'; ?>
->
-	function isDelete(){
-		if(confirm('是否删除?')){
-			return true;
-		}else{
-			return false;
-		}
-	}
-<?php echo '</script'; ?>
->
 		
 	</body>
 

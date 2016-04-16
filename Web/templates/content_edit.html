@@ -26,14 +26,14 @@
 			<h2 style="">{$mTitle}</h2>
 			<hr>
 			<hr class="space">
-			<form method="post" class="form-x">
+			<form class="form-x" onsubmit="return false">
 				<div class="form-group">
 					<div class="label">
 						<label for="title">
 							文章标题：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="title" name="title" size="30" data-validate="required:请填写文章标题" placeholder="请输入文章的标题" />
+						<input type="text" class="input input-auto" id="title" name="title" size="30" data-validate="required:请选择文章类别" placeholder="请输入文章的标题" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -78,9 +78,10 @@
 					</div>
 				</div>
 				<div class="form-button">
-					<button class="button bg-main newsSub" type="submit">提交</button>
+					<button class="button bg-main newsSub" data-toggle="{$toggle}">提交</button>
 				</div>
 			</form>
+			<hr class="space">
 		</div>
 
 	    <script>

@@ -2,6 +2,9 @@
 define('DIR',__DIR__);
 define('ROOT','IS_ROOT');
 
+//报告运行时错误
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
 $urlFile=DIR.'/Web/Config/url.php';
 if(file_exists($urlFile)){
 	include $urlFile;
