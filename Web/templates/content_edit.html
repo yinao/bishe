@@ -33,7 +33,7 @@
 							文章标题：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="title" name="title" size="30" data-validate="required:请选择文章类别" placeholder="请输入文章的标题" />
+						<input type="text" class="input input-auto" id="title" name="title" size="30" data-validate="required:请选择文章类别" value="{if $toggle eq 'u'}{$list[2]}{/if}" placeholder="请输入文章的标题" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -43,9 +43,8 @@
 					</div>
 					<div class="field">
 						<select class="input input-auto" name="sort" id="sort" data-validate="required:请选择文章类别">
-							<option value="">请选择</option>
-							{foreach from=$sortList item=list}
-							<option value="{$list[0]}">{$list[1]}</option>
+							{foreach from=$sortList item=v}
+							<option value="{$v[0]}"{if $v[0] eq $list[1]} selected="selected"{/if}>{$v[1]}</option>
 							{/foreach}
 						</select>
 					</div>
@@ -56,7 +55,7 @@
 							文章内容：</label>
 					</div>
 					<div class="field">
-						<script type="text/plain" id="editor" style="width: 700px;height: 360px;"></script>
+						<script type="text/plain" id="editor" style="width: 700px;height: 360px;">{if $toggle eq 'u'}{$list[3]}{/if}</script>
 					</div>
 				</div>
 				<div class="form-group">
@@ -65,7 +64,7 @@
 							文章关键字：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input input-auto" id="keyword" name="keyword" size="30" data-validate="required:请输入文章关键字" placeholder="请输入关键字" />
+						<input type="text" class="input input-auto" id="keyword" name="keyword" value="{if $toggle eq 'u'}{$list[4]}{/if}" size="30" data-validate="required:请输入文章关键字" placeholder="请输入关键字" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -74,11 +73,11 @@
 							文章说明：</label>
 					</div>
 					<div class="field">
-						<textarea class="input" name="description" rows="5" cols="50" placeholder="请填写文章说明" data-validate="required:请填写文章说明"></textarea>
+						<textarea class="input" name="description" rows="5" cols="50" placeholder="请填写文章说明" data-validate="required:请填写文章说明">{if $toggle eq 'u'}{$list[5]}{/if}</textarea>
 					</div>
 				</div>
 				<div class="form-button">
-					<button class="button bg-main newsSub" data-toggle="{$toggle}">提交</button>
+					<button class="button bg-main newsSub"{if $toggle eq 'u'} data-target="{$list[0]}"{/if} data-toggle="{$toggle}">提交</button>
 				</div>
 			</form>
 			<hr class="space">

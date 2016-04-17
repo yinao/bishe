@@ -7,7 +7,7 @@ class ContentModel extends BaseModel{
 		return parent::queryAll($sql);
 	}
 	public static function fetchArticleOne($id){
-		$sql="select * from ".parent::$prefix." where sort_id=?";
+		$sql="select * from ".parent::$prefix."news where news_id=?";
 		return parent::fetchOne($sql,array($id));
 	}
 	public static function articleAction($paras){
@@ -19,10 +19,19 @@ class ContentModel extends BaseModel{
 				foreach ($paras as $key => $value) {
 					$para[]=$value;
 				}
+				array_pop($para);
 				$rows=parent::execute($sql,$para);
 				return $rows;
 				break;
 			case 'u':
+				$sql="update bishe_news set news_sortId=?,news_title=?,news_content=?,news_keyword=?,news_description=?,news_createTime=? where news_id=?";
+				$paras['tog']=time();
+				$para=array();
+				foreach ($paras as $key => $value) {
+					$para[]=$value;
+				}
+				$rows=parent::execute($sql,$para);
+				return $rows;
 				break;
 			case 'd':
 				$sql="update bishe_news set news_isDeleted=1 where news_id=?";

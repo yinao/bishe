@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-17 04:52:18
-  from "G:\wamp\www\bishe\Web\templates\content.html" */
+/* Smarty version 3.1.29, created on 2016-04-17 04:38:41
+  from "G:\wamp\www\bishe\Web\templates\content_sort.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_571316828493f5_52914039',
+  'unifunc' => 'content_571313515ec1e8_09698244',
   'file_dependency' => 
   array (
-    'e5104667afeec2e2f46eb9b66f755b6d397c5aa1' => 
+    '97346bddc526907c73d607e5d9a66e02f104bec7' => 
     array (
-      0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\content.html',
-      1 => 1460868736,
+      0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\content_sort.html',
+      1 => 1460812654,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_571316828493f5_52914039 ($_smarty_tpl) {
+function content_571313515ec1e8_09698244 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -61,24 +61,24 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bi
 
 
 		<div class="admin">
-				<form>
+			<form method="post">
 				<div class="panel admin-panel">
-					<div class="panel-head"><strong>内容列表</strong></div>
+					<div class="panel-head"><strong>内容分类列表</strong></div>
 					<div class="padding border-bottom">
 						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-						<input type="button" class="button button-small border-yellow newsAll" value="批量删除" />
-						<input type="button" class="button button-small border-blue" value="回收站" />
+						<input type="button" class="button button-small border-green dialogs" name="addS" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" value="添加类别" />
+						<input type="button" class="button button-small border-yellow sortAll" value="批量删除" />
+						<!-- <input type="button" class="button button-small border-blue" value="回收站" /> -->
 					</div>
 					<table class="table table-hover">
 						<tr>
 							<th width="45">选择</th>
-							<th width="200">分类</th>
-							<th width="*">名称</th>
-							<th width="100">时间</th>
-							<th width="100">操作</th>
+							<th width="*">类别名称</th>
+							<th width="220">时间</th>
+							<th width="200">操作</th>
 						</tr>
 						<?php
-$_from = $_smarty_tpl->tpl_vars['articleList']->value;
+$_from = $_smarty_tpl->tpl_vars['sortList']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
@@ -94,16 +94,11 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 "></td>
 							<td><?php echo $_smarty_tpl->tpl_vars['list']->value[1];?>
 </td>
-							<td><?php echo $_smarty_tpl->tpl_vars['list']->value[2];?>
-</td>
-							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['list']->value[3],'%Y-%m-%d');?>
+							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['list']->value[2],'%Y-%m-%d');?>
 </td>
 							<td>
-								<a class="button border-blue button-little" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-&e=e&i=<?php echo $_smarty_tpl->tpl_vars['list']->value[0];?>
-">编辑</a>
-								<a class="button border-yellow button-little newsDel" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value[0];?>
-" href="javascript:void(0);">删除</a>
+								<a class="button sortEdit border-blue button-little dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" href="javascript:void(0);">编辑</a>
+								<a class="button border-yellow button-little sortDel" href="javascript:void(0);">删除</a>
 							</td>
 						</tr>
 						<?php
@@ -113,29 +108,27 @@ if ($__foreach_list_0_saved_item) {
 $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 }
 ?>
-						
 					</table>
-					<div class="panel-foot text-center">
-						<ul class="pagination">
-							<li><a href="#">上一页</a></li>
-						</ul>
-						<ul class="pagination pagination-group">
-							<li><a href="#">1</a></li>
-							<li class="active"><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-						</ul>
-						<ul class="pagination">
-							<li><a href="#">下一页</a></li>
-						</ul>
-					</div>
-				</form>
 				</div>
-			<hr class="space">
+			</form>
 		</div>
-		
+		<div id="sortAdd">
+			<div class="dialog">
+				<div class="dialog-head">
+					<span class="close rotate-hover"></span><strong>添加内容类别</strong>
+				</div>
+				<div class="dialog-body">
+					<label for="sortName">类别名称：</label>
+					<input class="input input-auto sortName" name="sortName" value="" />
+				</div>
+				<div class="dialog-foot">
+					<button class="button dialog-close">
+						取消</button>
+					<button class="button bg-green sortSub" data-toggle="a">
+						确认</button>
+				</div>
+			</div>
+		</div>
 	</body>
-
 </html><?php }
 }

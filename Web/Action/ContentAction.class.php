@@ -9,7 +9,7 @@ class ContentAction extends BaseAction{
 		$para = isset($this->parameters['safe']['e'])?$this->parameters['safe']['e']:NULL;
 		switch ($para) {
 			case 'e':
-				$this->edit();
+				$this->edit($this->parameters['safe']);
 				break;
 			case 'a':
 				$this->add();
@@ -46,7 +46,7 @@ class ContentAction extends BaseAction{
 		$this->obj->display('content.html');
 	}
 
-	private function edit(){
+	private function edit($paras){
 		$this->obj->caching=false;
 		$this->obj->assign('bread',$this->bread(2,'内容','c','内容编辑'));
 		$this->obj->assign('title','内容编辑页title');
@@ -60,8 +60,9 @@ class ContentAction extends BaseAction{
 		$this->obj->assign('mTitle','内容编辑');
 		$this->obj->assign('toggle','u');
 
-		//$this->obj->assign('sortList',ContentModel::fetchSort());
-
+		$this->obj->assign('list',ContentModel::fetchArticleOne($paras['i']));
+		$this->obj->assign('sortList',ContentModel::fetchSort());
+		
 		$this->obj->display('content_edit.html');
 	}
 

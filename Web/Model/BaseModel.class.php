@@ -41,9 +41,13 @@ class BaseModel{
 
 	protected static function fetchOne($sql,$parameters){
 		self::getPdo();
-		$r=self::$pdo->prepare($sql);
-		$r->execute(self::filter($parameters));
-		$res=$r->fetch();
+		try{
+			$r=self::$pdo->prepare($sql);
+			$r->execute(self::filter($parameters));
+			$res=$r->fetch();
+		}catch(PDOException $e){
+			return  $e->getMessage();
+		}
 		return $res;
 	}
 
