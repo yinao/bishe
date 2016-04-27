@@ -34,8 +34,10 @@ class ContentModel extends BaseModel{
 				return $rows;
 				break;
 			case 'd':
-				$sql="update bishe_news set news_isDeleted=1 where news_id=?";
-				$row=parent::execute($sql,array($paras['i']));
+				$arrId=explode(',', $paras['i']);
+				array_filter($arrId);
+				$sql="update bishe_news set news_isDeleted=1";
+				$row=parent::execIn($sql,'news_id',$arrId);
 				return $row;
 				break;
 			default:

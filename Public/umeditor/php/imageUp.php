@@ -10,7 +10,7 @@
         "allowFiles" => array( ".gif" , ".png" , ".jpg" , ".jpeg" , ".bmp" )  //允许的文件格式
     );
     //上传文件目录
-    $Path = "upload/";
+    $Path = "../../../Uploads/";
 
     //背景保存在临时目录中
     $config[ "savePath" ] = $Path;

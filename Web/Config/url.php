@@ -5,4 +5,7 @@ $url = array
 		'c'=>'ContentAction',
 		'u'=>'UserAction',
 		's'=>'SystemAction',
+		'st'=>'StationAction',
+		'o'=>'OrderAction',
+		'r'=>'RegisterAction'
 		);

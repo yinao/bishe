@@ -21,11 +21,16 @@ class BaseModel{
 			
 		}
 	}
-	protected static function fetchAll($sql,$parameters){
+	protected static function fetchAll($sql,$parameters,$assoc=false){
 		self::getPdo();
 		$r=self::$pdo->prepare($sql);
 		$r->execute(self::filter($parameters));
-		$res=$r->fetchAll();
+		$res=array();
+		if($assoc){
+			$res=$r->fetchAll(PDO::FETCH_ASSOC);
+		}else{
+			$res=$r->fetchAll();
+		}
 		return $res;
 	}
 
@@ -39,12 +44,18 @@ class BaseModel{
 		return $res;
 	}
 
-	protected static function fetchOne($sql,$parameters){
+	protected static function fetchOne($sql,$parameters,$assoc=false){
 		self::getPdo();
 		try{
 			$r=self::$pdo->prepare($sql);
 			$r->execute(self::filter($parameters));
-			$res=$r->fetch();
+			$res=array();
+			if($assoc){
+				$res=$r->fetch(PDO::FETCH_ASSOC);
+			}else{
+				$res=$r->fetch();
+			}
+			return $res;
 		}catch(PDOException $e){
 			return  $e->getMessage();
 		}
@@ -71,6 +82,13 @@ class BaseModel{
 		}
 	}
 
+	protected static function insertData($sql,$parameters){
+		self::getPdo();
+		$r=self::$pdo->prepare($sql);
+		$r->execute(self::filter($parameters));
+		return self::$pdo->lastInsertId();
+	}
+
 	protected static function exec($sql){
 		self::getPdo();
 		$rows=self::$pdo->exec($sql);
@@ -83,7 +101,7 @@ class BaseModel{
 			$place_holders=implode(',',array_fill(0,count($parameters),'?'));
 			$sql.=" where {$column} in ({$place_holders})";
 			$r=self::$pdo->prepare($sql);
-			$r->execute(self::filter($parameters));
+			return $r->execute(self::filter($parameters));
 		}catch(PDOException $e){
 			echo $e->getMessage();exit();
 		}
@@ -93,8 +111,7 @@ class BaseModel{
 		self::getPdo();
 		$r=self::$pdo->prepare($sql);
 		$r->execute(self::filter($parameters));
-		$rowsCount=$r->rowCount;
-		return $rowsCount;
+		return $r->rowCount();
 	}
 
 	protected static function delAll(){

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<title>接种系统防疫站注册</title>
+		
+		<link rel="stylesheet" href="{$rootUrl}/Public/pintuer.css">
+		<link rel="stylesheet" href="{$rootUrl}/Public/admin.css">
+		<script src="{$rootUrl}/Public/jquery.js"></script>
+		<script src="{$rootUrl}/Public/pintuer.js"></script>
+		<script src="{$rootUrl}/Public/admin.js"></script>
+		<style>
+			.form-group{
+				margin-top: 5px;
+			}
+			.panel{
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="line">
+				<div class="xs6 xm4 xs3-move xm4-move">
+					<div class="media media-y" style="margin-top:20px;">
+						<img src="{$rootUrl}/Public/logo.png" class="radius" alt="后台管理系统" />
+					</div>
+					<div class="panel">
+						<div class="panel-head">
+							<strong>防疫站账户注册</strong>
+						</div>
+						<div class="panel-body" style="padding:30px;">
+							<div class="form-group">
+								<div class="label"><label for="">名称：</label></div>
+								<div class="field field-icon-right">
+								<input type="text" class="input" placeholder="名称" data-validate="required:请填写名称" name="name" value="">
+								<span class="icon icon-user"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="label"><label for="">登录账号：</label></div>
+								<div class="field field-icon-right">
+								<input type="text" class="input" name="account" placeholder="请输入登录账号" data-validate="required:请填写登录账号,length#>5:账号长度不能小于5,length#<10:账号长度不能大于10" value="">
+								<span class="icon icon-user"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="label"><label for="">手机号：</label></div>
+								<div class="field field-icon-right">
+									<input type="text" class="input" placeholder="请输入手机号" data-validate="required:请输入手机号,mobile:手机号格式不正确" name="phone" value="">
+									<span class="icon icon-mobile"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="label">
+									<label for="">登录密码：</label>
+								</div>
+								<div class="field field-icon-right">
+									<input type="password" class="input" placeholder="请输入登录密码" data-validate="required:请输入登录密码,length#>8:密码长度不能小于8,length#<15:密码长度不能大于15" name="paw" value="">
+									<span class="icon icon-key"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="label"><label for="">确认密码：</label></div>
+								<div class="field field-icon-right">
+									<input type="password" class="input" placeholder="请确认密码" name="confirmPaw" data-validate="required:请确认密码,repeat#paw:两次输入密码不一致" value="">
+									<span class="icon icon-key"></span>
+								</div>
+							</div>
+						</div>
+						<div class="panel-foot text-center">
+							<button class="button button-block bg-main text-big btRegister">注  册</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

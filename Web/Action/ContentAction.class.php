@@ -2,9 +2,13 @@
 
 require_once('BaseAction.class.php');
 require_once(DIR.'/Web/Model/ContentModel.class.php');
+///require_once(DIR.'/Web/Model/IndexModel.class.php');
 class ContentAction extends BaseAction{
 	public function run(){
 		//echo 'this is content';
+		if(!$this->checkIsLogin()){
+			$this->showLoginPage();return;
+		}
 		$this->getParameters();//获取地址栏参数
 		$para = isset($this->parameters['safe']['e'])?$this->parameters['safe']['e']:NULL;
 		switch ($para) {

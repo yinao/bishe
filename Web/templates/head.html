@@ -9,46 +9,121 @@
 				<div class="admin-navbar">
 					<span class="float-right">
                     <!--<a class="button button-little bg-main" href="#">前台首页</a>-->
-                    <a class="button button-little bg-yellow" href="login.html">注销登录</a>
-                </span>
+                    <a class="button button-little bg-yellow loginout" href="javascript:void(0);">注销登录</a>
+                	</span>
+                	{if $adminInfo.admin_role eq 1}
 					<ul class="nav nav-inline admin-nav">
 						<li{$indexActive}>
 							<a href="{$rootUrl}" class="icon-home"> 开始</a>
 							<ul>
+							{if $adminInfo['admin_power'][4] eq 1}
 								<li><a href="{$url}index.php?a=s">系统设置</a></li>
+							{/if}
+							{if $adminInfo['admin_power'][0] eq 1}
 								<li><a href="{$url}index.php?a=c">内容管理</a></li>
-								<li><a href="#">订单管理</a></li>
+							{/if}
+							{if $adminInfo['admin_power'][3] eq 1}
+								<li><a href="{$url}index.php?a=o">订单管理</a></li>
+							{/if}
+							{if $adminInfo['admin_power'][2] eq 1}
 								<li><a href="{$url}index.php?a=u">会员管理</a></li>
-								<li><a href="#">文件管理</a></li>
-								<li><a href="#">栏目管理</a></li>
+							{/if}
+							{if $adminInfo['admin_power'][1] eq 1}
+								<li><a href="{$url}index.php?a=st">防疫站管理</a></li>
+							{/if}
 							</ul>
 						</li>
+						{if $adminInfo['admin_power']['4'] eq 1}
 						<li{$sysActive}>
 							<a href="{$rootUrl}/index.php?a=s" class="icon-cog"> 系统</a>
 							<ul>
-								<li><a href="#">全局设置</a></li>
-								<li class="active"><a href="#">系统设置</a></li>
-								<li><a href="#">会员设置</a></li>
-								<li><a href="#">积分设置</a></li>
+								<li{$sActive}><a href="{$rootUrl}/index.php?a=s">系统设置</a></li>
+								<li{$pActive}><a href="{$rootUrl}/index.php?a=s&e=p">管理员设置</a></li>
 							</ul>
 						</li>
+						{/if}
+						{if $adminInfo['admin_power'][0] eq 1}
 						<li{$conActive}>
 							<a href="{$rootUrl}/index.php?a=c" class="icon-file-text"> 内容</a>
 							<ul>
 								<li{$addActive}><a href="{$rootUrl}/index.php?a=c&e=a">添加内容</a></li>
 								<li{$mActive}><a href="{$rootUrl}/index.php?a=c">内容管理</a></li>
 								<li{$sortActive}><a href="{$rootUrl}/index.php?a=c&e=s">分类设置</a></li>
-								<li><a href="#">链接管理</a></li>
 							</ul>
 						</li>
-						<li><a href="#" class="icon-shopping-cart"> 订单</a></li>
-						<li{$userActive}><a href="{$rootUrl}/index.php?a=u" class="icon-user"> 会员</a></li>
-						<li><a href="#" class="icon-file"> 文件</a></li>
-						<li><a href="#" class="icon-th-list"> 栏目</a></li>
+						{/if}
+						{if $adminInfo['admin_power'][3] eq 1}
+						<li{$orderActive}>
+							<a href="{$rootUrl}/index.php?a=o" class="icon-shopping-cart"> 订单</a>
+							<ul>
+								<li{$omActive}><a href="{$rootUrl}/index.php?a=o">订单管理</a></li>
+								<li{$oiActive}><a href="{$rootUrl}/index.php?a=o&e=info">订单详情</a></li>
+								<li{$ocActive}><a href="{$rootUrl}/index.php?a=o&e=oc">订单统计</a></li>
+								<li><a href="">回收站</a></li>
+							</ul>
+						</li>
+						{/if}
+						{if $adminInfo['admin_power'][2] eq 1}
+						<li{$userActive}>
+							<a href="{$rootUrl}/index.php?a=u" class="icon-user"> 会员</a>
+							<ul>
+								<li class="active"><a href="">会员管理</a></li>
+								<li><a href="javascript:void(0);">统计</a></li>
+							</ul>
+						</li>
+						{/if}
+						{if $adminInfo['admin_power'][1] eq 1}
+						<li{$staActive}>
+							<a href="{$rootUrl}/index.php?a=st" class="icon-th-list"> 防疫站</a>
+							<ul>
+								<li{$smActive}><a href="{$rootUrl}/index.php?a=st">防疫站管理</a></li>
+								<li{$sdActive}><a href="{$rootUrl}/index.php?a=st&e=sd">防疫站详情</a></li>
+							</ul>
+						</li>
+						{/if}
 					</ul>
+					{elseif $adminInfo.admin_role eq 0}
+						<ul class="nav nav-inline admin-nav">
+						<!-- <li{$indexActive}>
+							<a href="{$rootUrl}" class="icon-home"> 开始</a>
+							<ul>
+								<li><a href="{$rootUrl}/index.php?a=s&e=p">管理员管理</a></li>
+								<li><a href="{$rootUrl}/index.php?a=o">预约单管理</a></li>
+								<li><a href="{$rootUrl}/index.php?a=st">防疫站信息管理</a></li>
+							</ul>
+						</li> -->
+						<li{$staActive}>
+							<a href="{$rootUrl}/index.php?a=st" class="icon-th-list"> 防疫站</a>
+							<ul>
+								<li{$sdActive}><a href="{$rootUrl}/index.php?a=st">防疫站信息管理</a></li>
+								{if $adminInfo.station_id neq 0}
+								<li{$veroActive}><a href="{$rootUrl}/index.php?a=st&e=vero">疫苗管理</a></li>
+								{/if}
+							</ul>
+						</li>
+						{if $adminInfo.station_id neq 0}
+						<li{$orderActive}>
+							<a href="{$rootUrl}/index.php?a=o" class="icon-shopping-cart"> 预约单</a>
+							<ul>
+								<li{$omActive}><a href="{$rootUrl}/index.php?a=o">订单管理</a></li>
+								<li{$oiActive}><a href="{$rootUrl}/index.php?a=o&e=info">订单详情</a></li>
+								<li{$ocActive}><a href="{$rootUrl}/index.php?a=o&e=oc">订单统计</a></li>
+								<li><a href="">回收站</a></li>
+							</ul>
+						</li>
+						
+						<li{$sysActive}>
+							<a href="{$rootUrl}/index.php?a=s&e=p" class="icon-user"> 管理员</a>
+							<ul>
+								<li class="active"><a href="{$rootUrl}/index.php?a=s&e=p">管理员管理</a></li>
+							</ul>
+						</li>
+						{/if}
+						</ul>
+					{/if}
 				</div>
 				<div class="admin-bread">
-					<span>您好，admin，欢迎您的光临。</span>
+					<span>您好，<a href="javascript:void(0);">{$adminInfo.admin_name}</a>，欢迎您的光临。</span>
 					<ul class="bread">
 						<li><a href="{$rootUrl}" class="icon-home"> 开始</a></li>
 						{$bread}

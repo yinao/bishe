@@ -42,7 +42,7 @@
 							<td>{$list[2]|date_format:'%Y-%m-%d'}</td>
 							<td>
 								<a class="button sortEdit border-blue button-little dialogs" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" href="javascript:void(0);">编辑</a>
-								<a class="button border-yellow button-little sortDel" href="javascript:void(0);">删除</a>
+								<a class="button border-yellow button-little sortDel" data-target="{$list[0]}" href="javascript:void(0);">删除</a>
 							</td>
 						</tr>
 						{/foreach}

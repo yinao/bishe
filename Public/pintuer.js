@@ -401,7 +401,10 @@ $(function() {
 		if (mask == "1") {
 			$("body").append(masklayout);
 		}
-		detail = '<div class="dialog-win" style="position:fixed;width:' + width + ';z-index:11;">';
+		//detail = '<div class="dialog-win" style="position:fixed;width:' + width + ';z-index:11;">';
+		$(getid).css('position','fixed');
+		$(getid).css('width',width);
+		$(getid).css('z-index',11);
 		if (getid != null) {
 			detail = detail + $(getid).html();
 		}
@@ -411,9 +414,9 @@ $(function() {
 				async: false
 			}).responseText;
 		}
-		detail = detail + '</div>';
+		//detail = detail + '</div>';
 
-		var win = $(detail);
+		var win = $(getid);
 		win.find(".dialog").addClass("open");
 		$("body").append(win);
 		var x = parseInt($(window).width() - win.outerWidth()) / 2;
@@ -427,12 +430,16 @@ $(function() {
 		});
 		win.find(".dialog-close,.close").each(function() {
 			$(this).click(function() {
-				win.remove();
+				//win.remove();
+				win.attr('style','');
+				win.find(".dialog").removeClass("open");
 				$('.dialog-mask').remove();
 			});
 		});
 		masklayout.click(function() {
-			win.remove();
+			win.find(".dialog").removeClass("open");
+			win.attr('style','');
+			///win.remove();
 			$(this).remove();
 		});
 	};
@@ -549,10 +556,11 @@ $(function() {
 	$('.checkbox label').each(function() {
 		var e = $(this);
 		e.click(function() {
-			if (e.find('input').is(':checked')) {
-				e.addClass("active");
-			} else {
+			//if (e.find('input').is(':checked')) {
+			if(e.hasClass('active')){
 				e.removeClass("active");
+			} else {
+				e.addClass("active");
 			};
 		});
 	});

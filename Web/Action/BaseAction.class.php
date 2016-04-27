@@ -1,10 +1,13 @@
 <?php
 require_once(DIR.'/Web/libs/Smarty.class.php');
+
 class BaseAction{
 	
 	protected $obj;
 	protected $parameters = array();
 	protected $rootUrl= NULL;
+	protected $url=NULL;
+	protected $adminInfo=NULL;
 	public function __construct(){
 		if(empty($this->obj)){
 			$this->obj=new Smarty();
@@ -30,6 +33,26 @@ class BaseAction{
 			$this->parameters['safe'][$key]=addslashes($value);
 			$this->parameters['unsafe'][$key]=$value;
 		}
+	}
+	protected function checkIsLogin(){
+		session_start();
+		//$_SESSION['user']=16;
+		if(isset($_SESSION['user'])&&!empty($_SESSION['user'])){
+			require DIR.'/Web/Model/LoginModel.class.php';
+			$res=LoginModel::login($_SESSION['user']);
+			if(!$res){
+				return false;
+			}
+			$res['admin_power']=explode('-', $res['admin_power']);
+			$this->adminInfo=$res;
+			$this->obj->assign('adminInfo',$res);
+			return $res;
+		}
+		return false;
+	}
+	protected function showLoginPage(){
+		$this->obj->assign('rootUrl',$this->rootUrl);
+		$this->obj->display('Index_login.html');
 	}
 	protected function errorPage($error,$errorInfo){
 		

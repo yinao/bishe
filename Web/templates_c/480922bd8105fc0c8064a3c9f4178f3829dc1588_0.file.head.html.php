@@ -1,16 +1,16 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-27 00:58:12
-  from "G:\wamp\www\bishe\Web\templates\head.html" */
+/* Smarty version 3.1.29, created on 2016-04-26 14:46:03
+  from "G:\wamp\www\bishe\super\Web\templates\head.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57200ea430c263_10410802',
+  'unifunc' => 'content_571f7f2b060ba8_80499320',
   'file_dependency' => 
   array (
-    'f5fd16c0aa571ec43e4d617a6fe30b3ee166cf56' => 
+    '480922bd8105fc0c8064a3c9f4178f3829dc1588' => 
     array (
-      0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\head.html',
+      0 => 'G:\\wamp\\www\\bishe\\super\\Web\\templates\\head.html',
       1 => 1461681960,
       2 => 'file',
     ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57200ea430c263_10410802 ($_smarty_tpl) {
+function content_571f7f2b060ba8_80499320 ($_smarty_tpl) {
 ?>
 
 		<div class="lefter">

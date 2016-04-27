@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<title>{$title}</title>
+		<link rel="stylesheet" href="{$rootUrl}/Public/pintuer.css">
+		<link rel="stylesheet" href="{$rootUrl}/Public/admin.css">
+		<script src="{$rootUrl}/Public/jquery.js"></script>
+		<script src="{$rootUrl}/Public/pintuer.js"></script>
+		<!--<script src="{$rootUrl}/Public/respond.js"></script>-->
+		<script src="{$rootUrl}/Public/admin.js"></script>
+	</head>
+
+	<body>
+{include file="head.html"}
+
+		<div class="admin">
+			<div class="panel">
+				<div class="panel-head"><strong>管理员管理</strong></div>
+				<div class="panel-body">
+					<form>
+					<div class="border-bottom">
+						<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
+						<input type="button" class="button button-small border-green dialogs" data-target="#gadd" data-mask="1" data-toggle="click" data-width="50%" value="添加管理员" />
+						<input type="button" class="button button-small border-yellow gdall" value="批量删除" />
+					</div>
+					<table class="table table-hover">
+						<tr>
+							<th>选择</th>
+							<th>管理员名</th>
+							<th>管理员账号</th>
+							<th>管理员权限</th>
+							<th>管理员手机号</th>
+							<th>创建时间</th>
+							<th>操作</th>
+						</tr>
+							{foreach from=$mList item=v}
+							<tr>
+								<td>
+									<input type="checkbox" name="id" id="id" value="{$v[0]}" />
+								</td>
+								<td>{$v.admin_name}</td>
+								<td>{$v.admin_account}</td>
+								<td>{$v.admin_power}</td>
+								<td>{$v.admin_phone}</td>
+								<td>{$v.createTime|date_format:'%Y-%m-%d'}</td>
+								<td>
+									<a href="javascript:void(0);" class="button button-small border-green dialogs gedit" data-target="#gadd" data-toggle="click" data-mask="1" data-width="50%">编辑</a>
+									<a href="javascript:void(0);" data-target="{$v[0]}" class="button button-small border-red gdel">删除</a>
+								</td>
+							</tr>
+							{/foreach}
+					</table>
+					</form>
+				</div>
+				<div class="panel-foot"></div>
+			</div>
+			<hr class="space"/>
+		</div>
+		<div id="gadd">
+			<div class="dialog">
+				<div class="dialog-head"><span class="close rotate-hover"></span><strong>对话框标题</strong></div>
+				<div class="dialog-body form-inline">
+					<div class="form-group padding">
+						<div class="label">
+							<label for="name">管理员名字：</label>
+						</div>
+						<div class="field">
+							<input type="text" name="name" class="input input-auto" value=""/>
+						</div>
+					</div>
+					<div class="form-group padding">
+						<div class="label"><label for="account">登录账号：</label></div>
+						<div class="field">
+							<input type="text" name="account" class="input input-auto" value=""/>
+						</div>
+					</div>
+					<div class="form-group padding">
+						<div class="label"><label for="paw">登录密码：</label></div>
+						<div class="field">
+							<input type="text" name="paw" class="input input-auto" value=""/>
+						</div>
+					</div>
+					<div class="form-group padding">
+						<div class="label"><label for="phone">管理员手机号：</label></div>
+						<div class="field">
+							<input type="text" name="phone" class="input input-auto" value="">
+						</div>
+					</div>
+					<div class="form-group padding">
+						<div class="label"><label for="phone">管理员权限：</label></div>
+						<div class="field">
+							<div class="button-group border-green checkbox">
+								{if $adminInfo.admin_role eq 1}
+								<label class="button">内容 </label> 
+								<label class="button">防疫站 </label> 
+								<label class="button">会员 </label>
+								<label class="button">预约单 </label> 
+								<label class="button">系统设置 </label> 
+								{elseif $adminInfo.admin_role eq 0}
+								<label class="button">防疫站</label>
+								<label class="button">预约单</label>
+								<label class="button">防疫站信息</label>
+								{/if}
+							</div>
+						</div>
+					</div>
+					<div class="form-group padding">
+					</div>
+				</div>
+				<div class="dialog-foot">
+					<button class="button dialog-close">取消</button>
+					<button class="button bg-green powerSub" data-toggle="a">确认</button>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

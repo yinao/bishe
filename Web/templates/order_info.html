@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<title>{$title}</title>
+		<link rel="stylesheet" href="{$rootUrl}/Public/pintuer.css">
+		<link rel="stylesheet" href="{$rootUrl}/Public/admin.css">
+		<script src="{$rootUrl}/Public/jquery.js"></script>
+		<script src="{$rootUrl}/Public/pintuer.js"></script>
+		<!--<script src="{$rootUrl}/Public/respond.js"></script>-->
+		<script src="{$rootUrl}/Public/admin.js"></script>
+	</head>
+
+	<body>
+{include file="head.html"}
+
+		<div class="admin">
+				<div class="panel" style="margin-bottom:10px">
+					<div class="panel-head">
+						<strong>预约单操作：</strong>
+						{if $orderInfo.record.is_dealed neq 1}
+						<a href="javascript:void(0);" data-toggle="{$orderInfo.record.id}" data-target="1" class="button small-button bg-red orderUsed">使用</a>
+						{/if}
+						{if $orderInfo.record.is_dealed eq 0}
+						<a href="javascript:void(0);" data-toggle="{$orderInfo.record.id}" data-target="2" class="button small-button bg-red orderUsed">过期</a>
+						{/if}
+					</div>
+				</div>
+				<div class="panel" style="margin-bottom:10px;">
+					<div class="panel-head"><strong>订单详情</strong></div>
+					<div class="panel-body">
+						<form action="{$rootUrl}/index.php" method="get" class="form-inline input-auto">
+							<div class="form-group">
+								<div class="label"><label for="orderNum">订单号：</label></div>
+								<div class="field">
+									<input type="hidden" name="a" value="o">
+									<input type="hidden" name="e" value="info">
+									<input type="text" name="orderNum" id="orderNum" class="input" value="{$orderInfo.record.order_num}"/>
+								</div>
+							</div>
+							<div class="form-button">
+								<button type="submit" class="button button-small">查询</button>
+							</div>
+						</form>
+						<div style="margin:5px;">
+							<strong>预约接种时间：</strong>{$orderInfo.record.order_time|date_format:'%Y-%m-%d'}
+
+							<strong class="margin-left">预约单状态：</strong>
+									{if $orderInfo.record.is_dealed eq 0}未使用
+									{elseif $orderInfo.record.is_dealed eq 1}已使用
+									{elseif $orderInfo.record.is_dealed eq 2}已过期
+									{/if}
+						</div>
+					</div>
+				</div>
+				<div class="x4">
+					<div class="panel">
+						<div class="panel-head"><strong>预约客户信息</strong></div>
+						<div class="panel-body">
+							<ul class="list-group">
+								<li><strong>预约者手机：</strong>{$orderInfo.user.user_phone}</li>
+								<li><strong>接种者姓名：</strong>{$orderInfo.user.name}</li>
+								<li><strong>接种者性别：</strong>{if $orderInfo.user.sex eq 1}男{elseif $orderInfo.uesr.sex eq 0}女{/if}</li>
+								<li><strong>接种者年龄：</strong>{$orderInfo.user.age}岁</li>
+								<li><strong>接种者身高：</strong>{$orderInfo.user.height}cm</li>
+								<li><strong>接种者体重：</strong>{$orderInfo.user.weigh}kg</li>
+								<li><strong>接种者健康状况：</strong>{if $orderInfo.user.healthy eq 0}良好{elseif $orderInfo.user.healthy eq 1}较好{elseif $orderInfo.user.healthy eq 2}不太好{/if}</li>
+								<li><strong>创建时间：</strong>{$orderInfo.user.create_time}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="x4">
+					<div class="panel">
+						<div class="panel-head"><strong>接种站信息</strong></div>
+						<div class="panel-body">
+							<ul class="list-group">
+								<li><strong>接种站名字：</strong>{$orderInfo.station.station_name}</li>
+								<li><strong>接种站电话：</strong>{$orderInfo.station.station_phone}</li>
+								<li><strong>接种站地址：</strong>{$orderInfo.station.station_address}</li>
+								<li><strong>接种站编号：</strong>{$orderInfo.station.station_num}</li>
+								<li><strong>接种站介绍：</strong><a href="javascript:void(0);" class="button button-small border-blue" title="图片介绍">图片介绍</a><a href="javascript:void(0);" class="button button-small border-green" title="文字介绍">文字介绍</a></li>
+								<li><strong>接种站状态：</strong>{if $orderInfo.station.station_status eq 0}未通过验证{elseif $orderInfo.station.station_status eq 1}正常营业中{elseif $orderInfo.station.station_status eq 2}停止使用{/if}</li>
+								<li><strong>接种站创建时间：</strong>{$orderInfo.station.create_time|date_format:'%Y-%m-%d'}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="x4">
+					<div class="panel">
+						<div class="panel-head"><strong>预约疫苗信息</strong></div>
+						<div class="panel-body">
+							<ul class="list-group">
+								<li><strong>疫苗编号：</strong>{$orderInfo.vero.vero_num}</li>
+								<li><strong>疫苗名字：</strong>{$orderInfo.vero.vero_name}</li>
+								<li><strong>疫苗描述：</strong><a href="javascript:void(0);" title="文字介绍" class="icon-external-link"></a><!-- $orderInfo.vero.vero_instruction --></li>
+								<li><strong>疫苗状态：</strong>{if $orderInfo.vero.vero_status eq 0}未验证{elseif $orderInfo.vero.vero_status eq 1}正在使用{elseif $orderInfo.vero.vero_status eq 2}停用{/if}</li>
+								<li><strong>疫苗创建时间：</strong>{$orderInfo.vero.create_time|date_format:'%Y-%m-%d'}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+		</div>
+	</body>
+</html>

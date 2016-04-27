@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<title>{$title}</title>
+		<link rel="stylesheet" href="{$rootUrl}/Public/pintuer.css">
+		<link rel="stylesheet" href="{$rootUrl}/Public/admin.css">
+		<script src="{$rootUrl}/Public/jquery.js"></script>
+		<script src="{$rootUrl}/Public/pintuer.js"></script>
+		<!--<script src="{$rootUrl}/Public/respond.js"></script>-->
+		<script src="{$rootUrl}/Public/admin.js"></script>
+	</head>
+
+	<body>
+{include file="head.html"}
+
+		<div class="admin">
+			<div class="panel admin-panel">
+				<div class="panel-head"><strong>防疫站列表</strong></div>
+				<div class="padding border-bottom">
+					<form class="form-inline input-auto" action="{$rootUrl}">
+						<input type="hidden" name="a" value="st">
+						<div class="form-group">
+							<div class="label"><label for="stationNum">防疫站编号：</label></div>
+							<div class="field"><input type="text" class="input" name="stationNum" value="{$paras.stationNum}"></div>
+						</div>
+						<div class="form-group">
+							<div class="label"><label for="stationStatus">防疫站状态：</label></div>
+							<div class="field">
+								<select name="stationStatus" class="input">
+									<option value="0">请选择：</option>
+									<option value="1"{if $paras.stationStatus eq 1} selected="selected"{/if}>未审核</option>
+									<option value="2"{if $paras.stationStatus eq 2} selected="selected"{/if}>审核通过</option>
+									<option value="3"{if $paras.stationStatus eq 3} selected="selected"{/if}>停止使用</option>
+									<option value="4"{if $paras.stationStatus eq 4} selected="selected"{/if}>审核失败</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-button">
+							<button class="button buttion-small">查询</button>
+						</div>
+					</form>
+				</div>
+				<table class="table table-hover">
+					<tr>
+						<th>选择</th>
+						<th>防疫站编号</th>
+						<th>防疫站名字</th>
+						<th>防疫站的地址</th>
+						<th>防疫站电话</th>
+						<th>疫苗数量</th>
+						<th>防疫站状态</th>
+						<th>操作</th>
+					</tr>
+					{foreach from=$stationList item=list}
+					<tr>
+						<td><input type="checkbox" name="id" id="id" value="{$list.id}"></td>
+						<td>{$list.station_num}</td>
+						<td>{$list.station_name}</td>
+						<td>{$list.station_address}</td>
+						<td>{$list.station_phone}</td>
+						<td><a href="javascript:void(0);" title="疫苗数量" class="badge bg-main">{$list.vero_counts}</a></td>
+						<td>
+						{if $list.station_status eq 0}待审核
+						{elseif $list.station_status eq 1}审核通过
+						{elseif $list.station_status eq 2}停用
+						{elseif $list.station_status eq 3}审核失败
+						{/if}
+						</td>
+						<td><a href="{$rootUrl}/index.php?a=st&e=sd&i={$list.id}" class="button button-small" onclick="jf.load();">详情</a></td>
+					</tr>
+					{/foreach}
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
