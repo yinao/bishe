@@ -91,4 +91,8 @@ class Page{
 		array_push($condition,$end);
 		return $condition;
 	}
+
+	public function getPages(){
+		return $this->totalPage;
+	}
 }

@@ -23,7 +23,7 @@ class ApiAction extends BaseAction{
 		}
 		$r=ApiModel::register($paras);
 		//print_r($r);exit();
-		if($r=='exists'){echo json_encode(array('status'=>0,'msg'=>'手机号已存在'));exit();}
+		if($r=='exists'){echo json_encode(array('status'=>2,'msg'=>'手机号已存在'));exit();}
 		else if($r=='ok'){
 			echo json_encode(array('status'=>1));exit();
 		}else{
