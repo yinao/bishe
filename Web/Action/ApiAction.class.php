@@ -66,7 +66,7 @@ class ApiAction extends BaseAction{
 
 	public function run(){
 		$this->getParameters();
-		$method=$this->parameters['safe']['a'];
+		$method=isset($this->parameters['safe']['a'])?$this->parameters['safe']['a']:null;
 		$methods=get_class_methods('ApiAction');
 		$i=0;$length=count($methods);
 		while($i<$length&&$methods[$i]!=$method){
