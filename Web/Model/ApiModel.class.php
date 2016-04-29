@@ -52,11 +52,11 @@ class ApiModel extends BaseModel{
 
 		$vero_res=array();
 		$picture_res=array();
-		if(!empty($res)){
-			$vero_sql="select * from bishe_vero where station_id={$res['id']}";
+		if(!empty($station_res)){
+			$vero_sql="select * from bishe_vero where station_id={$station_res['id']}";
 			$vero_res=parent::fetchAll($vero_sql,null,true);
 
-			$picture_sql="select * from bishe_picture where station_id={$res['id']}";
+			$picture_sql="select * from bishe_picture where station_id={$station_res['id']}";
 			$picture_res=parent::fetchAll($picture_sql,null,true);
 		}
 
