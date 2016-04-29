@@ -24,7 +24,7 @@ class ApiModel extends BaseModel{
 		return 'ok';
 	}
 
-	public static function stationList($para=null){
+	public static function stationList($para,$url){
 		$station_sql="select count(id) from bishe_station where station_status=1";
 		$rows=parent::fetchOne($station_sql,null);
 
@@ -35,10 +35,11 @@ class ApiModel extends BaseModel{
 		$totalPage=$pages->getPages();
 		unset($pages);
 
-		$sql_para="station_picture,station_name,station_phone,id";
-		$station_sql.=" limit %start%,%end%";
+		//$sql_para="concat(station_num,'/',station_picture),station_name,station_phone,id";
 
-		$station_sql=str_replace(array('count(id)','%start%','%end%'), array($sql_para,$condition[0],$condition[1]), $station_sql);
+		$station_sql="select concat(station_num,'/',station_picture) as picture_url,station_name,station_phone,id from bishe_station where station_status=1";
+		$station_sql.=" limit %start%,%end%";
+		$station_sql=str_replace(array('%start%','%end%'), array($condition[0],$condition[1]), $station_sql);
 
 		$res=parent::fetchAll($station_sql,null,true);
 

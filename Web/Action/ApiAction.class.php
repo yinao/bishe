@@ -33,7 +33,7 @@ class ApiAction extends BaseAction{
 
 	private function stationList($paras){
 		$paras['p']=!isset($paras['p'])?1:$paras['p'];
-		$res=ApiModel::stationList($paras['p']);
+		$res=ApiModel::stationList($paras['p'],$this->rootUrl);
 		echo json_encode($res);exit();
 	}
 
