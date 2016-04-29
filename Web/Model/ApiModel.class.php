@@ -70,7 +70,7 @@ class ApiModel extends BaseModel{
 		foreach($paras as $v){
 			$para[]=$v;
 		}
-		$vero_res=parent::fetchAll($vero_sql,$para,true);
+		$vero_res=parent::fetchOne($vero_sql,$para,true);
 		return $vero_res;
 	}
 
