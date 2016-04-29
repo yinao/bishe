@@ -43,7 +43,8 @@ class ApiAction extends BaseAction{
 	}
 
 	private function veroInfo($paras){
-
+		$res=ApiModel::veroInfo($paras);
+		echo json_encode($res);exit();
 	}
 
 	private function addInoculator($paras){

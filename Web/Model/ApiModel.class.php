@@ -53,7 +53,7 @@ class ApiModel extends BaseModel{
 		$vero_res=array();
 		$picture_res=array();
 		if(!empty($station_res)){
-			$vero_sql="select * from bishe_vero where station_id={$station_res['id']}";
+			$vero_sql="select * from bishe_vero where station_id={$station_res['id']} and vero_status=1";
 			$vero_res=parent::fetchAll($vero_sql,null,true);
 
 			$picture_sql="select * from bishe_picture where station_id={$station_res['id']}";
@@ -61,6 +61,17 @@ class ApiModel extends BaseModel{
 		}
 
 		return array('station'=>$station_res,'vero'=>$vero_res,'picture'=>$picture_res);
+	}
+
+	public static function veroInfo($paras){
+		$vero_sql="select * from bishe_vero where id=? and station_id=? and vero_status=1";
+		$para=array();
+		array_shift($paras);
+		foreach($paras as $v){
+			$para[]=$v;
+		}
+		$vero_res=parent::fetchAll($vero_sql,$para,true);
+		return $vero_res;
 	}
 
 	public static function addInoculator($paras){
