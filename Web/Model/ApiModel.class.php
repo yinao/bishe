@@ -2,7 +2,7 @@
 require 'BaseModel.class.php';
 class ApiModel extends BaseModel{
 	public static function login($paras){
-		//$paras的参数有phone,paw
+		//$paras的参数顺序有phone,paw
 		return parent::fetchOne("select * from bishe_user where user_phone=? and user_paw=?",array($paras['phone'],md5($paras['paw'])));
 	}
 

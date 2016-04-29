@@ -11,7 +11,7 @@ class ApiAction extends BaseAction{
 			echo 0;exit();
 		}
 		$r=ApiModel::login($paras);
-		if($r) echo 1;
+		if($r) echo $r['id'];
 		else echo 0;
 	}	
 
