@@ -10,6 +10,9 @@ class SystemAction extends BaseAction{
 		if(!$this->checkIsLogin()){
 			$this->showLoginPage();return;
 		}
+		if(!$this->adminInfo['admin_role']){
+			$this->redirect('a=st');exit();
+		}
 		$this->getParameters();//获取地址栏参数
 		$para = isset($this->parameters['safe']['e'])?$this->parameters['safe']['e']:NULL;
 		switch ($para) {

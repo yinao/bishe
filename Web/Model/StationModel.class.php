@@ -169,7 +169,7 @@ class StationModel extends BaseModel{
 		$sql="insert into bishe_station (station_name,station_phone,station_address,station_description,create_time,station_num,station_picture,station_status) values (?,?,?,?,?,?,?,?)";
 		array_push($para, time());
 		array_push($para,'GB'.time());
-		array_push($para,time().'.jpg');
+		array_push($para," ");
 		array_push($para,0);
 		$id=parent::insertData($sql,$para);
 		$admin_sql="update bishe_admin set station_id={$id} where id=$adminId";
@@ -179,4 +179,47 @@ class StationModel extends BaseModel{
 	public static function veroAdd($paras,$stationId){
 
 	}
+
+	public static function uploadPic($paras){
+		if($paras['tog']=='fetch'){
+			$sql="select station_num from bishe_station where id={$paras['id']}";
+			$res=parent::fetchOne($sql,null,true);
+			return $res['station_num'];
+		}else if($paras['tog']=='update'){
+			$sql="update bishe_station set station_picture='".$paras['fileName']."' where id={$paras['id']}";
+			parent::execute($sql,null);
+		}else if($paras['tog']=='insert'){
+			$sql="insert into bishe_picture (station_id,picture_url) values (".$paras['id'].",'".$paras['url']."')";
+			//return $sql;
+			return parent::insertData($sql,null);
+		}
+	}
+
+	public static function fetchAllPic($id){
+		$cover_sql="select concat(station_num,'/',station_picture) as picture_url,station_picture from bishe_station where id={$id}";
+		$cover=parent::fetchOne($cover_sql,null);
+
+		$pic_sql="select picture_url,id from bishe_picture where station_id={$id}";
+		$pic=parent::fetchAll($pic_sql,null);
+
+		return array('cover'=>$cover,'pic'=>$pic);
+	}
+
+	public static function delPic($paras){
+		//if($paras[''])
+		if($paras['tog']=='cover'){
+			$sql="select station_num,station_picture from bishe_station where id={$paras['id']}";
+			$res=parent::fetchOne($sql,null);
+			parent::execute("update bishe_station set station_picture='' where id={$paras['id']}",null);
+			return $res;
+		}elseif($paras['tog']=="pic"){
+			$sql="select picture_url from bishe_picture where id={$paras['pic']} and station_id={$paras['id']}";
+			$res=parent::fetchOne($sql,null,true);
+			parent::execute("delete from bishe_picture where id={$paras['pic']} and station_id={$paras['id']}",null);
+			return explode('/', $res['picture_url']);
+		}else{
+			return false;
+		}
+	}
+
 }

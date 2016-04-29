@@ -8,6 +8,9 @@ class UserAction extends BaseAction{
 		if(!$this->checkIsLogin()){
 			$this->showLoginPage();return;
 		}
+		if(!$this->adminInfo['admin_role']){
+			$this->redirect('a=st');exit();
+		}
 		$this->obj->assign('userActive',' class="active"');
 		$this->obj->assign('url',$this->url);
 		$this->obj->assign('rootUrl',$this->rootUrl);

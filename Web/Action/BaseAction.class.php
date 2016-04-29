@@ -80,4 +80,7 @@ class BaseAction{
 	protected function isGet(){
 		return $_SERVER['REQUEST_METHOD'] == 'GET' ? true : false;
 	}
+	protected function redirect($url){
+		header("Location:".$this->rootUrl."/index.php?".$url);
+	}
 }

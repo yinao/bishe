@@ -27,7 +27,11 @@ class IndexAction extends BaseAction{
 				if(!$this->checkIsLogin()){
 					$this->showLoginPage();
 				}else{
-					$this->index();
+					if($this->adminInfo['admin_role']){
+						$this->index();
+					}else{
+						$this->redirect('a=st');
+					}
 				}	
 				break;
 		}

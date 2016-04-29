@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-27 00:58:19
+/* Smarty version 3.1.29, created on 2016-04-28 14:48:31
   from "G:\wamp\www\bishe\Web\templates\station_info.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57200eab218394_96547638',
+  'unifunc' => 'content_572222bff3a234_55058527',
   'file_dependency' => 
   array (
     '3566ed962d5c4495f6392f773053324c7307f78d' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_info.html',
-      1 => 1461682021,
+      1 => 1461854909,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57200eab218394_96547638 ($_smarty_tpl) {
+function content_572222bff3a234_55058527 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -132,7 +132,11 @@ echo $_smarty_tpl->tpl_vars['stationInfo']->value['station']['station_num'];
 			</div>
 			<div class="panel" style="margin-top:20px;">
 				<div class="panel-head"><a href="javascript:void(0);" class="cuttle"><strong>防疫站描述</strong></a> <small>(点击展开)</small></div>
+				<?php if ($_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 1) {?>
 				<div class="panel-body hidden">
+				<?php } elseif ($_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 0) {?>
+				<div class="panel-body">
+				<?php }?>
 					<?php echo $_smarty_tpl->tpl_vars['stationInfo']->value['station']['station_description'];?>
 
 				</div>

@@ -78,7 +78,11 @@
 			</div>
 			<div class="panel" style="margin-top:20px;">
 				<div class="panel-head"><a href="javascript:void(0);" class="cuttle"><strong>防疫站描述</strong></a> <small>(点击展开)</small></div>
+				{if $adminInfo.admin_role eq 1}
 				<div class="panel-body hidden">
+				{elseif $adminInfo.admin_role eq 0}
+				<div class="panel-body">
+				{/if}
 					{$stationInfo.station.station_description}
 				</div>
 			</div>

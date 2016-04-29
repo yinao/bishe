@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-27 00:58:12
+/* Smarty version 3.1.29, created on 2016-04-29 01:06:30
   from "G:\wamp\www\bishe\Web\templates\head.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57200ea430c263_10410802',
+  'unifunc' => 'content_5722b396af6920_76619615',
   'file_dependency' => 
   array (
     'f5fd16c0aa571ec43e4d617a6fe30b3ee166cf56' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\head.html',
-      1 => 1461681960,
+      1 => 1461891932,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57200ea430c263_10410802 ($_smarty_tpl) {
+function content_5722b396af6920_76619615 ($_smarty_tpl) {
 ?>
 
 		<div class="lefter">
@@ -166,7 +166,10 @@ index.php?a=st">防疫站管理</a></li>
 							<ul>
 								<li<?php echo $_smarty_tpl->tpl_vars['sdActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=st">防疫站信息管理</a></li>
+/index.php?a=st&e=stUp">防疫站信息管理</a></li>
+								<li<?php echo $_smarty_tpl->tpl_vars['sdPactive']->value;?>
+><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=st&e=stPic">防疫站图片管理</a></li>
 								<?php if ($_smarty_tpl->tpl_vars['adminInfo']->value['station_id'] != 0) {?>
 								<li<?php echo $_smarty_tpl->tpl_vars['veroActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>

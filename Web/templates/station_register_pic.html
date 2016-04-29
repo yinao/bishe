@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<title>防疫站信息添加</title>
+		<link rel="stylesheet" href="{$rootUrl}/Public/pintuer.css">
+		<link rel="stylesheet" href="{$rootUrl}/Public/admin.css">
+		<script type="text/javascript" src="{$rootUrl}/Public/upload.js"></script>
+		<script src="{$rootUrl}/Public/jquery.wallform.js"></script>
+		<script>
+			$(function(){
+				$('#loadFile').off('click').on('change', function(){
+					var btn = $(".upload");
+					var status = $(".loadStatus");
+					$("#imageform1").ajaxForm({
+						target: "#preview1", 
+						beforeSubmit:function(){
+							status.removeClass('hidden');
+							btn.hide();
+						}, 
+						success:function(){
+							status.hide();
+						}, 
+						error:function(){
+							status.hide();
+							btn.show();
+					} }).submit();
+				});
+				$('#loadFile2').off('click').on('change',function(){
+					var btn=$('.upload2');
+					var status=$('.loadStatus2');
+					$('#imageform2').ajaxForm({
+						target:'#preview2',
+						beforeSubmit:function(){
+							status.removeClass('hidden');
+							btn.hide();
+						},
+						success:function(){
+							status.addClass('hidden');
+							btn.show();
+						},
+						error:function(){
+							status.addClass('hidden');
+							status.show();
+						}
+					}).submit();
+				});
+			});
+		</script>
+		<style type="text/css">
+		.preview{
+			min-height: 100px;
+			max-height: auto;
+		}
+		.preview img{
+			max-height: 100px;
+			margin-left: 20px;
+			margin-top: 10px;
+		}
+		.preview span{
+			z-index: 999;
+			color: red;
+			cursor: pointer;
+			margin-left: -10px;
+		}
+		</style>
+	</head>
+
+	<body>
+{include file="head.html"}
+
+		<div class="admin">
+			<div class="panel">
+				<div class="panel-head"><strong>防疫站图片管理</strong></div>
+				<div class="panel-body">
+					<form id="imageform1" method="post" enctype="multipart/form-data" class="form form-x" action="{$rootUrl}/index.php?a=st&e=stPic" onsubmit="return false;">
+						<div class="form-group">
+							<div class="label"><label>上传封面图片：</label></div>
+							<div class="field">
+								{if $stationPic.cover.station_picture eq ""}
+								<input type="hidden" name="act" value="update" />
+								<div class="loadStatus hidden"><img src="{$rootUrl}/Public/loader.gif"></div>
+								<div class="upload">
+								<a class="input-file button" href="javascript:void(0);">+ 浏览文件<input id="loadFile" size="100" type="file" name="pic" value=""/></a>
+								</div>
+								<div class="preview" id="preview1">
+									
+								</div>
+								{else}
+								<div class="preview" id="preview1">
+									<img src="{$rootUrl}/Uploads/{$stationPic.cover.picture_url}">
+									<span class="close" title="删除" data-tog="cover" onclick="del(this);"></span>
+								</div>
+								{/if}
+
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="panel-body">
+					<form id="imageform2" method="post" enctype="multipart/form-data" class="form form-x" action="{$rootUrl}/index.php?a=st&e=stPic" onsubmit="return false;">
+						<div class="form-group">
+							<div class="label"><label>上传图片介绍：</label></div>
+							<div class="field">
+								<input type="hidden" name="act" value="insert" />
+								<div class="loadStatus2 hidden"><img src="{$rootUrl}/Public/loader.gif"></div>
+								<div class="upload2">
+								<a class="input-file button" href="javascript:void(0);">+ 浏览文件<input id="loadFile2" size="100" type="file" name="pic" value=""/></a>
+								</div>
+								<div class="preview" id="preview2">
+								{foreach from=$stationPic.pic item=v}
+									<img src="{$rootUrl}/Uploads/{$v.picture_url}">
+									<span class="close" title="删除" data-tog="pic" data-pic="{$v.id}" onclick="del(this);"></span>
+								{/foreach}
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		<script src="{$rootUrl}/Public/admin.js"></script>
+		<script>
+		//jf.load();
+			function del(obj){
+				//alert('shanchu');
+				jf.load();
+				$.ajax({
+					url:"{$rootUrl}/index.php?a=st&e=stPic",
+					type:"POST",
+					data:"tog="+$(obj).attr('data-tog')+"&pic="+$(obj).attr('data-pic'),
+					timeout:6000,
+					dataType:"json",
+					success:function(data){
+						jf.hide();
+						if(data.status==1){
+							window.location.reload();
+						}else{
+							alert("删除失败");
+						}
+					},
+					error:function(data){
+
+					}
+				});
+			}
+		</script>
+		</div>
+	</body>
+</html>

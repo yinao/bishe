@@ -30,6 +30,12 @@ class StationAction extends BaseAction{
 			case 'stReg':
 				$this->stationRegisterInfo();
 				break;
+			case 'stUp':
+				$this->stationRegister();
+				break;
+			case 'stPic':
+				$this->stationPic();
+				break;
 			default:
 				if($this->adminInfo['admin_role']==1){
 					$this->index();
@@ -112,6 +118,7 @@ class StationAction extends BaseAction{
 	}
 
 	private function stationRegister(){
+		$this->obj->assign('sdActive',' class="active"');
 		$this->obj->display('station_register_info.html');
 	}
 	private function stationRegisterInfo(){
@@ -126,5 +133,64 @@ class StationAction extends BaseAction{
 			echo json_encode($r);exit();
 			echo json_encode(array('status'=>0));exit();
 		}
+	}
+
+	private function stationPic(){
+		if($this->isAjax()){
+			if(isset($_POST['tog'])){
+				$pic=isset($_POST['pic'])?$_POST['pic']:null;
+				$file=StationModel::delPic(array("id"=>$this->adminInfo['station_id'],'tog'=>$_POST['tog'],'pic'=>$pic));
+				if(!$file){
+					echo json_encode(array('status'=>0,'msg'=>"删除失败"));exit();
+				}else{
+					$file=DIR.'/Uploads/'.$file[0].'/'.$file[1];
+					if(file_exists($file)){
+						unlink($file);
+					}
+					echo json_encode(array('status'=>1,'msg'=>"删除成功"));exit();
+				}
+			}else{
+				echo json_encode(array('status'=>0,'msg'=>'发生错误'));exit();
+			}
+		}
+
+		if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST"){
+			require DIR.'/Web/Common/Upload.class.php';
+			$fileName=time();
+			$secordName=StationModel::uploadPic(array('id'=>$this->adminInfo['station_id'],'tog'=>'fetch'));
+			$tog=null;
+			$pic=null;
+			$upload=new Upload(DIR.'/Uploads/'.$secordName.'/',$fileName,'image',500);
+			if($_POST['act']=='update'){
+				$uploadRes=$upload->setUpload();
+				$ext=$upload->extend();
+				if($uploadRes['status']==0){
+					echo $uploadRes['msg'];exit();
+				}
+				$r=StationModel::uploadPic(array('id'=>$this->adminInfo['station_id'],'tog'=>'update','fileName'=>$fileName.'.'.$ext));
+				//echo $r;exit();
+				$tog='cover';
+			}else if($_POST['act']=='insert'){
+				$uploadRes=$upload->setUpload();
+				$ext=$upload->extend();
+				if($uploadRes['status']==0){
+					echo $uploadRes['msg'];exit();
+				}
+				$r=StationModel::uploadPic(array('id'=>$this->adminInfo['station_id'],'tog'=>'insert','url'=>$secordName.'/'.$fileName.'.'.$ext));
+				$tog="pic";
+				$pic=$r;
+				//echo $r;exit();
+			}else{
+				echo '发生错误';exit();
+			}
+			echo '<img src="'.$this->rootUrl.'/Uploads/'.$secordName.'/'.$fileName.'.'.$ext.'"><span class="close" title="删除" data-tog="'.$tog.'" data-pic="'.$pic.'" onclick="del(this);"></span>';
+			exit();
+		}
+		if($this->adminInfo['station_id']!=0){
+			$res=StationModel::fetchAllPic($this->adminInfo['station_id']);
+			$this->obj->assign('stationPic',$res);
+		}
+		$this->obj->assign('sdPactive',' class="active"');
+		$this->obj->display('station_register_pic.html');
 	}
 }
