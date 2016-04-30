@@ -58,6 +58,12 @@ class ApiAction extends BaseAction{
 		else{echo 0;exit();}
 	}
 
+	private function delIno($paras){
+		$r=ApiModel::delIno($paras['id']);
+		if($r){echo 1;exit();}
+		else{echo 0;exit();}
+	}
+
 	private function record($paras){
 		$res=ApiModel::fetchRecord($paras);
 		echo json_encode($res);exit();

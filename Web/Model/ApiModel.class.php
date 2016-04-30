@@ -92,6 +92,10 @@ class ApiModel extends BaseModel{
 		return $r;
 	}
 
+	public static function delIno($id){
+		$sql="delete from bishe_inoculator where id=?";
+		return parent::execute($sql,array($id));
+	}
 	public static function addRecord($paras){
 		$record_sql="insert into bishe_record (user_id,station_id,vero_id,order_time,order_num,create_time,is_deleted,is_dealed) values (?,?,?,?,?,?,?,?)";
 		$para=array();
