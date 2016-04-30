@@ -81,12 +81,13 @@ class ApiModel extends BaseModel{
 	}
 
 	public static function addInoculator($paras){
-		$sql="insert into bishe_inoculator (userId,name,age,sex,height,weigh,healthy) values (?,?,?,?,?,?,?)";
+		$sql="insert into bishe_inoculator (userId,name,age,sex,height,weigh,healthy,createTime) values (?,?,?,?,?,?,?,?)";
 		array_shift($paras);
 		$para=array();
 		foreach($paras as $item){
 			$para[]=$item;
 		}
+		$para[]=time();
 		$r=parent::execute($sql,$para);
 		return $r;
 	}
