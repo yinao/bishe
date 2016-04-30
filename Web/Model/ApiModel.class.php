@@ -108,6 +108,7 @@ class ApiModel extends BaseModel{
 	public static function addRecord($paras){
 		$record_sql="insert into bishe_record (user_id,station_id,vero_id,order_time,order_num,create_time,is_deleted,is_dealed) values (?,?,?,?,?,?,?,?)";
 		$para=array();
+		$para['ordertime']=time($paras['ordertime']);
 		foreach($paras as $item){
 			array_push($para, $item);
 		}
@@ -115,7 +116,11 @@ class ApiModel extends BaseModel{
 		array_push($para,time());
 		array_push($para,0);
 		array_push($para,0);
-		$r=parent::execute($record_sql,$para);
+		$inoid=explode('-', $para[0]);
+		for($i=0;$i<count($inoid);$i++){
+			$para[0]=$inoid[$i];
+			$r=parent::execute($record_sql,$para);
+		}
 		return $r;
 	}
 

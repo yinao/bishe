@@ -83,4 +83,9 @@ class BaseAction{
 	protected function redirect($url){
 		header("Location:".$this->rootUrl."/index.php?".$url);
 	}
+
+	protected function getMillisecond() {
+		list($tmp1,$tmp2)=explode(" ",microtime());
+		return (float)sprintf('%.0f', (floatval($tmp1) + floatval($tmp2)) * 1000);
+	}
 }
