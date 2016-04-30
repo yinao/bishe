@@ -118,4 +118,15 @@ class ApiModel extends BaseModel{
 		$r=parent::execute($record_sql,$para);
 		return $r;
 	}
+
+	public static function orderInfo($id){
+		$sql="select t1.*,t2.station_num,t3.vero_num,t4.name as user_name
+				from bishe_record as t1
+				left join bishe_station as t2 on t1.station_id=t2.id
+				left join bishe_vero as t3 on t1.vero_id=t3.id
+				left join bishe_inoculator as t4 on t1.user_id=t4.id
+				where t1.id=?";
+		$res=parent::fetchOne($sql,array($id),true);
+		return $res;
+	}
 }

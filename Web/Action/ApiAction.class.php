@@ -76,6 +76,11 @@ class ApiAction extends BaseAction{
 		else{echo 0;exit();}
 	}
 
+	private function orderInfo($paras){
+		$res=ApiModel::orderInfo($paras['id']);
+		echo json_encode($res);exit();
+	}
+
 	public function run(){
 		$this->getParameters();
 		$method=isset($this->parameters['safe']['a'])?$this->parameters['safe']['a']:null;
@@ -85,7 +90,7 @@ class ApiAction extends BaseAction{
 			$i++;
 		}
 		if($i==$length){
-			echo json_encode(array('status'=>0));exit();
+			echo json_encode(array());exit();
 		}else{
 			$this->$method($this->parameters['safe']);
 		}
