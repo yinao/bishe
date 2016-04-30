@@ -117,9 +117,13 @@ class ApiModel extends BaseModel{
 		array_push($para,0);
 		array_push($para,0);
 		$inoid=explode('-', $para[0]);
+		$r=null;
 		for($i=0;$i<count($inoid);$i++){
 			$para[0]=$inoid[$i];
 			$r=parent::execute($record_sql,$para);
+			if(!$r){
+				break;
+			}
 		}
 		return $r;
 	}
