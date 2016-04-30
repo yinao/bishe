@@ -37,7 +37,7 @@ class ApiModel extends BaseModel{
 
 		//$sql_para="concat(station_num,'/',station_picture),station_name,station_phone,id";
 
-		$station_sql="select concat(station_num,'/',station_picture) as picture_url,station_name,station_phone,id from bishe_station where station_status=1";
+		$station_sql="select concat(station_num,'/',station_picture) as picture_url,station_name,station_phone,id from bishe_station where station_status=1 order by id desc";
 		$station_sql.=" limit %start%,%end%";
 		$station_sql=str_replace(array('%start%','%end%'), array($condition[0],$condition[1]), $station_sql);
 
@@ -75,7 +75,7 @@ class ApiModel extends BaseModel{
 	}
 
 	public static function inoculoator($paras){
-		$sql="select * from bishe_inoculator where userId=?";
+		$sql="select * from bishe_inoculator where userId=? order by id desc";
 		$res=parent::fetchAll($sql,array($paras),true);
 		return $res;
 	}
@@ -99,7 +99,7 @@ class ApiModel extends BaseModel{
 
 	public static function fetchRecord($paras){
 		$sql="select t1.* from bishe_record as t1 where t1.user_id in
-					(select t2.id from bishe_inoculator as t2,bishe_user as t3 where t3.id=? and t3.id=t2.userId)";
+					(select t2.id from bishe_inoculator as t2,bishe_user as t3 where t3.id=? and t3.id=t2.userId) order by t1.id desc";
 		$res=parent::fetchAll($sql,array($paras['id']),true);
 		return $res;
 
@@ -107,7 +107,7 @@ class ApiModel extends BaseModel{
 
 	public static function addRecord($paras){
 		$record_sql="insert into bishe_record (user_id,station_id,vero_id,order_time,order_num,create_time,is_deleted,is_dealed) values (?,?,?,?,?,?,?,?)";
-		$paras['ordertime']=time($paras['ordertime']);
+		$paras['ordertime']=strtotime($paras['ordertime']);
 		$inoid=explode('-', $paras['userid']);
 		$r=null;
 		for($i=0;$i<count($inoid);$i++){
