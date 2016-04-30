@@ -107,20 +107,20 @@ class ApiModel extends BaseModel{
 
 	public static function addRecord($paras){
 		$record_sql="insert into bishe_record (user_id,station_id,vero_id,order_time,order_num,create_time,is_deleted,is_dealed) values (?,?,?,?,?,?,?,?)";
-		$para=array();
 		$paras['ordertime']=time($paras['ordertime']);
-		foreach($paras as $item){
-			array_push($para, $item);
-		}
-		array_push($para,'RE'.time().rand(100,999));
-		array_push($para,time());
-		array_push($para,0);
-		array_push($para,0);
-		$inoid=explode('-', $para[0]);
+		$inoid=explode('-', $paras['userid']);
 		$r=null;
 		for($i=0;$i<count($inoid);$i++){
-
+			$para=array();
+			foreach($paras as $item){
+				array_push($para, $item);
+			}
+			array_push($para,'RE'.time().rand(100,999));
+			array_push($para,time());
+			array_push($para,0);
+			array_push($para,0);
 			$para[0]=$inoid[$i];
+			print_r($para);
 			$r=parent::execute($record_sql,$para);
 			if(!$r){
 				break;
