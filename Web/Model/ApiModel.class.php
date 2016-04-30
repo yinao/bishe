@@ -96,6 +96,15 @@ class ApiModel extends BaseModel{
 		$sql="delete from bishe_inoculator where id=?";
 		return parent::execute($sql,array($id));
 	}
+
+	public static function fetchRecord($paras){
+		$sql="select t1.* from bishe_record as t1 where t1.user_id in
+					(select t2.id from bishe_inoculator as t2,bishe_user as t3 where t3.id=? and t3.id=t2.userId)";
+		$res=parent::fetchAll($sql,array($paras['id']),true);
+		return $res;
+
+	}
+
 	public static function addRecord($paras){
 		$record_sql="insert into bishe_record (user_id,station_id,vero_id,order_time,order_num,create_time,is_deleted,is_dealed) values (?,?,?,?,?,?,?,?)";
 		$para=array();
