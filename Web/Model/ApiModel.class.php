@@ -120,7 +120,7 @@ class ApiModel extends BaseModel{
 			array_push($para,0);
 			array_push($para,0);
 			$para[0]=$inoid[$i];
-			print_r($para);
+			//print_r($para);
 			$r=parent::execute($record_sql,$para);
 			if(!$r){
 				break;
