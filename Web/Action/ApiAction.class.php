@@ -47,6 +47,11 @@ class ApiAction extends BaseAction{
 		echo json_encode($res);exit();
 	}
 
+	private function inoculoator($paras){
+		$res=ApiModel::inoculoator($paras['id']);
+		echo json_encode($res);exit();
+	}
+
 	private function addInoculator($paras){
 		$r=ApiModel::addInoculator($paras);
 		if($r){echo 1;exit();}

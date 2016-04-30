@@ -74,6 +74,12 @@ class ApiModel extends BaseModel{
 		return $vero_res;
 	}
 
+	public static function inoculoator($paras){
+		$sql="select * from bishe_inoculator where userId=?";
+		$res=parent::fetchAll($sql,array($paras),true);
+		return $res;
+	}
+
 	public static function addInoculator($paras){
 		$sql="insert into bishe_inoculator (userId,name,age,sex,height,weigh,healthy) values (?,?,?,?,?,?,?)";
 		array_shift($paras);
