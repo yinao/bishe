@@ -164,7 +164,7 @@ class ApiModel extends BaseModel{
 	}
 
 	public static function newsInfo($id){
-		$sql="select * from bishe_news where news_isDeleted=0 and news_id=?";
+		$sql="select t1.*,t2.* from bishe_news as t1 left join bishe_sort as t2 on t1.news_sortId=t2.sort_id where news_isDeleted=0 and news_id=?";
 		return parent::fetchOne($sql,array($id),true);
 	}
 }
