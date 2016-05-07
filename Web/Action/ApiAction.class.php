@@ -81,6 +81,16 @@ class ApiAction extends BaseAction{
 		echo json_encode($res);exit();
 	}
 
+	private function news($paras){
+		array_shift($paras);
+		$res=ApiModel::news($paras);
+		echo json_encode($res);exit();
+	}
+
+	private function newsInfo($paras){
+		$res=ApiModel::newsInfo($paras['id']);
+		echo json_encode($res);exit();
+	}
 	public function run(){
 		$this->getParameters();
 		$method=isset($this->parameters['safe']['a'])?$this->parameters['safe']['a']:null;

@@ -139,4 +139,32 @@ class ApiModel extends BaseModel{
 		$res=parent::fetchOne($sql,array($id),true);
 		return $res;
 	}
+
+	public static function news($paras){
+		$sql="select news_title,news_createTime from bishe_news where news_isDeleted=0";
+		$condition=null;
+		$value=null;
+		if(isset($paras['sort'])&&!empty($paras['sort'])){
+			$condition[]="news_sortId=?";
+			$value[]=$paras['sort'];
+		}
+		if(isset($paras['title'])&&!empty($paras['title'])){
+			$condition[]="news_title like ?";
+			$value[]='%'.$paras['title'].'%';
+		}
+		if(!empty($condition)){
+			$condition=implode($condition, ' and ');
+			$sql.=' and '.$condition;
+		}
+		$sql.=" order by news_id desc";
+
+		//return $sql;
+		$res=parent::fetchAll($sql,$value,true);
+		return $res;
+	}
+
+	public static function newsInfo($id){
+		$sql="select * from bishe_news where news_isDeleted=0 and news_id=?";
+		return parent::fetchOne($sql,array($id),true);
+	}
 }

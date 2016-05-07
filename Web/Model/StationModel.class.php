@@ -16,7 +16,7 @@ class StationModel extends BaseModel{
 		$rows_sql="select count(t1.id) from bishe_station as t1";
 		$value_sql="select t1.*,count(t2.id) as vero_counts 
 				from bishe_station as t1 left join bishe_vero as t2
-				on t1.id=t2.station_id";
+				on t1.id=t2.station_id group by t1.id";
 		if(!empty($condition)){
 			$condition=implode($condition, ' and ');
 			$rows_sql.=' where '.$condition;
@@ -61,7 +61,7 @@ class StationModel extends BaseModel{
 			$station_sql.=' where '.$condition;
 			$res=parent::fetchOne($station_sql,$value);
 		}
-		if(!empty($res)&&$paras['admin_role']){
+		if(!empty($res)&&$paras['role']){
 
 			$vero_sql="select count(id) from bishe_vero	where station_id=".$res['id'];
 

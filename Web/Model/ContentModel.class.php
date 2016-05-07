@@ -2,8 +2,9 @@
 require_once('BaseModel.class.php');
 class ContentModel extends BaseModel{
 	public static function fetchArticle(){
-		$sql="select news_id,news_sortId,news_title,news_createTime from ";
-		$sql.=parent::$prefix."news where news_isDeleted=0 limit 0,10";
+		$sql="select t1.news_id,t1.news_sortId,t1.news_title,t1.news_createTime,t2.sort_name from ";
+		$sql.=parent::$prefix."news as t1,".parent::$prefix."sort as t2 where t1.news_isDeleted=0 and t1.news_sortId=t2.sort_id limit 0,10";
+		//echo $sql;exit();
 		return parent::queryAll($sql);
 	}
 	public static function fetchArticleOne($id){
