@@ -141,7 +141,7 @@ class ApiModel extends BaseModel{
 	}
 
 	public static function news($paras){
-		$sql="select news_title,news_createTime from bishe_news where news_isDeleted=0";
+		$sql="select news_id,news_title,news_createTime from bishe_news where news_isDeleted=0";
 		$condition=null;
 		$value=null;
 		if(isset($paras['sort'])&&!empty($paras['sort'])){
