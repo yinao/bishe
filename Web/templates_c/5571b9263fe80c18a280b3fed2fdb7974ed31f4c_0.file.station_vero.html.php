@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-08 14:45:46
+/* Smarty version 3.1.29, created on 2016-05-10 10:50:16
   from "G:\wamp\www\bishe\Web\templates\station_vero.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_572f511aa04769_25489593',
+  'unifunc' => 'content_5731bce8280ac7_75604468',
   'file_dependency' => 
   array (
     '5571b9263fe80c18a280b3fed2fdb7974ed31f4c' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_vero.html',
-      1 => 1461682141,
+      1 => 1462877413,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_572f511aa04769_25489593 ($_smarty_tpl) {
+function content_5731bce8280ac7_75604468 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -72,7 +72,7 @@ function content_572f511aa04769_25489593 ($_smarty_tpl) {
 							<th>选择</th>
 							<th>疫苗编号</th>
 							<th>疫苗名字</th>
-							<th>疫苗描述</th>
+							<th width="35%">疫苗描述</th>
 							<th>疫苗状态</th>
 							<th>操作</th>
 						</tr>
@@ -95,25 +95,32 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 </td>
 							<td><?php echo $_smarty_tpl->tpl_vars['list']->value['vero_name'];?>
 </td>
-							<td><?php echo $_smarty_tpl->tpl_vars['list']->value['vero_instruction'];?>
+							<td style="word-break:break-all"><?php echo $_smarty_tpl->tpl_vars['list']->value['vero_instruction'];?>
 </td>
 							<?php if ($_smarty_tpl->tpl_vars['list']->value['vero_status'] == 0) {?>
 							<td>未审核</td>
 							<td>
+								<a href="javascript:void(0);" class="editVero button button-small bg-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" title="编辑">编辑</a>
 								<a href="javascript:void(0);" title="停用" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
 " data-toggle="stop" class="button button-small bg-red veroVerify">停用</a>
 							</td>
 							<?php } elseif ($_smarty_tpl->tpl_vars['list']->value['vero_status'] == 1) {?>
 							<td>正常使用</td>
-							<td><a href="javascript:void(0);" title="停用" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
+							<td>
+							<a href="javascript:void(0);" class="editVero button button-small bg-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" title="编辑">编辑</a>
+							<a href="javascript:void(0);" title="停用" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
 " data-toggle="stop" class="button button-small bg-red veroVerify">停用</a></td>
 							<?php } elseif ($_smarty_tpl->tpl_vars['list']->value['vero_status'] == 2) {?>
 							<td>停用</td>
-							<td><a href="javascript:void(0);" title="启用" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
+							<td>
+							<a href="javascript:void(0);" class="editVero button button-small bg-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" title="编辑">编辑</a>
+							<a href="javascript:void(0);" title="启用" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
 " data-toggle="start" class="button button-small bg-red veroVerify">启用</a></td>
 							<?php } elseif ($_smarty_tpl->tpl_vars['list']->value['vero_status'] == 3) {?>
 							<td>审核失败</td>
-							<td><a href="javascript:void(0);" title="停用" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
+							<td>
+							<a href="javascript:void(0);" class="editVero button button-small bg-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" title="编辑">编辑</a>
+							<a href="javascript:void(0);" title="停用" data-target="<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
 " data-toggle="stop" class="button button-small bg-red veroVerify">停用</a></td>
 							<?php }?>
 						</tr>
@@ -154,11 +161,25 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 				<div class="dialog-foot">
 					<button class="button dialog-close">
 						取消</button>
-					<button class="button bg-green veroSubmit" data-toggle="a">
+					<button class="button bg-green veroSubmit" data-toggle="add">
 						确认</button>
 				</div>
 			</div>
 		</div>
+		<?php echo '<script'; ?>
+>
+			$(".editVero").click(function(){
+				var r=$(this).closest('tr');
+				var name=r.children().eq(2).text();
+				var description=r.children().eq(3).text();
+				var id=r.children().eq(0).find('input[type="checkbox"]').val();
+				$('input[name="veroName"]').val(name);
+				$('textarea[name="description"]').val(description);
+				$('.veroSubmit').attr('data-toggle','update');
+				$('.veroSubmit').attr('data-target',id);
+			})
+		<?php echo '</script'; ?>
+>
 	</body>
 
 </html><?php }

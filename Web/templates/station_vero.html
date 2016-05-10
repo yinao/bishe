@@ -31,7 +31,7 @@
 							<th>选择</th>
 							<th>疫苗编号</th>
 							<th>疫苗名字</th>
-							<th>疫苗描述</th>
+							<th width="35%">疫苗描述</th>
 							<th>疫苗状态</th>
 							<th>操作</th>
 						</tr>
@@ -40,21 +40,28 @@
 							<td><input type="checkbox" name="id" value="{$list.id}" /></td>
 							<td>{$list.vero_num}</td>
 							<td>{$list.vero_name}</td>
-							<td>{$list.vero_instruction}</td>
+							<td style="word-break:break-all">{$list.vero_instruction}</td>
 							{if $list.vero_status eq 0}
 							<td>未审核</td>
 							<td>
+								<a href="javascript:void(0);" class="editVero button button-small bg-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" title="编辑">编辑</a>
 								<a href="javascript:void(0);" title="停用" data-target="{$list.id}" data-toggle="stop" class="button button-small bg-red veroVerify">停用</a>
 							</td>
 							{elseif $list.vero_status eq 1}
 							<td>正常使用</td>
-							<td><a href="javascript:void(0);" title="停用" data-target="{$list.id}" data-toggle="stop" class="button button-small bg-red veroVerify">停用</a></td>
+							<td>
+							<a href="javascript:void(0);" class="editVero button button-small bg-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" title="编辑">编辑</a>
+							<a href="javascript:void(0);" title="停用" data-target="{$list.id}" data-toggle="stop" class="button button-small bg-red veroVerify">停用</a></td>
 							{elseif $list.vero_status eq 2}
 							<td>停用</td>
-							<td><a href="javascript:void(0);" title="启用" data-target="{$list.id}" data-toggle="start" class="button button-small bg-red veroVerify">启用</a></td>
+							<td>
+							<a href="javascript:void(0);" class="editVero button button-small bg-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" title="编辑">编辑</a>
+							<a href="javascript:void(0);" title="启用" data-target="{$list.id}" data-toggle="start" class="button button-small bg-red veroVerify">启用</a></td>
 							{elseif $list.vero_status eq 3}
 							<td>审核失败</td>
-							<td><a href="javascript:void(0);" title="停用" data-target="{$list.id}" data-toggle="stop" class="button button-small bg-red veroVerify">停用</a></td>
+							<td>
+							<a href="javascript:void(0);" class="editVero button button-small bg-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" title="编辑">编辑</a>
+							<a href="javascript:void(0);" title="停用" data-target="{$list.id}" data-toggle="stop" class="button button-small bg-red veroVerify">停用</a></td>
 							{/if}
 						</tr>
 						{/foreach}
@@ -87,11 +94,23 @@
 				<div class="dialog-foot">
 					<button class="button dialog-close">
 						取消</button>
-					<button class="button bg-green veroSubmit" data-toggle="a">
+					<button class="button bg-green veroSubmit" data-toggle="add">
 						确认</button>
 				</div>
 			</div>
 		</div>
+		<script>
+			$(".editVero").click(function(){
+				var r=$(this).closest('tr');
+				var name=r.children().eq(2).text();
+				var description=r.children().eq(3).text();
+				var id=r.children().eq(0).find('input[type="checkbox"]').val();
+				$('input[name="veroName"]').val(name);
+				$('textarea[name="description"]').val(description);
+				$('.veroSubmit').attr('data-toggle','update');
+				$('.veroSubmit').attr('data-target',id);
+			})
+		</script>
 	</body>
 
 </html>

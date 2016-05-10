@@ -13,31 +13,6 @@
 		<script src="{$rootUrl}/Public/pintuer.js"></script>
 		<!--<script src="{$rootUrl}/Public/respond.js"></script>-->
 		<script src="{$rootUrl}/Public/admin.js"></script>
-		<script src="{$rootUrl}/Public/jquery.wallform.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				$('#loadFile').off('click').on('change', function(){
-					var btn = $(".input-file");
-					var status = $(".loadStatus");
-					btn.hide();
-					status.removeClass('hidden');
-					$("#imageform").ajaxForm({
-						target: '#preview', 
-						beforeSubmit:function(){
-							status.show();
-							btn.hide();
-						}, 
-						success:function(){
-							status.hide();
-							btn.show();
-						}, 
-						error:function(){
-							status.hide();
-							btn.show();
-					} }).submit();
-				});
-			});
-		</script>
 	</head>
 
 	<body>
@@ -45,36 +20,43 @@
 
 		<div class="admin">
 			<div class="panel">
-				<div class="panel-head"><strong>防疫站信息添加</strong></div>
+				<div class="panel-head"><strong>{if $siteInfo neq null}防疫站信息编辑{else}防疫站信息添加{/if}</strong></div>
 				<div class="panel-body">
 					<form class="form-auto form-x" onsubmit="return false;">
+						{if $siteInfo neq null}
+						<div class="form-group">
+							<div class="label"><label for="">防疫站编号：</label></div>
+							<div class="field">
+								<input type="text" readonly="true" class="input" value="{$siteInfo.station_num}">
+							</div>
+						</div>
+						{/if}
 						<div class="form-group">
 							<div class="label"><label for="">防疫站名称：</label></div>
 							<div class="field">
-								<input type="text" name="stationName" class="input" value="">
+								<input type="text" name="stationName" class="input" value="{if $siteInfo neq null}{$siteInfo.station_name}{/if}">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="label"><label for="">防疫站电话：</label></div>
 							<div class="field">
-								<input type="text" name="stationPhone" class="input" value="">
+								<input type="text" name="stationPhone" class="input" value="{if $siteInfo neq null}{$siteInfo.station_phone}{/if}">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="label"><label for="">防疫站地址：</label></div>
 							<div class="field">
-								<input type="text" name="stationAddress" class="input" value="">
+								<input type="text" name="stationAddress" class="input" value="{if $siteInfo neq null}{$siteInfo.station_address}{/if}">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="label"><label for="">防疫站文字介绍：</label></div>
 							<div class="field">
-								<textarea class="input" name="description" rows="10" cols="100"></textarea>
+								<textarea class="input" name="description" rows="10" cols="100">{if $siteInfo neq null}{$siteInfo.station_description}{/if}</textarea>
 							</div>
 						</div>
 						<div class="form-button">
-							<button class="button bg-main button-big btStation">确 认</button>
-							<button class="button" type="button" onclick="ceshi();">测试</button>
+							<button class="button bg-main button-big btStation" data-tog="{if $siteInfo neq null}u{else}a{/if}" data-target="{$siteInfo.id}">确 认</button>
 						</div>
 					</form>
 				</div>

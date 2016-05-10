@@ -125,7 +125,7 @@ $(function(){
 			description.focus();return;
 		}
 		jf.load();
-		var data="stationName="+stationName.val()+"&stationPhone="+stationPhone.val()+"&stationAddress="+stationAddress.val()+"&description="+description.val();
+		var data="tog="+$(this).attr('data-tog')+"&stationName="+stationName.val()+"&stationPhone="+stationPhone.val()+"&stationAddress="+stationAddress.val()+"&description="+description.val()+"&stationId="+$(this).attr('data-target');
 		var res=JSON.parse(jf.ajaxMethod(jf.getRealUrl()+'/index.php?a=st&e=stReg',data,'POST'));
 		jf.hide();
 		window.location.reload();
@@ -142,7 +142,7 @@ $(function(){
 			description.focus();return;
 		}
 		jf.load();
-		var data="veroName="+veroName.val()+"&description="+description.val()+"&tog=add";
+		var data="veroName="+veroName.val()+"&description="+description.val()+"&id="+$(this).attr('data-target')+"&tog="+$(this).attr('data-toggle');
 		var res=jf.ajaxMethod(jf.getRealUrl()+'/index.php?a=st&e=vea',data,'POST');
 		jf.hide();
 		window.location.reload();

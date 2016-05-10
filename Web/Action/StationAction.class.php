@@ -119,6 +119,7 @@ class StationAction extends BaseAction{
 
 	private function stationRegister(){
 		$this->obj->assign('sdActive',' class="active"');
+		$this->obj->assign('siteInfo',StationModel::stationInfo($this->adminInfo['station_id']));
 		$this->obj->display('station_register_info.html');
 	}
 	private function stationRegisterInfo(){

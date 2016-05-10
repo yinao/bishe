@@ -137,6 +137,19 @@ class StationModel extends BaseModel{
 				array_push($para,$stationId);
 				return parent::execute($sql,$para);
 				break;
+			case 'update':
+				$sql="update bishe_vero set vero_name=?,vero_instruction=?,create_time=?,vero_status=0 where id=?";
+				array_pop($paras);
+				$veroId=$paras['id'];
+				array_pop($paras);
+				$para=array();
+				foreach ($paras as $value) {
+					$para[]=$value;
+				}
+				array_push($para,time());
+				array_push($para,$veroId);
+				return parent::execute($sql,$para);
+				break;
 			default:
 				return 0;
 				break;
@@ -162,18 +175,42 @@ class StationModel extends BaseModel{
 		return array('vero'=>$vero,'pager'=>$pager);
 	}
 	public static function stationRegisterInfo($paras,$adminId){
-		$para=array();
-		foreach($paras as $v){
-			$para[]=$v;
+		switch ($paras['tog']) {
+			case 'a':
+				$para=array();
+				array_shift($paras);
+				array_pop($paras);
+				foreach($paras as $v){
+					$para[]=$v;
+				}
+				$sql="insert into bishe_station (station_name,station_phone,station_address,station_description,create_time,station_num,station_picture,station_status) values (?,?,?,?,?,?,?,?)";
+				array_push($para, time());
+				array_push($para,'GB'.time());
+				array_push($para," ");
+				array_push($para,0);
+				$id=parent::insertData($sql,$para);
+				$admin_sql="update bishe_admin set station_id={$id} where id=$adminId";
+				return parent::execute($admin_sql,null);
+				break;
+			case 'u':
+				array_shift($paras);
+				$stationid=$paras['stationId'];
+				array_pop($paras);
+				$sql="update bishe_station set station_name=?,station_phone=?,station_address=?,station_description=?,create_time=?,station_status=? where id=?";
+				$para=array();
+				foreach ($paras as $value) {
+					$para[]=$value;
+				}
+				array_push($para,time());
+				array_push($para,0);
+				array_push($para,$stationid);
+				return parent::execute($sql,$para);
+				break;
+			default:
+				return false;
+				break;
 		}
-		$sql="insert into bishe_station (station_name,station_phone,station_address,station_description,create_time,station_num,station_picture,station_status) values (?,?,?,?,?,?,?,?)";
-		array_push($para, time());
-		array_push($para,'GB'.time());
-		array_push($para," ");
-		array_push($para,0);
-		$id=parent::insertData($sql,$para);
-		$admin_sql="update bishe_admin set station_id={$id} where id=$adminId";
-		return parent::execute($admin_sql,null);
+		
 	}
 
 	public static function veroAdd($paras,$stationId){
@@ -219,6 +256,14 @@ class StationModel extends BaseModel{
 			return explode('/', $res['picture_url']);
 		}else{
 			return false;
+		}
+	}
+
+	public static function stationInfo($stationId){
+		if(!empty($stationId)){
+			return parent::fetchOne("select * from bishe_station where id={$stationId}",null,true);
+		}else{
+			return null;
 		}
 	}
 
