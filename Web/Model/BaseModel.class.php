@@ -1,14 +1,14 @@
 <?php
 class BaseModel{
-	private static $pdo=NULL;
+	private static $pdo=NULL;//pdo对象
 	private static $dbms="mysql";
-	private static $host="114.215.87.180";
-	private static $user="root";
-	private static $pwd="3fd52b4067";
-	private static $port=3306;
-	private static $charset="utf-8";
-	private static $dbName="bishe";
-	protected static $prefix="bishe_";
+	private static $host="114.215.87.180";//mysql数据库服务器的地址
+	private static $user="root";//mysql登录名
+	private static $pwd="3fd52b4067";//mysql登录密码
+	private static $port=3306;//mysql服务端口
+	private static $charset="utf-8";//mysql数据库使用的字符编码
+	private static $dbName="bishe";//数据库名
+	protected static $prefix="bishe_";//数据库前缀
 	protected static function getPdo(){
 		if(empty(self::$pdo)){
 			$dsn=self::$dbms.":host=".self::$host.";dbname=".self::$dbName;

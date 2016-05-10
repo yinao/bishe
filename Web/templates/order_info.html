@@ -19,6 +19,7 @@
 {include file="head.html"}
 
 		<div class="admin">
+				{if $adminInfo.admin_role eq 0}
 				<div class="panel" style="margin-bottom:10px">
 					<div class="panel-head">
 						<strong>预约单操作：</strong>
@@ -30,6 +31,7 @@
 						{/if}
 					</div>
 				</div>
+				{/if}
 				<div class="panel" style="margin-bottom:10px;">
 					<div class="panel-head"><strong>订单详情</strong></div>
 					<div class="panel-body">

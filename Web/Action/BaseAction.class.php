@@ -15,7 +15,7 @@ class BaseAction{
 			$this->obj->compile_dir=DIR.'/Web/templates_c';
 			$this->obj->cache_dir=DIR.'/Web/cache';
 		}
-		if(empty($rootUrl)){
+		if(empty($this->rootUrl)){
 			$http=(
 					(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') 
 					|| (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])

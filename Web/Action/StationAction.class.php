@@ -68,7 +68,7 @@ class StationAction extends BaseAction{
 	}
 
 	private function stationInfo(){
-		$this->obj->assign('bread',$this->bread(2,'防疫站管理','st',防疫站详情));
+		$this->obj->assign('bread',$this->bread(2,'防疫站管理','st','防疫站详情'));
 		$this->obj->assign('sdActive',' class="active"');
 		$this->obj->assign('paras',$_GET);
 

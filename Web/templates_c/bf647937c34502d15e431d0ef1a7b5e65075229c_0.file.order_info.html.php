@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-03 03:51:50
+/* Smarty version 3.1.29, created on 2016-05-08 13:18:26
   from "G:\wamp\www\bishe\Web\templates\order_info.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57282056e45e66_74395226',
+  'unifunc' => 'content_572f3ca2ce6f69_87857419',
   'file_dependency' => 
   array (
     'bf647937c34502d15e431d0ef1a7b5e65075229c' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\order_info.html',
-      1 => 1461658941,
+      1 => 1462713504,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57282056e45e66_74395226 ($_smarty_tpl) {
+function content_572f3ca2ce6f69_87857419 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -61,6 +61,7 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bi
 
 
 		<div class="admin">
+				<?php if ($_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 0) {?>
 				<div class="panel" style="margin-bottom:10px">
 					<div class="panel-head">
 						<strong>预约单操作：</strong>
@@ -74,6 +75,7 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bi
 						<?php }?>
 					</div>
 				</div>
+				<?php }?>
 				<div class="panel" style="margin-bottom:10px;">
 					<div class="panel-head"><strong>订单详情</strong></div>
 					<div class="panel-body">

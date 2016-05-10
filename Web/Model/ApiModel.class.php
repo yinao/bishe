@@ -159,8 +159,11 @@ class ApiModel extends BaseModel{
 		$sql.=" order by news_id desc";
 
 		//return $sql;
-		$res=parent::fetchAll($sql,$value,true);
-		return $res;
+		$news_res=parent::fetchAll($sql,$value,true);
+
+		$sort_sql="select sort_id,sort_name from bishe_sort order by sort_id desc";
+		$sort_res=parent::fetchAll($sort_sql,null,true);
+		return array('news'=>$news_res,'sorts'=>$sort_res);
 	}
 
 	public static function newsInfo($id){
