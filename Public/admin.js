@@ -145,7 +145,7 @@ $(function(){
 		var data="veroName="+veroName.val()+"&description="+description.val()+"&id="+$(this).attr('data-target')+"&tog="+$(this).attr('data-toggle');
 		var res=jf.ajaxMethod(jf.getRealUrl()+'/index.php?a=st&e=vea',data,'POST');
 		jf.hide();
-		//window.location.reload();
+		window.location.reload();
 	});
 	$('.newsSub').click(function(){
 		$(this).closest('form').find('input[data-validate],textarea[data-validate],select[data-validate]').trigger("blur");
