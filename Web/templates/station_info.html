@@ -94,7 +94,7 @@
 						<tr>
 							<th>疫苗编号</th>
 							<th>疫苗名字</th>
-							<th>疫苗描述</th>
+							<th width="40%">疫苗描述</th>
 							<th>疫苗状态</th>
 							<th>操作</th>
 						</tr>
@@ -102,7 +102,7 @@
 						<tr>
 							<td>{$list.vero_num}</td>
 							<td>{$list.vero_name}</td>
-							<td>{$list.vero_instruction}</td>
+							<td style="word-break:break-all">{$list.vero_instruction}</td>
 							{if $list.vero_status eq 0}
 							<td>未审核</td>
 							<td>

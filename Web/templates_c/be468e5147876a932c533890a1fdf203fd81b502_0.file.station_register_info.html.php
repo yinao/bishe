@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-10 09:18:06
+/* Smarty version 3.1.29, created on 2016-05-10 16:56:42
   from "G:\wamp\www\bishe\Web\templates\station_register_info.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5731a74eb1b220_78433002',
+  'unifunc' => 'content_573212ca569062_25904970',
   'file_dependency' => 
   array (
     'be468e5147876a932c533890a1fdf203fd81b502' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_register_info.html',
-      1 => 1462871883,
+      1 => 1462897798,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,10 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5731a74eb1b220_78433002 ($_smarty_tpl) {
+function content_573212ca569062_25904970 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
-
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,7 +51,6 @@ function content_5731a74eb1b220_78433002 ($_smarty_tpl) {
 /Public/admin.js"><?php echo '</script'; ?>
 >
 	</head>
-
 	<body>
 <?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -110,7 +108,9 @@ echo $_smarty_tpl->tpl_vars['siteInfo']->value['station_description'];
 						</div>
 					</form>
 				</div>
-				<div class="panel-foot"></div>
+				<div class="panel-foot">
+					
+				</div>
 			</div>
 		</div>
 	</body>

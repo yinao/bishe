@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-10 10:50:16
+/* Smarty version 3.1.29, created on 2016-05-10 16:45:08
   from "G:\wamp\www\bishe\Web\templates\station_vero.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5731bce8280ac7_75604468',
+  'unifunc' => 'content_5732101427ddd6_04149725',
   'file_dependency' => 
   array (
     '5571b9263fe80c18a280b3fed2fdb7974ed31f4c' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_vero.html',
-      1 => 1462877413,
+      1 => 1462897807,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,10 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5731bce8280ac7_75604468 ($_smarty_tpl) {
+function content_5732101427ddd6_04149725 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
-
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,7 +52,6 @@ function content_5731bce8280ac7_75604468 ($_smarty_tpl) {
 /Public/admin.js"><?php echo '</script'; ?>
 >
 	</head>
-
 	<body>
 <?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:head.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -72,7 +70,7 @@ function content_5731bce8280ac7_75604468 ($_smarty_tpl) {
 							<th>选择</th>
 							<th>疫苗编号</th>
 							<th>疫苗名字</th>
-							<th width="35%">疫苗描述</th>
+							<th width="40%">疫苗描述</th>
 							<th>疫苗状态</th>
 							<th>操作</th>
 						</tr>
