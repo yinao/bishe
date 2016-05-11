@@ -132,6 +132,8 @@ class StationModel extends BaseModel{
 				foreach($paras as $v){
 					$para[]=$v;
 				}
+				$str = preg_split('/\r\n/', $para[1]);
+				$para[1] = implode('<br/>', $str);
 				array_push($para,0);
 				array_push($para,'VE'.time());
 				array_push($para,$stationId);
