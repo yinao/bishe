@@ -148,6 +148,8 @@ class StationModel extends BaseModel{
 				foreach ($paras as $value) {
 					$para[]=$value;
 				}
+				$str = preg_split('/\r\n/', $para[1]);
+				$para[1] = implode('<br/>', $str);
 				array_push($para,time());
 				array_push($para,$veroId);
 				return parent::execute($sql,$para);
@@ -190,6 +192,8 @@ class StationModel extends BaseModel{
 				array_push($para,'GB'.time());
 				array_push($para," ");
 				array_push($para,0);
+				$str = preg_split('/\r\n/', $para[3]);
+				$para[3] = implode('<br/>', $str);
 				$id=parent::insertData($sql,$para);
 				$admin_sql="update bishe_admin set station_id={$id} where id=$adminId";
 				return parent::execute($admin_sql,null);
@@ -206,6 +210,8 @@ class StationModel extends BaseModel{
 				array_push($para,time());
 				array_push($para,0);
 				array_push($para,$stationid);
+				$str = preg_split('/\r\n/', $para[3]);
+				$para[3] = implode('<br/>', $str);
 				return parent::execute($sql,$para);
 				break;
 			default:
