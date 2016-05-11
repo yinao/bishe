@@ -269,7 +269,9 @@ class StationModel extends BaseModel{
 
 	public static function stationInfo($stationId){
 		if(!empty($stationId)){
-			return parent::fetchOne("select * from bishe_station where id={$stationId}",null,true);
+			$res=parent::fetchOne("select * from bishe_station where id={$stationId}",null,true);
+			$res['station_description']=str_replace('<br/>', '&#10;', $res['station_description']);
+			return $res;
 		}else{
 			return null;
 		}

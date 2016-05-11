@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-10 16:45:08
+/* Smarty version 3.1.29, created on 2016-05-11 05:10:28
   from "G:\wamp\www\bishe\Web\templates\station_vero.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5732101427ddd6_04149725',
+  'unifunc' => 'content_5732bec43d1240_09136870',
   'file_dependency' => 
   array (
     '5571b9263fe80c18a280b3fed2fdb7974ed31f4c' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_vero.html',
-      1 => 1462897807,
+      1 => 1462943426,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5732101427ddd6_04149725 ($_smarty_tpl) {
+function content_5732bec43d1240_09136870 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -169,10 +169,10 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 			$(".editVero").click(function(){
 				var r=$(this).closest('tr');
 				var name=r.children().eq(2).text();
-				var description=r.children().eq(3).text();
+				var description=r.children().eq(3).html();
 				var id=r.children().eq(0).find('input[type="checkbox"]').val();
 				$('input[name="veroName"]').val(name);
-				$('textarea[name="description"]').val(description);
+				$('textarea[name="description"]').val(description.replace("<br>",'\n'));
 				$('.veroSubmit').attr('data-toggle','update');
 				$('.veroSubmit').attr('data-target',id);
 			})

@@ -101,10 +101,10 @@
 			$(".editVero").click(function(){
 				var r=$(this).closest('tr');
 				var name=r.children().eq(2).text();
-				var description=r.children().eq(3).text();
+				var description=r.children().eq(3).html();
 				var id=r.children().eq(0).find('input[type="checkbox"]').val();
 				$('input[name="veroName"]').val(name);
-				$('textarea[name="description"]').val(description);
+				$('textarea[name="description"]').val(description.replace("<br>",'\n'));
 				$('.veroSubmit').attr('data-toggle','update');
 				$('.veroSubmit').attr('data-target',id);
 			})
