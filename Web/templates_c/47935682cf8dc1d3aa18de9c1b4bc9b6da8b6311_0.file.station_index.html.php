@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-28 13:43:37
+/* Smarty version 3.1.29, created on 2016-05-24 05:49:41
   from "G:\wamp\www\bishe\Web\templates\station_index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57221389e5cc96_25193641',
+  'unifunc' => 'content_5743eb75adeda7_79528138',
   'file_dependency' => 
   array (
     '47935682cf8dc1d3aa18de9c1b4bc9b6da8b6311' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_index.html',
-      1 => 1461661744,
+      1 => 1464068979,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57221389e5cc96_25193641 ($_smarty_tpl) {
+function content_5743eb75adeda7_79528138 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -114,8 +114,11 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 					<tr>
 						<td><input type="checkbox" name="id" id="id" value="<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
 "></td>
-						<td><?php echo $_smarty_tpl->tpl_vars['list']->value['station_num'];?>
-</td>
+						<td><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=st&e=sd&i=<?php echo $_smarty_tpl->tpl_vars['list']->value['id'];?>
+" title="<?php echo $_smarty_tpl->tpl_vars['list']->value['station_num'];?>
+" onclick="jf.load();"><?php echo $_smarty_tpl->tpl_vars['list']->value['station_num'];?>
+</a></td>
 						<td><?php echo $_smarty_tpl->tpl_vars['list']->value['station_name'];?>
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['list']->value['station_address'];?>

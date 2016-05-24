@@ -34,14 +34,16 @@ class SystemAction extends BaseAction{
 	private function index(){
 
 		$this->obj->assign('bread',$this->bread(1,'系统'));
-		$this->obj->assign('url',$this->url);
-		$this->obj->assign('rootUrl',$this->rootUrl);
-		$this->obj->assign('sysActive',' class="active"');
-		$this->obj->assign('sActive',' class="active"');
-		$this->obj->display('system_index.html');
+		// $this->obj->assign('url',$this->url);
+		// $this->obj->assign('rootUrl',$this->rootUrl);
+		// $this->obj->assign('sysActive',' class="active"');
+		// $this->obj->assign('sActive',' class="active"');
+		// $this->obj->display('system_index.html');
+		$this->power();
 	}
 
 	private function power(){
+		$this->obj->assign('title','管理员管理--后台管理端');
 		$this->obj->assign('bread',$this->bread(2,'系统','s','管理员设置'));
 		$this->obj->assign('url',$this->url);
 		$this->obj->assign('rootUrl',$this->rootUrl);

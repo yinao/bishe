@@ -30,6 +30,9 @@ class UserAction extends BaseAction{
 	}
 	
 	private function index(){
+		
+		$this->obj->assign('title','会员管理--预防接种系统后台管理');
+
 		if(!isset($this->parameters['safe']['p'])||empty($this->parameters['safe']['p'])){
 			$this->parameters['safe']['p']=1;
 		}else{

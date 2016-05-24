@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-27 00:58:12
+/* Smarty version 3.1.29, created on 2016-05-24 05:17:08
   from "G:\wamp\www\bishe\Web\templates\Index_index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57200ea4132e53_33446378',
+  'unifunc' => 'content_5743e3d4cc0694_48729301',
   'file_dependency' => 
   array (
     '234a282d5c8617dd0bef8577765b2d6afab59ce0' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\Index_index.html',
-      1 => 1460793638,
+      1 => 1464067025,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57200ea4132e53_33446378 ($_smarty_tpl) {
+function content_5743e3d4cc0694_48729301 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -73,60 +73,54 @@ function content_57200ea4132e53_33446378 ($_smarty_tpl) {
 					<div class="panel">
 						<div class="panel-head"><strong>站点统计</strong></div>
 						<ul class="list-group">
-							<li><span class="float-right badge bg-red">88</span><span class="icon-user"></span> 会员</li>
-							<li><span class="float-right badge bg-main">828</span><span class="icon-file"></span> 文件</li>
-							<li><span class="float-right badge bg-main">828</span><span class="icon-shopping-cart"></span> 订单</li>
-							<li><span class="float-right badge bg-main">828</span><span class="icon-file-text"></span> 内容</li>
-							<li><span class="float-right badge bg-main">828</span><span class="icon-database"></span> 数据库</li>
+							<li><span class="float-right badge bg-red"><?php echo $_smarty_tpl->tpl_vars['indexInfo']->value[1];?>
+</span><span class="icon-user"></span> 会员</li>
+							<li><span class="float-right badge bg-main"><?php echo $_smarty_tpl->tpl_vars['indexInfo']->value[0];?>
+</span><span class="icon-shopping-cart"></span> 订单</li>
+							<li><span class="float-right badge bg-main"><?php echo $_smarty_tpl->tpl_vars['indexInfo']->value[2];?>
+</span><span class="icon-file-text"></span> 内容</li>
+							<li><span class="float-right badge bg-main"><?php echo $_smarty_tpl->tpl_vars['indexInfo']->value[3];?>
+</span><span class="icon-file-text"></span> 防疫站</li>
 						</ul>
 					</div>
 					<br />
 				</div>
 				<div class="xm9">
-					<div class="alert alert-yellow"><span class="close"></span><strong>注意：</strong>您有5条未读信息，<a href="#">点击查看</a>。</div>
+					<div class="alert alert-yellow" style="margin-bottom:20px;"><span class="close"></span><strong>注意：</strong>您有5条未读信息，<a href="#">点击查看</a>。</div>
 					<div class="alert">
 						<h4>拼图前端框架介绍</h4>
 						<p class="text-gray padding-top">拼图是优秀的响应式前端CSS框架，国内前端框架先驱及领导者，自动适应手机、平板、电脑等设备，让前端开发像游戏般快乐、简单、灵活、便捷。</p>
-						<a target="_blank" class="button bg-dot icon-code" href="pintuer2.zip"> 下载示例代码</a>
-						<a target="_blank" class="button bg-main icon-download" href="http://www.pintuer.com/download/pintuer.zip"> 下载拼图框架</a>
-						<a target="_blank" class="button border-main icon-file" href="http://www.pintuer.com/"> 拼图使用教程</a>
 					</div>
-					<div class="panel">
+					<div class="panel" style="margin-top:20px;">
 						<div class="panel-head"><strong>系统信息</strong></div>
 						<table class="table">
 							<tr>
 								<th colspan="2">服务器信息</th>
-								<th colspan="2">系统信息</th>
 							</tr>
 							<tr>
 								<td width="110" align="right">操作系统：</td>
-								<td>Windows 2008</td>
-								<td width="90" align="right">系统开发：</td>
-								<td><a href="http://www.pintuer.com" target="_blank">拼图前端框架</a></td>
+								<td><?php echo $_smarty_tpl->tpl_vars['systemType']->value[0];?>
+(<?php echo $_smarty_tpl->tpl_vars['systemType']->value[1];?>
+)</td>
 							</tr>
 							<tr>
 								<td align="right">Web服务器：</td>
 								<td>Apache</td>
-								<td align="right">主页：</td>
-								<td><a href="http://www.pintuer.com" target="_blank">http://www.pintuer.com</a></td>
 							</tr>
 							<tr>
 								<td align="right">程序语言：</td>
-								<td>PHP</td>
-								<td align="right">演示：</td>
-								<td><a href="http://www.pintuer.com/demo/" target="_blank">demo/</a></td>
+								<td>PHP <?php echo $_smarty_tpl->tpl_vars['lanague']->value;?>
+</td>
 							</tr>
 							<tr>
 								<td align="right">数据库：</td>
-								<td>MySQL</td>
-								<td align="right">群交流：</td>
-								<td><a href="http://shang.qq.com/wpa/qunwpa?idkey=a08e4d729d15d32cec493212f7672a6a312c7e59884a959c47ae7a846c3fadc1" target="_blank">201916085</a> (点击加入)</td>
+								<td>MySQL<?php echo $_smarty_tpl->tpl_vars['mysqlType']->value;?>
+</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
-			<p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="http://www.pintuer.com">拼图前端框架</a>构建</p>
 
 		</div>
 

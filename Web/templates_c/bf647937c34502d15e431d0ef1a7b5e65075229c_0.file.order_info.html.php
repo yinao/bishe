@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-08 13:18:26
+/* Smarty version 3.1.29, created on 2016-05-24 07:59:57
   from "G:\wamp\www\bishe\Web\templates\order_info.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_572f3ca2ce6f69_87857419',
+  'unifunc' => 'content_574409fd5260a7_69594871',
   'file_dependency' => 
   array (
     'bf647937c34502d15e431d0ef1a7b5e65075229c' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\order_info.html',
-      1 => 1462713504,
+      1 => 1464076794,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_572f3ca2ce6f69_87857419 ($_smarty_tpl) {
+function content_574409fd5260a7_69594871 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -142,7 +142,11 @@ kg</li>
 </li>
 								<li><strong>接种站编号：</strong><?php echo $_smarty_tpl->tpl_vars['orderInfo']->value['station']['station_num'];?>
 </li>
-								<li><strong>接种站介绍：</strong><a href="javascript:void(0);" class="button button-small border-blue" title="图片介绍">图片介绍</a><a href="javascript:void(0);" class="button button-small border-green" title="文字介绍">文字介绍</a></li>
+								<li><strong>接种站介绍：</strong><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=st&e=sd&i=<?php echo $_smarty_tpl->tpl_vars['orderInfo']->value['station']['id'];?>
+" class="button button-small border-blue" title="图片介绍">图片介绍</a><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=st&e=sd&i=<?php echo $_smarty_tpl->tpl_vars['orderInfo']->value['station']['id'];?>
+" class="button button-small border-green" title="文字介绍">文字介绍</a></li>
 								<li><strong>接种站状态：</strong><?php if ($_smarty_tpl->tpl_vars['orderInfo']->value['station']['station_status'] == 0) {?>未通过验证<?php } elseif ($_smarty_tpl->tpl_vars['orderInfo']->value['station']['station_status'] == 1) {?>正常营业中<?php } elseif ($_smarty_tpl->tpl_vars['orderInfo']->value['station']['station_status'] == 2) {?>停止使用<?php }?></li>
 								<li><strong>接种站创建时间：</strong><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['orderInfo']->value['station']['create_time'],'%Y-%m-%d');?>
 </li>

@@ -36,6 +36,9 @@ class StationAction extends BaseAction{
 			case 'stPic':
 				$this->stationPic();
 				break;
+			case 'pic':
+				$this->pic();
+				break;
 			default:
 				if($this->adminInfo['admin_role']==1){
 					$this->index();
@@ -53,7 +56,7 @@ class StationAction extends BaseAction{
 	private function index(){
 		$this->obj->assign('bread',$this->bread(1,'防疫站管理'));
 		$this->obj->assign('smActive',' class="active"');
-
+		$this->obj->assign('title','防疫站管理--预防接种系统后台管理');
 		if(!isset($this->parameters['safe']['p'])||empty($this->parameters['safe']['p'])||!is_numeric($this->parameters['safe']['p'])){
 			$this->parameters['safe']['p']=1;
 		}
@@ -69,6 +72,7 @@ class StationAction extends BaseAction{
 
 	private function stationInfo(){
 		$this->obj->assign('bread',$this->bread(2,'防疫站管理','st','防疫站详情'));
+		$this->obj->assign('title','防疫站详情--预防接种系统后台管理');
 		$this->obj->assign('sdActive',' class="active"');
 		$this->obj->assign('paras',$_GET);
 
@@ -80,7 +84,6 @@ class StationAction extends BaseAction{
 		$this->parameters['safe']['role']=$this->adminInfo['admin_role'];
 		//echo '<pre>';print_r(StationModel::fetchOne($this->parameters['safe']));exit();
 		$this->obj->assign('stationInfo',StationModel::fetchOne($this->parameters['safe'],$this->url));
-
 		$this->obj->display('station_info.html');
 	}
 
@@ -193,5 +196,10 @@ class StationAction extends BaseAction{
 		}
 		$this->obj->assign('sdPactive',' class="active"');
 		$this->obj->display('station_register_pic.html');
+	}
+
+	private function pic(){
+		$res=StationModel::fetchAllPic($this->parameters['safe']['picid']);
+		echo json_encode($res);exit();
 	}
 }

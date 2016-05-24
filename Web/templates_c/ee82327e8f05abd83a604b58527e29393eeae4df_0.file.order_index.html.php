@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-28 14:44:57
+/* Smarty version 3.1.29, created on 2016-05-24 05:45:05
   from "G:\wamp\www\bishe\Web\templates\order_index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_572221e9049d29_47776885',
+  'unifunc' => 'content_5743ea6196f0c0_28725502',
   'file_dependency' => 
   array (
     'ee82327e8f05abd83a604b58527e29393eeae4df' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\order_index.html',
-      1 => 1461656745,
+      1 => 1464068702,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_572221e9049d29_47776885 ($_smarty_tpl) {
+function content_5743ea6196f0c0_28725502 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -70,19 +70,23 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bi
 							<input type="hidden" name="a" value="o">
 							<div class="form-group">
 								<div class="label"><label for="orderNum">订单号：</label></div>
-								<div class="field"><input type="text" class="input" name="orderNum" id="orderNum" value=""></div>
+								<div class="field"><input type="text" class="input" name="orderNum" id="orderNum" value="<?php echo $_smarty_tpl->tpl_vars['getParas']->value['orderNum'];?>
+"></div>
 							</div>
 							<div class="form-group">
 								<div class="label"><label for="phone">手机号：</label></div>
-								<div class="field"><input type="text" class="input" name="phone" id="phone" value=""/></div>
+								<div class="field"><input type="text" class="input" name="phone" id="phone" value="<?php echo $_smarty_tpl->tpl_vars['getParas']->value['phone'];?>
+"/></div>
 							</div>
 							<div class="form-group">
 								<div class="label"><label for="stationNum">防疫站编号：</label></div>
-								<div class="field"><input type="text" class="input" name="stationNum" id="stationNum" value=""></div>
+								<div class="field"><input type="text" class="input" name="stationNum" id="stationNum" value="<?php echo $_smarty_tpl->tpl_vars['getParas']->value['stationNum'];?>
+"></div>
 							</div>
 							<div class="form-group">
 								<div class="label"><label for="veroNum">疫苗编号：</label></div>
-								<div class="field"><input type="text" class="input" name="veroNum" id="veroNum" value=""/></div>
+								<div class="field"><input type="text" class="input" name="veroNum" id="veroNum" value="<?php echo $_smarty_tpl->tpl_vars['getParas']->value['veroNum'];?>
+"/></div>
 							</div>
 							<div class="form-button">
 								<button class="button button-small">查询</button>
@@ -117,7 +121,10 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 							<tr>
 								<td><input type="checkbox" name="id" id="id" value="<?php echo $_smarty_tpl->tpl_vars['list']->value['record_id'];?>
 "></td>
-								<td><a href="javascript:void(0);"> <?php echo $_smarty_tpl->tpl_vars['list']->value['order_num'];?>
+								<td><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=o&e=info&i=<?php echo $_smarty_tpl->tpl_vars['list']->value[0];?>
+" title="<?php echo $_smarty_tpl->tpl_vars['list']->value['order_num'];?>
+"> <?php echo $_smarty_tpl->tpl_vars['list']->value['order_num'];?>
 </a></td>
 								<td><?php echo $_smarty_tpl->tpl_vars['list']->value['user_phone'];?>
 </td>
@@ -138,7 +145,7 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 								<td>
 									<a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 /index.php?a=o&e=info&i=<?php echo $_smarty_tpl->tpl_vars['list']->value[0];?>
-" class="button button-small border-green">编辑</a>
+" class="button button-small border-green" title="编辑">编辑</a>
 									<!-- <a href="javascript:void(0)" class="button button-small border-red orderdel">删除</a> -->
 								</td>
 							</tr>

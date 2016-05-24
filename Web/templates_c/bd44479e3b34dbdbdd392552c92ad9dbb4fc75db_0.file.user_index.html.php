@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-03 03:52:04
+/* Smarty version 3.1.29, created on 2016-05-24 05:54:08
   from "G:\wamp\www\bishe\Web\templates\user_index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_57282064861713_95531761',
+  'unifunc' => 'content_5743ec806338b6_03578109',
   'file_dependency' => 
   array (
     'bd44479e3b34dbdbdd392552c92ad9dbb4fc75db' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\user_index.html',
-      1 => 1461660019,
+      1 => 1464069243,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_57282064861713_95531761 ($_smarty_tpl) {
+function content_5743ec806338b6_03578109 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -74,13 +74,14 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bi
 					</div>
 					<table class="table table-hover">
 						<tr>
-							<th width="45">选择</th>
+							<th width="60">选择</th>
 							<th width="120">用户名</th>
 							<th width="120">手机号</th>
 							<th width="200">接种记录</th>
 							<th width="200">创建ip地址</th>
 							<th width="200">创建时间</th>
-							<th width="100">操作</th>
+							<th width="200">账号状态</th>
+							<!-- <th width="100">操作</th> -->
 						</tr>
 						<?php
 $_from = $_smarty_tpl->tpl_vars['list']->value;
@@ -102,17 +103,25 @@ $__foreach_v_0_saved_local_item = $_smarty_tpl->tpl_vars['v'];
 							<td><?php echo $_smarty_tpl->tpl_vars['v']->value[2];?>
 </td>
 							<td><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=u&e=j"><span class="icon-external-link"></span></a></td>
+/index.php?a=o&phone=<?php echo $_smarty_tpl->tpl_vars['v']->value[2];?>
+" title="接种记录" target="_blank"><span class="icon-external-link"></span></a></td>
 							<td><?php echo $_smarty_tpl->tpl_vars['v']->value[4];?>
 </td>
 							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['v']->value[5],'%Y-%m-%d');?>
 </td>
-							<td>
+							<!-- <td>
 								<a class="button border-blue button-little" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 &i=<?php echo $_smarty_tpl->tpl_vars['v']->value[0];?>
 ">编辑</a>
 								<a class="button border-yellow button-little userdel" data-target="<?php echo $_smarty_tpl->tpl_vars['v']->value[0];?>
 " href="javascript:void(0);">删除</a>
+							</td> -->
+							<td>
+							<?php if ($_smarty_tpl->tpl_vars['v']->value[6] == 0) {?>
+							启用
+							<?php } else { ?>
+							停用
+							<?php }?>
 							</td>
 						</tr>
 						<?php

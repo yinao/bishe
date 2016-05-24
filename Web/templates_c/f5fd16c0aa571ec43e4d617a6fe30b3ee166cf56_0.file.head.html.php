@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-10 16:56:42
+/* Smarty version 3.1.29, created on 2016-05-24 05:24:15
   from "G:\wamp\www\bishe\Web\templates\head.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_573212ca75baa1_75249963',
+  'unifunc' => 'content_5743e57fafbbe8_42413606',
   'file_dependency' => 
   array (
     'f5fd16c0aa571ec43e4d617a6fe30b3ee166cf56' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\head.html',
-      1 => 1462899237,
+      1 => 1464067452,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_573212ca75baa1_75249963 ($_smarty_tpl) {
+function content_5743e57fafbbe8_42413606 ($_smarty_tpl) {
 ?>
 
 		<div class="lefter">
@@ -71,9 +71,9 @@ index.php?a=st">防疫站管理</a></li>
 							<a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 /index.php?a=s" class="icon-cog"> 系统</a>
 							<ul>
-								<li<?php echo $_smarty_tpl->tpl_vars['sActive']->value;?>
+								<!-- <li<?php echo $_smarty_tpl->tpl_vars['sActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=s">系统设置</a></li>
+/index.php?a=s">系统设置</a></li> -->
 								<li<?php echo $_smarty_tpl->tpl_vars['pActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 /index.php?a=s&e=p">管理员设置</a></li>

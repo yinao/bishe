@@ -27,19 +27,19 @@
 							<input type="hidden" name="a" value="o">
 							<div class="form-group">
 								<div class="label"><label for="orderNum">订单号：</label></div>
-								<div class="field"><input type="text" class="input" name="orderNum" id="orderNum" value=""></div>
+								<div class="field"><input type="text" class="input" name="orderNum" id="orderNum" value="{$getParas['orderNum']}"></div>
 							</div>
 							<div class="form-group">
 								<div class="label"><label for="phone">手机号：</label></div>
-								<div class="field"><input type="text" class="input" name="phone" id="phone" value=""/></div>
+								<div class="field"><input type="text" class="input" name="phone" id="phone" value="{$getParas['phone']}"/></div>
 							</div>
 							<div class="form-group">
 								<div class="label"><label for="stationNum">防疫站编号：</label></div>
-								<div class="field"><input type="text" class="input" name="stationNum" id="stationNum" value=""></div>
+								<div class="field"><input type="text" class="input" name="stationNum" id="stationNum" value="{$getParas['stationNum']}"></div>
 							</div>
 							<div class="form-group">
 								<div class="label"><label for="veroNum">疫苗编号：</label></div>
-								<div class="field"><input type="text" class="input" name="veroNum" id="veroNum" value=""/></div>
+								<div class="field"><input type="text" class="input" name="veroNum" id="veroNum" value="{$getParas['veroNum']}"/></div>
 							</div>
 							<div class="form-button">
 								<button class="button button-small">查询</button>
@@ -62,7 +62,7 @@
 							{foreach from=$orderList item=list}
 							<tr>
 								<td><input type="checkbox" name="id" id="id" value="{$list.record_id}"></td>
-								<td><a href="javascript:void(0);"> {$list.order_num}</a></td>
+								<td><a href="{$rootUrl}/index.php?a=o&e=info&i={$list[0]}" title="{$list.order_num}"> {$list.order_num}</a></td>
 								<td>{$list.user_phone}</td>
 								<td>{$list.station_num}</td>
 								<td>{$list.vero_num}</td>
@@ -75,7 +75,7 @@
 									{/if}
 								</td>
 								<td>
-									<a href="{$rootUrl}/index.php?a=o&e=info&i={$list[0]}" class="button button-small border-green">编辑</a>
+									<a href="{$rootUrl}/index.php?a=o&e=info&i={$list[0]}" class="button button-small border-green" title="编辑">编辑</a>
 									<!-- <a href="javascript:void(0)" class="button button-small border-red orderdel">删除</a> -->
 								</td>
 							</tr>

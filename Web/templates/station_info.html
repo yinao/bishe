@@ -13,13 +13,59 @@
 		<script src="{$rootUrl}/Public/pintuer.js"></script>
 		<!--<script src="{$rootUrl}/Public/respond.js"></script>-->
 		<script src="{$rootUrl}/Public/admin.js"></script>
+		<style>
+		.piclist{
+			margin-bottom: 15px;
+			min-height: 50px;
+		}
+		.piclist li{
+			display: inline-block;
+			width: 200px;
+			height: 220px;
+			padding: 10px;
+		}
+		.piclist li img{
+			max-width: 100%;
+			max-height: 100%;
+		}
+		.cover{
+			position: absolute;
+			width:100%;
+			height: 100%;
+			z-index: 9999;
+			background-color: #FFFFFF;
+		}
+		.coverImg{
+			width: 50%;
+			height: auto;
+			padding: 20px;
+			margin:auto;
+			text-align: center;
+			margin-top: 5%;
+		}
+		.coverHeader{
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			font-size: 20px;
+			background-color: #0099CC;
+		}
+		.coverHeader span{
+			margin-right: 40px;
+			cursor: pointer;
+		}
+		.coverImg img{
+			max-width: 80%;
+			max-height: 70%;
+		}
+		</style>
 	</head>
 
 	<body>
 {include file="head.html"}
 
 		<div class="admin">
-			{if $stationInfo.station.station_status neq 2 and $adminInfo.admin_role eq 1}
+			{if $stationInfo.station.station_status neq 2 and $adminInfo.admin_role eq 1 and $stationInfo.station neq null}
 			<div class="panel">
 				<div class="panel-head">
 					<strong>审核操作：</strong>
@@ -77,7 +123,7 @@
 				</div>
 			</div>
 			<div class="panel" style="margin-top:20px;">
-				<div class="panel-head"><a href="javascript:void(0);" class="cuttle"><strong>防疫站描述</strong></a> <small>(点击展开)</small></div>
+				<div class="panel-head"><a href="javascript:void(0);" class="cuttle"><strong>防疫站文字描述</strong></a> <small>(点击展开)</small></div>
 				{if $adminInfo.admin_role eq 1}
 				<div class="panel-body hidden">
 				{elseif $adminInfo.admin_role eq 0}
@@ -86,6 +132,14 @@
 					{$stationInfo.station.station_description}
 				</div>
 			</div>
+			{if $adminInfo.admin_role eq 1}
+			<div class="panel" style="margin-top:20px;">
+				<div class="panel-head"><a href="javascript:void(0);" class="cuttle" id="picDes" data-tog="{$stationInfo.station.id}"><strong>防疫站图片描述</strong></a> <small>(点击展开)</small></div>
+				<div class="panel-body hidden">
+					<ul class="piclist" id="picList"></ul>
+				</div>
+			</div>
+			{/if}
 			{if $adminInfo.admin_role eq 1}
 			<div class="panel" style="margin-top:20px;">
 				<div class="panel-head"><strong>疫苗情况</strong></div>
@@ -127,6 +181,15 @@
 			</div>
 			{/if}
 		</div>
+		<div class="cover hidden">
+			<div class="coverHeader">
+				图片预览
+				<span class="float-right button" onclick="closePic();">关闭</span>
+			</div>
+			<div class="coverImg">
+				
+			</div>
+		</div>
 		<script>
 			$(function(){
 				$('.cuttle').click(function(){
@@ -144,7 +207,42 @@
 				$('.fail').click(function(){
 
 				});
+				$('#picDes').click(function(){
+					// <li>
+					// 	<a href="javascript:void(0);" onclick="showBig();" title="点击放大">
+					// 		<img src="{$rootUrl}/Uploads/GB1461681883/1461911855.jpg" alt="1">
+					// 	</a>
+					// 	</li>
+					if($('#picList').html()!=""){
+						return;
+					}
+					$('#picList').html('正在加载......');
+					var html='';
+					$.ajax({
+						url:'{$rootUrl}/index.php?a=st&e=pic',
+						data:'picid='+$(this).attr('data-tog'),
+						type:'GET',
+						dataType:'json',
+						async:false,
+						success:function(msg){
+							piclist=msg.pic;
+							for(var i=0,len=piclist.length;i<len;i++){
+								html+='<li><a href="javascript:void(0);" class="dialogs" onclick="showBig(this);" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" title="点击放大"><img src="{$rootUrl}/Uploads/'+piclist[i].picture_url+'" alt="1"></a></li>';
+							}
+						}
+					})
+					$('#picList').html("");
+					$('#picList').html(html);
+				});
 			});
+			function showBig(obj){
+				//alert(obj.firstChild.src)
+				$('.cover').removeClass('hidden');
+				$('.coverImg').html('<img src="'+obj.firstChild.src+'">');
+			}
+			function closePic(){
+				$('.cover').addClass('hidden');
+			}
 		</script>
 	</body>
 </html>

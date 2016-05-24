@@ -39,7 +39,7 @@ class ContentAction extends BaseAction{
 	private function index(){
 		$this->obj->caching=false;
 		$this->obj->assign('bread',$this->bread(1,'内容'));
-		$this->obj->assign('title','内容页title');
+		$this->obj->assign('title','内容管理--预防接种系统后台管理');
 		$this->obj->assign('keyword','关键字');
 		$this->obj->assign('description','网站页面内容描述');
 		$this->obj->assign('content','这是首页显示');
@@ -56,7 +56,7 @@ class ContentAction extends BaseAction{
 	private function edit($paras){
 		$this->obj->caching=false;
 		$this->obj->assign('bread',$this->bread(2,'内容','c','内容编辑'));
-		$this->obj->assign('title','内容编辑页title');
+		$this->obj->assign('title','内容编辑--预防接种系统后台管理');
 		$this->obj->assign('keyword','关键字');
 		$this->obj->assign('description','网站页面内容描述');
 		$this->obj->assign('content','这是首页显示');
@@ -75,6 +75,7 @@ class ContentAction extends BaseAction{
 
 	private function add(){
 		$this->obj->assign('bread',$this->bread(2,'内容','c','内容添加'));
+		$this->obj->assign('title','内容添加--预防接种系统后台管理');
 		$this->obj->assign('conActive',' class="active"');
 		$this->obj->assign('addActive',' class="active"');
 		$this->obj->assign('rootUrl',$this->rootUrl);
@@ -103,6 +104,7 @@ class ContentAction extends BaseAction{
 	private function sort(){
 
 		$this->obj->assign('bread',$this->bread(2,'内容','c','分类设置'));
+		$this->obj->assign('title','内容分类管理--预防接种系统后台管理');
 		$this->obj->assign('conActive',' class="active"');
 		$this->obj->assign('sortActive',' class="active"');
 		$this->obj->assign('rootUrl',$this->rootUrl);

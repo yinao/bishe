@@ -38,14 +38,17 @@ class IndexAction extends BaseAction{
 	}
 
 	private function index(){
-		$this->obj->assign('title','首页title');
+		$this->obj->assign('title','首页--后台管理端');
 		$this->obj->assign('keyword','关键字');
 		$this->obj->assign('description','网站页面内容描述');
 		$this->obj->assign('content','这是首页显示');
 
 		$this->obj->assign('rootUrl',$this->rootUrl);
 		$this->obj->assign('indexActive',' class="active"');
-
+		$this->obj->assign('indexInfo',IndexModel::indexInfo($this->adminInfo));
+		$this->obj->assign('lanague',PHP_VERSION);
+		$this->obj->assign('systemType',array(php_uname('s'),php_uname('r')));
+		#$this->obj->assign('mysqlType',mysql_get_server_info());
 		//$this->obj->display('Index_login.html');
 		$this->obj->display('Index_index.html');
 	}

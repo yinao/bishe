@@ -32,6 +32,7 @@ class OrderAction extends BaseAction{
 
 	private function index(){
 		$this->obj->assign('bread',$this->bread(1,'订单管理'));
+		$this->obj->assign('title','预约单管理--预防接种系统后台管理');
 		$this->obj->assign('omActive',' class="active"');
 
 		if(!isset($this->parameters['safe']['p'])||empty($this->parameters['safe']['p'])||!is_numeric($this->parameters['safe']['p'])){
@@ -51,13 +52,14 @@ class OrderAction extends BaseAction{
 		//unset($page);
 		$this->obj->assign('pager',$result['page']);
 		$this->obj->assign('orderList',$result['list']);
-
+		$this->obj->assign('getParas',$_GET);
 		$this->obj->display('order_index.html');
 	}
 
 	private function info(){
 
 		$this->obj->assign('bread',$this->bread(2,'订单管理','o','订单详情'));
+		$this->obj->assign('title','订单详情--预防接种系统后台管理');
 		$this->obj->assign('oiActive',' class="active"');
 
 		//查询订单的时候，还有看当前的登录账户有权查看别的防疫站的订单吗
@@ -72,6 +74,7 @@ class OrderAction extends BaseAction{
 	private function count(){
 
 		$this->obj->assign('bread',$this->bread(2,'订单管理','o','订单统计'));
+		$this->obj->assign('title','预约单统计--预防接种系统后台管理');
 		$this->obj->assign('ocActive',' class="active"');
 		$this->obj->display('order_count.html');
 	}

@@ -85,7 +85,7 @@
 								<li><strong>接种站电话：</strong>{$orderInfo.station.station_phone}</li>
 								<li><strong>接种站地址：</strong>{$orderInfo.station.station_address}</li>
 								<li><strong>接种站编号：</strong>{$orderInfo.station.station_num}</li>
-								<li><strong>接种站介绍：</strong><a href="javascript:void(0);" class="button button-small border-blue" title="图片介绍">图片介绍</a><a href="javascript:void(0);" class="button button-small border-green" title="文字介绍">文字介绍</a></li>
+								<li><strong>接种站介绍：</strong><a href="{$rootUrl}/index.php?a=st&e=sd&i={$orderInfo.station.id}" class="button button-small border-blue" title="图片介绍">图片介绍</a><a href="{$rootUrl}/index.php?a=st&e=sd&i={$orderInfo.station.id}" class="button button-small border-green" title="文字介绍">文字介绍</a></li>
 								<li><strong>接种站状态：</strong>{if $orderInfo.station.station_status eq 0}未通过验证{elseif $orderInfo.station.station_status eq 1}正常营业中{elseif $orderInfo.station.station_status eq 2}停止使用{/if}</li>
 								<li><strong>接种站创建时间：</strong>{$orderInfo.station.create_time|date_format:'%Y-%m-%d'}</li>
 							</ul>

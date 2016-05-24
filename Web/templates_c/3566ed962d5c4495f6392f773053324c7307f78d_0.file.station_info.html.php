@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-11 04:59:31
+/* Smarty version 3.1.29, created on 2016-05-24 07:44:12
   from "G:\wamp\www\bishe\Web\templates\station_info.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5732bc33d50465_75486932',
+  'unifunc' => 'content_5744064c15adb6_23397200',
   'file_dependency' => 
   array (
     '3566ed962d5c4495f6392f773053324c7307f78d' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_info.html',
-      1 => 1462932749,
+      1 => 1464075849,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5732bc33d50465_75486932 ($_smarty_tpl) {
+function content_5744064c15adb6_23397200 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -53,6 +53,52 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bi
  src="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 /Public/admin.js"><?php echo '</script'; ?>
 >
+		<style>
+		.piclist{
+			margin-bottom: 15px;
+			min-height: 50px;
+		}
+		.piclist li{
+			display: inline-block;
+			width: 200px;
+			height: 220px;
+			padding: 10px;
+		}
+		.piclist li img{
+			max-width: 100%;
+			max-height: 100%;
+		}
+		.cover{
+			position: absolute;
+			width:100%;
+			height: 100%;
+			z-index: 9999;
+			background-color: #FFFFFF;
+		}
+		.coverImg{
+			width: 50%;
+			height: auto;
+			padding: 20px;
+			margin:auto;
+			text-align: center;
+			margin-top: 5%;
+		}
+		.coverHeader{
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			font-size: 20px;
+			background-color: #0099CC;
+		}
+		.coverHeader span{
+			margin-right: 40px;
+			cursor: pointer;
+		}
+		.coverImg img{
+			max-width: 80%;
+			max-height: 70%;
+		}
+		</style>
 	</head>
 
 	<body>
@@ -61,7 +107,7 @@ if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bi
 
 
 		<div class="admin">
-			<?php if ($_smarty_tpl->tpl_vars['stationInfo']->value['station']['station_status'] != 2 && $_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 1) {?>
+			<?php if ($_smarty_tpl->tpl_vars['stationInfo']->value['station']['station_status'] != 2 && $_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 1 && $_smarty_tpl->tpl_vars['stationInfo']->value['station'] != null) {?>
 			<div class="panel">
 				<div class="panel-head">
 					<strong>审核操作：</strong>
@@ -131,7 +177,7 @@ echo $_smarty_tpl->tpl_vars['stationInfo']->value['station']['station_num'];
 				</div>
 			</div>
 			<div class="panel" style="margin-top:20px;">
-				<div class="panel-head"><a href="javascript:void(0);" class="cuttle"><strong>防疫站描述</strong></a> <small>(点击展开)</small></div>
+				<div class="panel-head"><a href="javascript:void(0);" class="cuttle"><strong>防疫站文字描述</strong></a> <small>(点击展开)</small></div>
 				<?php if ($_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 1) {?>
 				<div class="panel-body hidden">
 				<?php } elseif ($_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 0) {?>
@@ -141,6 +187,15 @@ echo $_smarty_tpl->tpl_vars['stationInfo']->value['station']['station_num'];
 
 				</div>
 			</div>
+			<?php if ($_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 1) {?>
+			<div class="panel" style="margin-top:20px;">
+				<div class="panel-head"><a href="javascript:void(0);" class="cuttle" id="picDes" data-tog="<?php echo $_smarty_tpl->tpl_vars['stationInfo']->value['station']['id'];?>
+"><strong>防疫站图片描述</strong></a> <small>(点击展开)</small></div>
+				<div class="panel-body hidden">
+					<ul class="piclist" id="picList"></ul>
+				</div>
+			</div>
+			<?php }?>
 			<?php if ($_smarty_tpl->tpl_vars['adminInfo']->value['admin_role'] == 1) {?>
 			<div class="panel" style="margin-top:20px;">
 				<div class="panel-head"><strong>疫苗情况</strong></div>
@@ -207,6 +262,15 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 			</div>
 			<?php }?>
 		</div>
+		<div class="cover hidden">
+			<div class="coverHeader">
+				图片预览
+				<span class="float-right button" onclick="closePic();">关闭</span>
+			</div>
+			<div class="coverImg">
+				
+			</div>
+		</div>
 		<?php echo '<script'; ?>
 >
 			$(function(){
@@ -225,7 +289,45 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 				$('.fail').click(function(){
 
 				});
+				$('#picDes').click(function(){
+					// <li>
+					// 	<a href="javascript:void(0);" onclick="showBig();" title="点击放大">
+					// 		<img src="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/Uploads/GB1461681883/1461911855.jpg" alt="1">
+					// 	</a>
+					// 	</li>
+					if($('#picList').html()!=""){
+						return;
+					}
+					$('#picList').html('正在加载......');
+					var html='';
+					$.ajax({
+						url:'<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/index.php?a=st&e=pic',
+						data:'picid='+$(this).attr('data-tog'),
+						type:'GET',
+						dataType:'json',
+						async:false,
+						success:function(msg){
+							piclist=msg.pic;
+							for(var i=0,len=piclist.length;i<len;i++){
+								html+='<li><a href="javascript:void(0);" class="dialogs" onclick="showBig(this);" data-toggle="click" data-target="#sortAdd" data-mask="1" data-width="50%" title="点击放大"><img src="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
+/Uploads/'+piclist[i].picture_url+'" alt="1"></a></li>';
+							}
+						}
+					})
+					$('#picList').html("");
+					$('#picList').html(html);
+				});
 			});
+			function showBig(obj){
+				//alert(obj.firstChild.src)
+				$('.cover').removeClass('hidden');
+				$('.coverImg').html('<img src="'+obj.firstChild.src+'">');
+			}
+			function closePic(){
+				$('.cover').addClass('hidden');
+			}
 		<?php echo '</script'; ?>
 >
 	</body>

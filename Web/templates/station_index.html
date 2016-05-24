@@ -59,7 +59,7 @@
 					{foreach from=$stationList item=list}
 					<tr>
 						<td><input type="checkbox" name="id" id="id" value="{$list.id}"></td>
-						<td>{$list.station_num}</td>
+						<td><a href="{$rootUrl}/index.php?a=st&e=sd&i={$list.id}" title="{$list.station_num}" onclick="jf.load();">{$list.station_num}</a></td>
 						<td>{$list.station_name}</td>
 						<td>{$list.station_address}</td>
 						<td>{$list.station_phone}</td>
