@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-24 07:44:12
+/* Smarty version 3.1.29, created on 2016-05-25 03:41:21
   from "G:\wamp\www\bishe\Web\templates\station_info.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5744064c15adb6_23397200',
+  'unifunc' => 'content_57451ee155ef69_79063063',
   'file_dependency' => 
   array (
     '3566ed962d5c4495f6392f773053324c7307f78d' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_info.html',
-      1 => 1464075849,
+      1 => 1464147677,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5744064c15adb6_23397200 ($_smarty_tpl) {
+function content_57451ee155ef69_79063063 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'G:\\wamp\\www\\bishe\\Web\\libs\\plugins\\modifier.date_format.php';
 ?>
 <!DOCTYPE html>
@@ -205,6 +205,7 @@ echo $_smarty_tpl->tpl_vars['stationInfo']->value['station']['station_num'];
 							<th>疫苗编号</th>
 							<th>疫苗名字</th>
 							<th width="40%">疫苗描述</th>
+							<th>剩余数量</th>
 							<th>疫苗状态</th>
 							<th>操作</th>
 						</tr>
@@ -227,6 +228,8 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 </td>
 							<td style="word-break:break-all"><?php echo $_smarty_tpl->tpl_vars['list']->value['vero_instruction'];?>
 </td>
+							<td><span class="badge bg-main"><?php echo $_smarty_tpl->tpl_vars['list']->value['vero_nums'];?>
+</span></td>
 							<?php if ($_smarty_tpl->tpl_vars['list']->value['vero_status'] == 0) {?>
 							<td>未审核</td>
 							<td>

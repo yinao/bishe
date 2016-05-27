@@ -38,7 +38,7 @@ class IndexAction extends BaseAction{
 	}
 
 	private function index(){
-		$this->obj->assign('title','首页--后台管理端');
+		$this->obj->assign('title','首页--预防系统后台管理端');
 		$this->obj->assign('keyword','关键字');
 		$this->obj->assign('description','网站页面内容描述');
 		$this->obj->assign('content','这是首页显示');

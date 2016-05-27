@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-11 05:10:28
+/* Smarty version 3.1.29, created on 2016-05-25 05:28:05
   from "G:\wamp\www\bishe\Web\templates\station_vero.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5732bec43d1240_09136870',
+  'unifunc' => 'content_574537e51ce071_91411833',
   'file_dependency' => 
   array (
     '5571b9263fe80c18a280b3fed2fdb7974ed31f4c' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_vero.html',
-      1 => 1462943426,
+      1 => 1464154080,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5732bec43d1240_09136870 ($_smarty_tpl) {
+function content_574537e51ce071_91411833 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -62,7 +62,7 @@ function content_5732bec43d1240_09136870 ($_smarty_tpl) {
 				<div class="panel admin-panel">
 					<div class="panel-head"><strong>疫苗列表</strong></div>
 					<div class="padding border-bottom">
-						<input type="button" class="button button-small border-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" value="添加疫苗" />
+						<input type="button" id="vadd" class="button button-small border-green dialogs" data-toggle="click" data-target="#veroAdd" data-mask="1" data-width="50%" value="添加疫苗" />
 					</div>
 					<div class="panel-body">
 						<table class="table table-hover">
@@ -71,6 +71,7 @@ function content_5732bec43d1240_09136870 ($_smarty_tpl) {
 							<th>疫苗编号</th>
 							<th>疫苗名字</th>
 							<th width="40%">疫苗描述</th>
+							<th>剩余数量</th>
 							<th>疫苗状态</th>
 							<th>操作</th>
 						</tr>
@@ -95,6 +96,11 @@ $__foreach_list_0_saved_local_item = $_smarty_tpl->tpl_vars['list'];
 </td>
 							<td style="word-break:break-all"><?php echo $_smarty_tpl->tpl_vars['list']->value['vero_instruction'];?>
 </td>
+							<td>
+								<span class="badge bg-main"><?php echo $_smarty_tpl->tpl_vars['list']->value['vero_nums'];?>
+</span>
+								<span class="icon-plus numsadd cursor dialogs" data-toggle="click" data-target="#veroNumsAdd" data-mask="1" data-width="20%" title="添加疫苗数量"></span>
+							</td>
 							<?php if ($_smarty_tpl->tpl_vars['list']->value['vero_status'] == 0) {?>
 							<td>未审核</td>
 							<td>
@@ -148,10 +154,14 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 					<form>
 						<div class="form-group">
 							<div class="label"><label for="">疫苗名称：</label></div>
-							<div class="field"><input type="text" name="veroName" class="input" value=""></div>
+							<div class="field"><input type="text" name="veroName" class="input input-auto" value=""></div>
+						</div>
+						<div class="form-group" id="veronums">
+							<div class="label"><label for="">疫苗数量：</label></div>
+							<div class="field"><input  type="number" name="veroNums" class="input input-auto" value=""></div>
 						</div>
 						<div class="form-group">
-							<div class="label"><label for="">疫苗</label></div>
+							<div class="label"><label for="">疫苗描述：</label></div>
 							<div class="field"><textarea name="description" class="input"></textarea></div>
 						</div>
 					</form>
@@ -164,18 +174,50 @@ $_smarty_tpl->tpl_vars['list'] = $__foreach_list_0_saved_item;
 				</div>
 			</div>
 		</div>
+		<div id="veroNumsAdd">
+			<div class="dialog">
+				<div class="dialog-head">
+					<span class="close rotate-hover"></span><strong>添加疫苗数量</strong>
+				</div>
+				<div class="dialog-body">
+					<form>
+						<div class="form-group" id="veronums">
+							<div class="label"><label for="">疫苗数量：</label></div>
+							<div class="field"><input  type="number" name="vero_nums" class="input input-auto" value=""></div>
+						</div>
+					</form>
+				</div>
+				<div class="dialog-foot">
+					<button class="button bg-green veroNumsSubmit">
+						确认</button>
+				</div>
+			</div>
+		</div>
 		<?php echo '<script'; ?>
 >
 			$(".editVero").click(function(){
 				var r=$(this).closest('tr');
 				var name=r.children().eq(2).text();
+				//var nums=r.children().eq(4).text();
 				var description=r.children().eq(3).html();
 				var id=r.children().eq(0).find('input[type="checkbox"]').val();
 				$('input[name="veroName"]').val(name);
+				//$('input[name="veroNums"]').val(nums);
+				$('#veronums').addClass('hidden');
 				$('textarea[name="description"]').val(description.replace("<br>",'\n'));
 				$('.veroSubmit').attr('data-toggle','update');
 				$('.veroSubmit').attr('data-target',id);
-			})
+			});
+			$("#vadd").click(function(){
+				$('.veroSubmit').attr('data-toggle','add');
+				$('#veronums').removeClass('hidden');
+				$('input[name="veroName"]').val("");
+				$('textarea[name="description"]').val("");
+			});
+			$(".numsadd").click(function(){
+				var id=$(this).closest('tr').children().eq(0).find('input[type="checkbox"]').val();
+				$('.veroNumsSubmit').attr('data-target',id);
+			});
 		<?php echo '</script'; ?>
 >
 	</body>

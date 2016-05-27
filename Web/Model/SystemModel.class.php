@@ -16,7 +16,7 @@ class SystemModel extends BaseModel{
 				foreach ($paras as $v){
 					$para[]=$v;
 				}
-				array_unshift($para, 1);
+				array_unshift($para, $adminInfo['admin_role']);
 				array_pop($para);
 				array_push($para, $adminInfo['admin_parent']==0?$adminInfo['id']:$adminInfo['admin_parent']);
 				array_push($para, $adminInfo['station_id']!=0?$adminInfo['station_id']:0);

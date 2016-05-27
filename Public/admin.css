@@ -151,6 +151,10 @@ form .form-group:last-child {
 	text-align: center;
 	font-size: 16px;
 }
+/*鼠标-箭头*/
+.cursor{
+	cursor: pointer;
+}
 /*--------自定义链接颜色(可选)--------*/
 
 a {

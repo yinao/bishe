@@ -141,10 +141,28 @@ $(function(){
 			alert("疫苗描述不能为空");
 			description.focus();return;
 		}
+		var data;
+		if($(this).attr('data-toggle')=='update'){
+			if(!confirm("确定更新后，需重新审核！！！")){return;}
+			data="veroName="+veroName.val()+"&description="+description.val()+"&id="+$(this).attr('data-target')+"&tog="+$(this).attr('data-toggle');
+		}else{
+			var nums=$('input[name="veroNums"]');
+			if(nums.val().trim()==""){
+				alert('疫苗数量的格式不正确');
+				nums.focus();return;
+			}
+			data="veroName="+veroName.val()+"&veroNums="+nums.val()+"&description="+description.val()+"&id="+$(this).attr('data-target')+"&tog="+$(this).attr('data-toggle');
+		}
 		jf.load();
-		var data="veroName="+veroName.val()+"&description="+description.val()+"&id="+$(this).attr('data-target')+"&tog="+$(this).attr('data-toggle');
 		var res=jf.ajaxMethod(jf.getRealUrl()+'/index.php?a=st&e=vea',data,'POST');
-		jf.hide();
+		//jf.hide();
+		window.location.reload();
+	});
+	$('.veroNumsSubmit').click(function(){
+		var nums=$('input[name="vero_nums"]');
+		var data="nums="+nums.val()+"&id="+$(this).attr('data-target')+"&tog=numsadd";
+		jf.load();
+		var res=jf.ajaxMethod(jf.getRealUrl()+'/index.php?a=st&e=vea',data,'POST');
 		window.location.reload();
 	});
 	$('.newsSub').click(function(){

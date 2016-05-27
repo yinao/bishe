@@ -53,7 +53,7 @@ class ApiModel extends BaseModel{
 		$vero_res=array();
 		$picture_res=array();
 		if(!empty($station_res)){
-			$vero_sql="select * from bishe_vero where station_id={$station_res['id']} and vero_status=1";
+			$vero_sql="select * from bishe_vero where station_id={$station_res['id']} and vero_status=1 and vero_nums>0";
 			$vero_res=parent::fetchAll($vero_sql,null,true);
 
 			$picture_sql="select * from bishe_picture where station_id={$station_res['id']}";
@@ -106,9 +106,16 @@ class ApiModel extends BaseModel{
 	}
 
 	public static function addRecord($paras){
+		$inoid=explode('-', $paras['userid']);
+		$vero_nums=parent::fetchOne("select vero_nums from bishe_vero where vero_status=1 and id=?",array($paras['veroid']));
+		if(empty($vero_nums)){
+			return array('status'=>0,'msg'=>'请重新选择疫苗');
+		}
+		if($vero_nums['vero_nums']<count($inoid)){
+			return array('status'=>0,'msg'=>'接种的人数太多了');
+		}
 		$record_sql="insert into bishe_record (user_id,station_id,vero_id,order_time,order_num,create_time,is_deleted,is_dealed) values (?,?,?,?,?,?,?,?)";
 		$paras['ordertime']=strtotime($paras['ordertime']);
-		$inoid=explode('-', $paras['userid']);
 		$r=null;
 		for($i=0;$i<count($inoid);$i++){
 			$para=array();
@@ -123,10 +130,15 @@ class ApiModel extends BaseModel{
 			//print_r($para);
 			$r=parent::execute($record_sql,$para);
 			if(!$r){
+				return array('status'=>0,'msg'=>'发生错误');
 				break;
 			}
 		}
-		return $r;
+		if($r){
+			return array('status'=>0,'msg'=>'发生错误');
+		}else{
+			return array('status'=>1);
+		}
 	}
 
 	public static function orderInfo($id){

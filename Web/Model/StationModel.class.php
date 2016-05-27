@@ -126,7 +126,7 @@ class StationModel extends BaseModel{
 				return parent::execute($sql,$value);
 				break;
 			case 'add':
-				$sql="insert into bishe_vero (vero_name,vero_instruction,create_time,vero_status,vero_num,station_id) values (?,?,?,?,?,?)";
+				$sql="insert into bishe_vero (vero_name,vero_nums,vero_instruction,create_time,vero_status,vero_num,station_id) values (?,?,?,?,?,?,?)";
 				$para=array();
 				$paras['tog']=time();
 				foreach($paras as $v){
@@ -154,6 +154,14 @@ class StationModel extends BaseModel{
 				array_push($para,$veroId);
 				return parent::execute($sql,$para);
 				break;
+			case 'numsadd':
+				$sql="";
+				array_pop($paras);
+				$old_nums=parent::fetchOne("select vero_nums from bishe_vero where id=?",array($paras['id']));
+				$paras['nums']=intval($paras['nums'])+$old_nums['vero_nums'];
+				$new_sql="update bishe_vero set vero_nums=? where id=?";
+				$paras['id']=intval($paras['id']);
+				return parent::execute($new_sql,array($paras['nums'],$paras['id']));
 			default:
 				return 0;
 				break;

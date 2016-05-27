@@ -72,8 +72,7 @@ class ApiAction extends BaseAction{
 	private function addRecord($paras){
 		array_shift($paras);
 		$res=ApiModel::addRecord($paras);
-		if($res){echo 1;exit();}
-		else{echo 0;exit();}
+		echo json_encode($res);
 	}
 
 	private function orderInfo($paras){
