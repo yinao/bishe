@@ -2,11 +2,11 @@
 class BaseModel{
 	private static $pdo=NULL;//pdo对象
 	private static $dbms="mysql";
-	//private static $host="114.215.87.180";//mysql数据库服务器的地址
-	private static $host="127.0.0.1";
+	private static $host="114.215.87.180";//mysql数据库服务器的地址
+	//private static $host="127.0.0.1";
 	private static $user="root";//mysql登录名
-	//private static $pwd="3fd52b4067";//mysql登录密码
-	private static $pwd="";
+	private static $pwd="3fd52b4067";//mysql登录密码
+	//private static $pwd="";
 	private static $port=3306;//mysql服务端口
 	private static $charset="utf-8";//mysql数据库使用的字符编码
 	private static $dbName="bishe";//数据库名
