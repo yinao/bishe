@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-24 05:24:15
+/* Smarty version 3.1.29, created on 2016-05-28 01:03:34
   from "G:\wamp\www\bishe\Web\templates\head.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5743e57fafbbe8_42413606',
+  'unifunc' => 'content_5748ee66507498_46966845',
   'file_dependency' => 
   array (
     'f5fd16c0aa571ec43e4d617a6fe30b3ee166cf56' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\head.html',
-      1 => 1464067452,
+      1 => 1464397404,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5743e57fafbbe8_42413606 ($_smarty_tpl) {
+function content_5748ee66507498_46966845 ($_smarty_tpl) {
 ?>
 
 		<div class="lefter">
@@ -110,10 +110,10 @@ index.php?a=st">防疫站管理</a></li>
 								<li<?php echo $_smarty_tpl->tpl_vars['oiActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 /index.php?a=o&e=info">订单详情</a></li>
-								<li<?php echo $_smarty_tpl->tpl_vars['ocActive']->value;?>
+								<!-- <li<?php echo $_smarty_tpl->tpl_vars['ocActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=o&e=oc">订单统计</a></li>
-								<li><a href="">回收站</a></li>
+/index.php?a=o&e=oc">订单统计</a></li> -->
+								<!-- <li><a href="">回收站</a></li> -->
 							</ul>
 						</li>
 						<?php }?>
@@ -124,7 +124,7 @@ index.php?a=st">防疫站管理</a></li>
 /index.php?a=u" class="icon-user"> 会员</a>
 							<ul>
 								<li class="active"><a href="">会员管理</a></li>
-								<li><a href="javascript:void(0);">统计</a></li>
+								<!-- <li><a href="javascript:void(0);">统计</a></li> -->
 							</ul>
 						</li>
 						<?php }?>
@@ -188,9 +188,9 @@ index.php?a=st">防疫站管理</a></li>
 								<li<?php echo $_smarty_tpl->tpl_vars['oiActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 /index.php?a=o&e=info">订单详情</a></li>
-								<li<?php echo $_smarty_tpl->tpl_vars['ocActive']->value;?>
+								<!-- <li<?php echo $_smarty_tpl->tpl_vars['ocActive']->value;?>
 ><a href="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
-/index.php?a=o&e=oc">订单统计</a></li>
+/index.php?a=o&e=oc">订单统计</a></li> -->
 								<li><a href="">回收站</a></li>
 							</ul>
 						</li>

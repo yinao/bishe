@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-24 05:17:08
+/* Smarty version 3.1.29, created on 2016-05-28 01:01:53
   from "G:\wamp\www\bishe\Web\templates\Index_index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5743e3d4cc0694_48729301',
+  'unifunc' => 'content_5748ee017b3290_73423117',
   'file_dependency' => 
   array (
     '234a282d5c8617dd0bef8577765b2d6afab59ce0' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\Index_index.html',
-      1 => 1464067025,
+      1 => 1464397044,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5743e3d4cc0694_48729301 ($_smarty_tpl) {
+function content_5748ee017b3290_73423117 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -65,9 +65,9 @@ function content_5743e3d4cc0694_48729301 ($_smarty_tpl) {
 					<div class="panel border-back">
 						<div class="panel-body text-center">
 							<img src="Public/face.jpg" width="120" class="radius-circle" />
-							<br /> admin
+							<br /> <?php echo $_smarty_tpl->tpl_vars['adminInfo']->value['admin_name'];?>
+
 						</div>
-						<div class="panel-foot bg-back border-back">您好，admin，这是您第100次登录，上次登录为2014-10-1。</div>
 					</div>
 					<br />
 					<div class="panel">
@@ -88,8 +88,8 @@ function content_5743e3d4cc0694_48729301 ($_smarty_tpl) {
 				<div class="xm9">
 					<div class="alert alert-yellow" style="margin-bottom:20px;"><span class="close"></span><strong>注意：</strong>您有5条未读信息，<a href="#">点击查看</a>。</div>
 					<div class="alert">
-						<h4>拼图前端框架介绍</h4>
-						<p class="text-gray padding-top">拼图是优秀的响应式前端CSS框架，国内前端框架先驱及领导者，自动适应手机、平板、电脑等设备，让前端开发像游戏般快乐、简单、灵活、便捷。</p>
+						<h4>预防接种系统介绍</h4>
+						<p class="text-gray padding-top">预防接种系统是集防疫站为一体，进行统一审核管理的系统。手机客户端是基于APPCAN的手机混合应用，可一次生成安卓版本和IOS版本。减少了系统客户端的维护费用。</p>
 					</div>
 					<div class="panel" style="margin-top:20px;">
 						<div class="panel-head"><strong>系统信息</strong></div>

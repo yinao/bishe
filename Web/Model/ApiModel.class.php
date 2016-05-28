@@ -134,7 +134,7 @@ class ApiModel extends BaseModel{
 				break;
 			}
 		}
-		if($r){
+		if(empty($r)){
 			return array('status'=>0,'msg'=>'发生错误');
 		}else{
 			return array('status'=>1);
