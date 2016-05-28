@@ -129,6 +129,7 @@ class StationModel extends BaseModel{
 				$sql="insert into bishe_vero (vero_name,vero_nums,vero_instruction,create_time,vero_status,vero_num,station_id) values (?,?,?,?,?,?,?)";
 				$para=array();
 				$paras['tog']=time();
+				unset($paras['id']);
 				foreach($paras as $v){
 					$para[]=$v;
 				}

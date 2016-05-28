@@ -81,7 +81,7 @@
 						<div class="form-group">
 							<div class="label"><label>上传封面图片：</label></div>
 							<div class="field">
-								{if $stationPic.cover.station_picture eq ""}
+								{if $stationPic.cover.station_picture eq " "}
 								<input type="hidden" name="act" value="update" />
 								<div class="loadStatus hidden"><img src="{$rootUrl}/Public/loader.gif"></div>
 								<div class="upload">

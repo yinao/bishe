@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-04-29 06:27:58
+/* Smarty version 3.1.29, created on 2016-05-28 02:32:24
   from "G:\wamp\www\bishe\Web\templates\station_register_pic.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5722feee4c2af4_29370029',
+  'unifunc' => 'content_57490338407c28_74583274',
   'file_dependency' => 
   array (
     '06a0fd7ecc10fb3ce1780d1b65bffc691fabd8ca' => 
     array (
       0 => 'G:\\wamp\\www\\bishe\\Web\\templates\\station_register_pic.html',
-      1 => 1461911276,
+      1 => 1464402735,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:head.html' => 1,
   ),
 ),false)) {
-function content_5722feee4c2af4_29370029 ($_smarty_tpl) {
+function content_57490338407c28_74583274 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -118,7 +118,7 @@ function content_5722feee4c2af4_29370029 ($_smarty_tpl) {
 						<div class="form-group">
 							<div class="label"><label>上传封面图片：</label></div>
 							<div class="field">
-								<?php if ($_smarty_tpl->tpl_vars['stationPic']->value['cover']['station_picture'] == '') {?>
+								<?php if ($_smarty_tpl->tpl_vars['stationPic']->value['cover']['station_picture'] == " ") {?>
 								<input type="hidden" name="act" value="update" />
 								<div class="loadStatus hidden"><img src="<?php echo $_smarty_tpl->tpl_vars['rootUrl']->value;?>
 /Public/loader.gif"></div>

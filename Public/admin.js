@@ -93,12 +93,13 @@ $(function(){
 	 	jf.load();
 		var data="name="+name.val()+"&account="+account.val()+"&phone="+phone.val()+"&paw="+paw.val()+"&confirmPaw="+confirm.val();
 		var res=JSON.parse(jf.ajaxMethod(jf.getRealUrl()+'/index.php?a=r',data,'POST'));
+
 		if(res.status==1){
-			jf.hide();
+			//jf.hide();
 			window.location.href=jf.getRealUrl();
 		}else{
 			jf.hide();
-			jf.alert($('.panel-body'),msg,'','error');return;
+			jf.alert($('.panel-body'),res.msg,'','error');return;
 		}
 	});
 	$('.btStation').click(function(){

@@ -7,8 +7,7 @@ class RegisterAction extends BaseAction{
 		if($this->isAjax()){
 			$paras=$_POST;
 			//echo json_encode($paras);exit();
-			if(!isset($paras['name'])||empty($paras['name'])
-					||strlen($paras['name'])>8){
+			if(!isset($paras['name'])||empty($paras['name'])){
 				echo json_encode(array('status'=>0,'msg'=>'名称有错误'));exit();
 			}
 			if(!isset($paras['account'])||empty($paras['name'])
