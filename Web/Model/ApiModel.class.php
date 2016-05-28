@@ -137,6 +137,7 @@ class ApiModel extends BaseModel{
 		if(empty($r)){
 			return array('status'=>0,'msg'=>'发生错误');
 		}else{
+			parent::execute("update bishe_vero set vero_nums=? where id=?",array($vero_nums['vero_nums']-count($inoid),$paras['veroid']));
 			return array('status'=>1);
 		}
 	}
